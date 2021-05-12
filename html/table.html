@@ -6,16 +6,38 @@
 <body>
 
 <h2>HTML Table</h2>
-<table contenteditable="true">
-  <tr>    <th>11</th>  <th>12</th>  <th>13</th>   </tr>
-  <tr>    <td>21</td>  <td>22</td>  <td>23</td>   </tr>
-  <tr>    <td>31</td>  <td>32</td>  <td>33</td>   </tr>
-  <tr>    <td>41</td>  <td>42</td>  <td>43</td>   </tr>
-</table>
 
-<button onclick="getSelectionElement()">test</button>
+<button onclick="setBackgroundColor()">Set Color</button>
+
+<div>
+	This is non editable
+</div>
+<input type="text" id="rows" placeholder="rows">
+<input type="text" id="cols" placeholder="cols">
+<button style="display: inline;" onclick="addTable()">Add Table</button>
+<div>
+	This is non editable
+</div>
+
+<div id="table_container" contenteditable="true">
+	
+	<div>
+		This is editable
+	</div>
+
+	<table class="dynamic_table">
+	  <tr>    <td>11</td>  <td>12</td>  <td>13</td>   </tr>
+	  <tr>    <td>21</td>  <td>22</td>  <td>23</td>   </tr>
+	  <tr>    <td>31</td>  <td>32</td>  <td>33</td>   </tr>
+	  <tr>    <td>41</td>  <td>42</td>  <td>43</td>   </tr>
+	</table>
+	
+
+</div>
 
 </body>
+<script src="create_table.js"></script>
+<script src="util_funcs.js"></script>
 <script src="table.js"></script>
 
 </html>

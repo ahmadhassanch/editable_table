@@ -3,7 +3,7 @@ table {
   border-collapse: collapse;
 }
 
-th{
+tr:first-child td{
   resize: horizontal;
   overflow: auto;
 }
