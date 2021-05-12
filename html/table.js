@@ -2,67 +2,77 @@ function addTable(){
     createTable("table_container");
 }
 
-function showHTML(argument) {
-    var x = document.getElementById("table_container");
-    var text = x.innerHTML;
-    console.log(text);
-}
 
-function setBackgoundColor(){
-    var node = getSelectedElement();
-    node.style.backgroundColor = "gray"; 
-    node.style.color = "red"; 
+class TableController
+{
+    constructor(container_name){
+        this.table_cont = document.getElementById(container_name);
 
-    var siblings = getSiblings(node);
-    console.log(siblings.length);
-
-
-
-}
-
-function insertColumn(){
-    var node = getSelectedElement();
-    var col = node.cellIndex;
-    var row = node.parentNode.rowIndex;
-    console.log("row, col", row, col)
-    var table = document.getElementById("dynamic_table");
-    console.log(table);
-    console.log(node);
-    console.log(node.parentNode);
-    var siblings = getSiblings(node.parentNode); 
-
-    for (j=0; j<siblings.length; j++){
-        var cell = siblings[j].insertCell(col+1);
+        this.observer = new ResizeObserver(this.outputsize)
+        this.observer.observe(this.table_cont);
+        
+        this.observer.table_cont = this.table_cont;
+        this.outputsize();
     }
-}
 
-
-function insertRow(){
-    var node = getSelectedElement();
-    var row = node.parentNode.rowIndex;
-    var table = document.getElementById("dynamic_table");
-    var new_row = table.insertRow(row+1);
-    var siblings = getSiblings(node);
-
-    for (j=0; j<siblings.length; j++){
-        var cell = new_row.insertCell(j);
+    showHTML(argument) {
+        console.log(this.table_cont.innerHTML);
     }
+
+
+    outputsize() {
+        var width = this.table_cont.offsetWidth;
+        var height = this.table_cont.offsetHeight;
+        // console.log(width, height);
+
+        // TODO: have to get array of all tables and elements in this div
+        // so that all can be resized
+        // since we may have created more than one table
+        
+        var table = document.getElementById("dynamic_table");
+        table.style.fontSize = .025*width+"px";
+        this.table_cont.style.fontSize = .025*width+"px";
+    }
+    
+    insertRow(){
+        var node = getSelectedElement();
+        var table = findParentTable(node);
+        var row = node.parentNode.rowIndex;
+        var new_row = table.insertRow(row+1);
+        var siblings = getSiblings(node);
+
+        for (var j=0; j<siblings.length; j++){
+            var cell = new_row.insertCell(j);
+        }
+    }
+
+    insertColumn(){
+        var node = getSelectedElement();
+        var col = node.cellIndex;
+        var row = node.parentNode.rowIndex;
+        // console.log("row, col", row, col)
+        var table = findParentTable(node);
+        var siblings = getSiblings(node.parentNode); 
+
+        for (var j=0; j<siblings.length; j++){
+            var cell = siblings[j].insertCell(col+1);
+        }
+    }
+
+
+    setBackgoundColor(){
+        var node = getSelectedElement();
+        node.style.backgroundColor = "gray"; 
+        node.style.color = "red"; 
+
+        var siblings = getSiblings(node);
+        console.log(siblings.length);
+    }
+
 }
 
-var table_cont = document.getElementById("table_container");
 
-function outputsize() {
-    var width = table_cont.offsetWidth;
-    var height = table_cont.offsetHeight;
-    console.log(width, height);
-
-    var table = document.getElementById("dynamic_table");
-    table.style.fontSize = .05*width+"px";
-
-}
-outputsize()
-
-new ResizeObserver(outputsize).observe(table_cont);
+var tableController = new TableController("table_container");
 
 
 

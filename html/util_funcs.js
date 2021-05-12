@@ -13,6 +13,21 @@ const isDescendant = function(parent, child) {
     return false;
 }
 
+
+function findParentTable(child) {
+    let node = child.parentNode;
+    while (node) {
+        if (node.nodeName === "TABLE") {
+            return node;
+        }
+        // Traverse up to the parent
+        node = node.parentNode;
+    }
+
+    // Go up until the root but couldn't find the `parent`
+    return false;
+}
+
 function getSelectedElement(){ 
     var selection = window.getSelection();  
     var container = selection.anchorNode; 
