@@ -1,0 +1,14 @@
+
+table {
+  border-collapse: collapse;
+}
+
+th{
+  resize: horizontal;
+  overflow: auto;
+}
+
+th, td {
+  border: 1px solid black;
+  min-width: 50px;
+}
