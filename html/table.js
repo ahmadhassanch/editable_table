@@ -13,6 +13,7 @@ class TableController
         
         this.observer.table_cont = this.table_cont;
         this.outputsize();
+        createTable("table_container");
     }
 
     showHTML(argument) {
@@ -24,6 +25,7 @@ class TableController
         var width = this.table_cont.offsetWidth;
         var height = this.table_cont.offsetHeight;
         // console.log(width, height);
+
 
         // TODO: have to get array of all tables and elements in this div
         // so that all can be resized
