@@ -1,6 +1,7 @@
 
 table {
   border-collapse: collapse;
+  font-size:1vw;
 }
 
 tr:first-child td{
@@ -8,7 +9,22 @@ tr:first-child td{
   overflow: auto;
 }
 
-th, td {
+
+
+td {
   border: 1px solid black;
-  min-width: 50px;
+  width : 50px;
+  /*width : 17%;*/
+  /*min-width: 25%;*/
+  /*font-size:1vw;*/
+}
+
+.table_container{
+	width: 50%;
+	min-width: 500px;
+	height:500px;
+	resize: both;
+	background-color: lightgray;
+	overflow: auto;
+
 }

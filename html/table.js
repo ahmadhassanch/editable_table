@@ -1,42 +1,68 @@
 function addTable(){
     createTable("table_container");
 }
-function getSelectedElement(){ 
-    var selection = window.getSelection();  
-    var container = selection.anchorNode; 
- 
-    if( container.nodeType !== 3 ){
-        console.log("Not sure what it is"); 
-        return container; 
-    } 
-    else{ 
-        // return parent if text node
-        console.log(selection)
 
-        console.log(container)
-        console.log(container.parentNode);
-        var col = container.parentNode.cellIndex;
-        var row = container.parentNode.parentNode.rowIndex;
-        console.log("row, col", row, col)
+function showHTML(argument) {
+    var x = document.getElementById("table_container");
+    var text = x.innerHTML;
+    console.log(text);
+}
 
-        container.parentNode.style.backgroundColor = "gray"; 
-        container.parentNode.style.color = "red"; 
-
-        var range = selection.getRangeAt(0);
-        var ulTag = range.commonAncestorContainer;
-        console.log("common ", ulTag);
-        if (ulTag)
-            ulTag.style.backgroundColor = "gray"; 
-        return container.parentNode 
-    } 
-} 
-
-
-function setBackgroundColor(){
+function setBackgoundColor(){
     var node = getSelectedElement();
+    node.style.backgroundColor = "gray"; 
+    node.style.color = "red"; 
+
+    var siblings = getSiblings(node);
+    console.log(siblings.length);
+
+
 
 }
 
+function insertColumn(){
+    var node = getSelectedElement();
+    var col = node.cellIndex;
+    var row = node.parentNode.rowIndex;
+    console.log("row, col", row, col)
+    var table = document.getElementById("dynamic_table");
+    console.log(table);
+    console.log(node);
+    console.log(node.parentNode);
+    var siblings = getSiblings(node.parentNode); 
+
+    for (j=0; j<siblings.length; j++){
+        var cell = siblings[j].insertCell(col+1);
+    }
+}
+
+
+function insertRow(){
+    var node = getSelectedElement();
+    var row = node.parentNode.rowIndex;
+    var table = document.getElementById("dynamic_table");
+    var new_row = table.insertRow(row+1);
+    var siblings = getSiblings(node);
+
+    for (j=0; j<siblings.length; j++){
+        var cell = new_row.insertCell(j);
+    }
+}
+
+var table_cont = document.getElementById("table_container");
+
+function outputsize() {
+    var width = table_cont.offsetWidth;
+    var height = table_cont.offsetHeight;
+    console.log(width, height);
+
+    var table = document.getElementById("dynamic_table");
+    table.style.fontSize = .05*width+"px";
+
+}
+outputsize()
+
+new ResizeObserver(outputsize).observe(table_cont);
 
 
 
