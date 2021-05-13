@@ -147,6 +147,8 @@ class TableController
             // var cell = trs[j].deleteCell(col);
             
             var cells = trs[j].getElementsByTagName("td");
+            if (col > cells.length-1)
+                col = cells.length -1;
             var previousSpan = cells[col].getAttribute("colspan");
             console.log(j, previousSpan);
             if ((previousSpan == null) || (previousSpan == 1)){
