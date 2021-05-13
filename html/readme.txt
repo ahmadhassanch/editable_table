@@ -1,7 +1,9 @@
 
+- implement delete row/column
+
+
 - should be able to justify left/right/center a column
 
-- implement delete row/column
 
 Issues related to merge:
 
