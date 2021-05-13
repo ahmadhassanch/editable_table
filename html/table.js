@@ -83,7 +83,6 @@ class TableController
         var table = findParentTable(node);
         var row = node.parentNode.rowIndex;
         table.deleteRow(row);
-
     }
     
     insertColumn(beforeOrAfter){
@@ -138,7 +137,11 @@ class TableController
             return;
 
         var col = node.cellIndex;
-        node.setAttribute("colspan", "2");
+        var previousSpan = node.getAttribute("colspan");
+        console.log("previousSpan", previousSpan);
+        if (previousSpan == null)
+            previousSpan = 1;
+        node.setAttribute("colspan", previousSpan+1);
         var w1 = parseFloat(node.style.width);
         var w2 = parseFloat(node.nextSibling.style.width);
         node.style.width = w1+w2+'px';
@@ -204,7 +207,6 @@ class TableController
         var p = document.createElement("p");
         div.appendChild(p);
         p.innerHTML = "Text after Table"
-
     } 
 }
 
