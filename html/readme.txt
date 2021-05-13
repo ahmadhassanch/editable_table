@@ -1,10 +1,6 @@
 
 - split cell
-
-- cursor key movement is not natural, made some conceptual example in arrow_tab_control
-  > will handle later -- low priority
-
-- should be able to justify left/right/center a column
+- should have a reverse of every action, so should have a split cell for merge cell
 
 Issues related to merge:
 Bug 1: If cells have been merged, next addRow doesn't span full table
@@ -13,6 +9,11 @@ Bug 3: merge more than once. I assume set colspan = 2, need to do colspan+=1
 
 Allow merge only in 2nd row (i=1 row)
 Will allow to add 
+
+LOW PRIORITY
+- cursor key movement is not natural, made some conceptual example in arrow_tab_control
+  > will handle later -- low priority
+- should be able to justify left/right/center a column
 
 =================================================================================
 Two difficult things to overcome
@@ -24,6 +25,8 @@ Known issues:
 - insert column has problems if we have merged cells. Probably won't fix.
 
 javascript based resizer: http://jsfiddle.net/3jMQD/
+=================================================================================
+SPECIFICATIONS:
 =================================================================================
 ADDING TABLE
 - Ability to add a table (rows x columns)
