@@ -1,6 +1,6 @@
 
 function createTable(table_container){ 
-    console.log("creating   ")
+    console.log("creating")
     var div = document.getElementById(table_container);
     
     var p = document.createElement("p");
@@ -23,6 +23,9 @@ function createTable(table_container){
             // Insert new cells (<td> elements) 
             var cell = row.insertCell(j);
             cell.innerHTML = "cell: " + i + " " + j;
+            if (i == 0)
+                cell.style.width = "200px";
+
         }
     }
 

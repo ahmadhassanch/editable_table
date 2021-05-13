@@ -76,6 +76,7 @@ class TableController
     }
 }
 
+
 var tableController = new TableController("table_container");
 
 
