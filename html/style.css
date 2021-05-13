@@ -12,15 +12,13 @@ table {
 tr:first-child td{
   resize: horizontal;
   overflow: auto;
+  height: 8px;
+  background-color: gray;
 }
 
 td {
   border: 1px solid black;
   width : 20px;
-}
-
-.inline{
-	display: inline;
 }
 
 .table_container{
@@ -31,26 +29,4 @@ td {
 	overflow: auto;
 }
 
-.table {
-  display: table;         
-  width: auto;         
-  border: .1px solid gray;
-  
-}
-.tr {
-  display: table-row;
-  /*width: auto;*/
-  /*clear: both;*/
-}
-.td {
-  float: left; /* fix for  buggy browsers */
-  width: 200px;         
-  border: .1px solid gray;
-  resize: horizontal;
-  overflow: auto;
-}
 
-.tr1:first-child .td{
-  resize: horizontal;
-  overflow: auto;
-}
