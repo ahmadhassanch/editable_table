@@ -1,6 +1,7 @@
 
 - should be able to justify left/right/center a column
 
+- implement delete row/column
 
 Issues related to merge:
 
@@ -28,6 +29,8 @@ ADDING TABLE
 ADDING COLUMNS/ROWS
 - Ability to add a column above/below
 - Ability to add a row above/below
+
+DELETING ROWS/COLUMNS
 - Ability to delete column
 - Ability to delete row
 
@@ -35,6 +38,9 @@ CELL MERGING
 - The selected cells will be merged.
   The cell next to current one will be merged with current
   This will not be allowed in the resizing row.
+
+CELL SPLIT
+- If cell is split
 
 SAVE LOAD FUNCTIONALITY
 - Should be independent of resolution/zooming
@@ -65,9 +71,7 @@ FOREGROUND/BACKGROUND COLORS
 	   - will merge the next cell with current cell
 	   - May allow selected cells to be merged - Later
 	   - The distribution of cells below merged cells would divide equally
-
 	   - First start off by deleting the next cell
-
 	   - merging cells worked, but resizing is broken.
 	   - previously was using CSS resizing, now have to look into javascript resizing
 	     so that I have better control. But, I do suspect that might run into same
