@@ -75,6 +75,11 @@ FOREGROUND/BACKGROUND COLORS
 	for tables with colspan.
 
 
-8:30PM: After dinner, started testing. Found an issue with insert column if cells have been
-        merged. 
+8:30PM: After dinner, started testing. Found an issue with insert column if cells merged. 
         Not fixing it for the time bing.
+
+        Continued testing - can't leave it for QA to find issues, I am the developer
+                            and I am responsible for reliability of codes.
+
+        Merging is a relatively complex thing to handle after merging
+        	previous functionality has issues.
