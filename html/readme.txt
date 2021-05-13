@@ -1,4 +1,7 @@
 
+- issues in multiple merge testing.
+Bug 3 fixed of multiple merge, now going to fix multiple split
+
 - split cell / merge cell multiple 
 - After fixing Bugs 1,2,3 I should shift to print PDF reports.
 
@@ -6,7 +9,6 @@
 Issues related to merge:
 Bug 1: If cells have been merged, next addRow doesn't span full table
 Bug 2: If cells have been merged, next column doesn't appear vertically, zigzag
-Bug 3: merge more than once. I assume set colspan = 2, need to do colspan+=1
 
 
 LOW PRIORITY

@@ -161,7 +161,12 @@ class TableController
             return;
 
         var col = node.cellIndex;
-        node.setAttribute("colspan", "1");
+        var previousSpan = node.getAttribute("colspan");
+        if (previousSpan == null)
+            return;
+
+        console.log(previousSpan);
+        node.setAttribute("colspan", previousSpan-1);
         var cell = node.parentNode.insertCell(col+1);
     }
 
