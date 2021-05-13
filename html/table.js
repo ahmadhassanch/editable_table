@@ -149,7 +149,7 @@ class TableController
             var cells = trs[j].getElementsByTagName("td");
             var previousSpan = cells[col].getAttribute("colspan");
             console.log(j, previousSpan);
-            if ((previousSpan == null) ){
+            if ((previousSpan == null) || (previousSpan == 1)){
                 previousSpan = 1;
                 var cell = trs[j].deleteCell(col);
             }
@@ -169,7 +169,7 @@ class TableController
             return;
         }
         var row = node.parentNode.rowIndex;
-        if(row != 1)  //first row is the resizing row, we don't want to delete cells
+        if(row == 0)  //first row is the resizing row, we don't want to delete cells
             return;
 
         var col = node.cellIndex;
@@ -193,7 +193,7 @@ class TableController
             return;
         }
         var row = node.parentNode.rowIndex;
-        if(row!=1)  //first row is the resizing row, we don't want to delete cells
+        if(row == 0)  //first row is the resizing row, we don't want to delete cells
             return;
 
         var col = node.cellIndex;
