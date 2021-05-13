@@ -24,9 +24,33 @@ td {
 }
 
 .table_container{
-	width: 500px;
+	width: 800px;
 	height:500px;
 	resize: both;
 	background-color: lightgray;
 	overflow: auto;
+}
+
+.table {
+  display: table;         
+  width: auto;         
+  border: .1px solid gray;
+  
+}
+.tr {
+  display: table-row;
+  /*width: auto;*/
+  /*clear: both;*/
+}
+.td {
+  float: left; /* fix for  buggy browsers */
+  width: 200px;         
+  border: .1px solid gray;
+  resize: horizontal;
+  overflow: auto;
+}
+
+.tr1:first-child .td{
+  resize: horizontal;
+  overflow: auto;
 }
