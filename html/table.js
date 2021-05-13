@@ -68,6 +68,23 @@ class TableController
 
     // get the col_no via cellIndex. Now get the parent TR and all of its siblings.
     // Now insert another column in that table right to current one
+    mergeCells(){
+        var node = getSelectedElement();
+        var row = node.parentNode.rowIndex;
+        var col = node.cellIndex;
+        console.log(row, col);
+        if (row == 0)
+            node.parentNode.deleteCell(col);
+        // var table = findParentTable(node);
+        // var trs = getSiblings(node.parentNode); 
+
+        // for (var j=0; j<trs.length; j++){
+        //     var cell = trs[j].insertCell(col+1);
+        //     if (j==0)cell.style.width = "100px";
+        // }
+    }
+
+    
     insertColumn(){
         var node = getSelectedElement();
         var col = node.cellIndex;
@@ -78,6 +95,7 @@ class TableController
             var cell = trs[j].insertCell(col+1);
             if (j==0)cell.style.width = "100px";
         }
+
     }
 
     setBackgoundColor(){
