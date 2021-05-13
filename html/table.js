@@ -127,13 +127,14 @@ class TableController
     // get the col_no via cellIndex. Now get the parent TR and all of its siblings.
     // Now insert another column in that table right to current one
     mergeCells(){
+        console.log("mergeCells Called");
         var node = getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
             return;
         }
         var row = node.parentNode.rowIndex;
-        if(row==0)  //first row is the resizing row, we don't want to delete cells
+        if(row != 1)  //first row is the resizing row, we don't want to delete cells
             return;
 
         var col = node.cellIndex;
@@ -143,6 +144,23 @@ class TableController
         node.style.width = w1+w2+'px';
         console.log(row, col); 
         node.parentNode.deleteCell(col+1);
+    }
+
+    splitCell(){
+        console.log("splitCell Called");
+        var node = getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
+        var row = node.parentNode.rowIndex;
+        if(row!=1)  //first row is the resizing row, we don't want to delete cells
+            return;
+
+        var col = node.cellIndex;
+        node.setAttribute("colspan", "1");
+        var cell = node.parentNode.insertCell(col+1);
+
     }
 
     setBackgoundColor(fore, back){
