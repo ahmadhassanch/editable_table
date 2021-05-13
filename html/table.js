@@ -9,6 +9,8 @@ class TableController
         this.observer.cont = this;
         this.parentSizeChanged();
         this.saveDict = {data:"No data", containerWidth:"50px"};
+        this.insertColsNo = 1;
+        this.insertRowsNo = 1;
     }
 
     showHTML(argument) {
@@ -59,6 +61,7 @@ class TableController
             console.log("Wrong element selected or no selection");
             return;
         }
+        this.insertRowsNo += 1;
         var row = node.parentNode.rowIndex;
         var table = findParentTable(node);
         var new_row = table.insertRow(row+1);
@@ -66,6 +69,7 @@ class TableController
 
         for (var j=0; j<siblings.length; j++){
             var cell = new_row.insertCell(j);
+            cell.innerHTML = this.insertRowsNo;
             if ( row+1 ==0)cell.style.width = "100px";
         }
     }
@@ -105,12 +109,14 @@ class TableController
             console.log("Wrong element selected or no selection");
             return;
         }
+        this.insertColsNo += 1;
         var col = node.cellIndex;
         var table = findParentTable(node);
         var trs = getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
             var cell = trs[j].insertCell(col+1);
+            cell.innerHTML = this.insertColsNo;
             if (j==0)cell.style.width = "100px";
         }
 

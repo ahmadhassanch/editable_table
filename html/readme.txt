@@ -1,10 +1,9 @@
-Current task
-- Merge cells
 
-Major issues:
+Issues related to merge:
 
-Minor issues:
-- if element is not of type td, ignore commands.
+Bug 1: If cells have been merged, next addRow doesn't span full table
+Bug 2: If cells have been merged, next column doesn't appear vertically, zigzag
+Bug 3: merge more than once. I assume set colspan = 2, need to do colspan+=1
 
 =================================================================================
 Two difficult things to overcome
