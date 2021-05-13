@@ -37,3 +37,4 @@ FOREGROUND/BACKGROUND COLORS
 
 =================================================================
 
+3:50PM Going to fix load save issue for changed resolution
