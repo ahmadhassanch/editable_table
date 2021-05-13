@@ -55,7 +55,7 @@ class TableController
     
     // get the selected td and find the row_no which has the cursor. Find the 
     // parent table, and insert another row in that table below current one
-    insertRow(){
+    insertRow(aboveOrBelow){
         var node = getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
@@ -64,7 +64,7 @@ class TableController
         this.insertRowsNo += 1;
         var row = node.parentNode.rowIndex;
         var table = findParentTable(node);
-        var new_row = table.insertRow(row+1);
+        var new_row = table.insertRow(row+aboveOrBelow);
         var siblings = getSiblings(node);
 
         for (var j=0; j<siblings.length; j++){
@@ -103,7 +103,7 @@ class TableController
     }
 
     
-    insertColumn(){
+    insertColumn(beforeOrAfter){
         var node = getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
@@ -115,9 +115,13 @@ class TableController
         var trs = getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
-            var cell = trs[j].insertCell(col+1);
-            cell.innerHTML = this.insertColsNo;
-            if (j==0)cell.style.width = "100px";
+            var cell = trs[j].insertCell(col+beforeOrAfter);
+            if (j==0){
+                cell.style.width = "100px";
+            }
+            else{
+                cell.innerHTML = this.insertColsNo;
+            }
         }
 
     }

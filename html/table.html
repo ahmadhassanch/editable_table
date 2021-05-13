@@ -2,9 +2,34 @@
 <html>
 <head>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="context_menu.css">
 </head>
 <body>
 	<h2>HTML Table2</h2>
+	<div id="contextMenu" class="context-menu" 
+        style="display:none">
+        <ul>
+            <li>
+            	<button onclick="tableController.insertRow(0)">Insert row above</button>
+           	</li>
+            <li>
+            	<button onclick="tableController.insertRow(1)">Insert row below</button>
+           	</li>
+            <li>
+            	<button onclick="tableController.insertColumn(0)">Insert column before</button>
+           	</li>
+            <li>
+            	<button onclick="tableController.insertColumn(1)">Insert column after</button>
+           	</li>
+            <li><a href="#">Element-2</a></li>
+            <li><a href="#">Element-3</a></li>
+            <li><a href="#">Element-4</a></li>
+            <li><a href="#">Element-5</a></li>
+            <li><a href="#">Element-6</a></li>
+            <li><a href="#">Element-7</a></li>
+        </ul>
+    </div>
+
 	<div>
 		This is non editable
 	</div>
