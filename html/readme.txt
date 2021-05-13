@@ -1,4 +1,3 @@
-
 Current task
 - Merge cells
 
@@ -12,6 +11,8 @@ Two difficult things to overcome
 - resize columns based on zoom of browser and parent
 - column resizing for merged cells
 
+Known issues:
+- insert column has problems if we have merged cells. Probably won't fix.
 
 =================================================================================
 ADDING TABLE
@@ -74,4 +75,6 @@ FOREGROUND/BACKGROUND COLORS
 	for tables with colspan.
 
 
-
+8:30PM: After dinner, started testing. Found an issue with insert column if cells have been
+        merged. 
+        Not fixing it for the time bing.

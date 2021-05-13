@@ -18,6 +18,7 @@ function getSelectedElement(){
     var selection = window.getSelection();  
     var container = selection.anchorNode; 
  
+    if (container == undefined) return;
     if( container.nodeType !== 3 ){
         console.log("Not sure what it is"); 
         return container; 

@@ -55,6 +55,10 @@ class TableController
     // parent table, and insert another row in that table below current one
     insertRow(){
         var node = getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
         var row = node.parentNode.rowIndex;
         var table = findParentTable(node);
         var new_row = table.insertRow(row+1);
@@ -70,8 +74,12 @@ class TableController
     // Now insert another column in that table right to current one
     mergeCells(){
         var node = getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
         var row = node.parentNode.rowIndex;
-        if(row==0)
+        if(row==0)  //first row is the resizing row, we don't want to delete cells
             return;
 
         var col = node.cellIndex;
@@ -93,6 +101,10 @@ class TableController
     
     insertColumn(){
         var node = getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
         var col = node.cellIndex;
         var table = findParentTable(node);
         var trs = getSiblings(node.parentNode); 
@@ -106,6 +118,10 @@ class TableController
 
     setBackgoundColor(){
         var node = getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
         node.style.backgroundColor = "gray"; 
         node.style.color = "red"; 
         var siblings = getSiblings(node);
