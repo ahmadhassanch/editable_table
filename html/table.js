@@ -11,10 +11,11 @@ class TableController
                           //afterwards from observer context. 
                           //so first time it won't give error
         
-        this.observer = new ResizeObserver(this.outputsize)
+        this.observer = new ResizeObserver(this.sizeChanged)
         this.observer.observe(this.container);
         this.observer.cont = this;
-        this.outputsize();
+        this.sizeChanged();
+        createTable("table_container");
         createTable("table_container");
     }
 
@@ -22,48 +23,23 @@ class TableController
         console.log(this.container.innerHTML);
     }
 
-    _changeWidths(wnew, wold){
-        
+    sizeChanged() {
+        var width = this.cont.container.offsetWidth;
+        var tables = this.cont.container.getElementsByTagName("TABLE");
 
-        var tables = this.container.getElementsByTagName("TABLE");
-        console.log("change widths===========", tables);
-
-        var width = wnew;
         this.cont.container.style.fontSize = .025*width+"px";
-        for (var i=0; i<tables.length; i++){
+        for (var k=0; k<tables.length; k++){
            
-            var table = tables[i];
-        
-            // table.style.fontSize = .025*width+"px";
+            var table = tables[k];
+            var row = table.getElementsByTagName("tr")[0];
+            var cells = row.getElementsByTagName("td");
 
-            var d = table.getElementsByTagName("tr")[0];
-            var r = d.getElementsByTagName("td");
-
-            for(var i = 0; i < r.length; i++){
-                var v = parseFloat(r[i].style.width);
-                r[i].style.width = v*1.0*wnew/wold + "px";
+            for(var i = 0; i < cells.length; i++){
+                var v = parseFloat(cells[i].style.width);
+                cells[i].style.width = v*width/this.width + "px";
             }
         }
-
-
-    }
-
-    outputsize() {
-        var width = this.cont.container.offsetWidth;
-        var height = this.cont.container.offsetHeight;
-
-        // if (this.width != -1) 
-        this.cont._changeWidths(width, this.width);
-
         this.width = width;
-        console.log("out width", this.width);
-        // TODO: have to get array of all tables and elements in this div
-        // so that all can be resized
-        // since we may have created more than one table
-        
-        // var table = document.getElementById("dynamic_table");
-        // table.style.fontSize = .025*width+"px";
-        // this.cont.container.style.fontSize = .025*width+"px";
     }
     
     insertRow(){
