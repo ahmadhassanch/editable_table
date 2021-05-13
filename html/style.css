@@ -12,7 +12,7 @@ table {
 tr:first-child td{
   resize: horizontal;
   overflow: auto;
-  height: 8px;
+  height: 6px;
   background-color: gray;
 }
 

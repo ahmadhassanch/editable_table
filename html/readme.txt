@@ -8,6 +8,12 @@ Minor issues:
 - if element is not of type td, ignore commands.
 
 =================================================================================
+Two difficult things to overcome
+- resize columns based on zoom of browser and parent
+- column resizing for merged cells
+
+
+=================================================================================
 ADDING TABLE
 - Ability to add a table (rows x columns)
   > distribute columns equally in 90% of parent
@@ -19,7 +25,9 @@ ADDING COLUMNS/ROWS
 - Ability to delete row
 
 CELL MERGING
-- The selected cells will be merged, allowed only in top row
+- The selected cells will be merged.
+  The cell next to current one will be merged with current
+  This will not be allowed in the resizing row.
 
 SAVE LOAD FUNCTIONALITY
 - Should be independent of resolution/zooming
@@ -57,4 +65,13 @@ FOREGROUND/BACKGROUND COLORS
 	   - previously was using CSS resizing, now have to look into javascript resizing
 	     so that I have better control. But, I do suspect that might run into same
 	     problem. If I run into same problem, then will have to implement table myself probably
-	     
+
+7:40PM
+	Implemented a new strategy for resizing with merging
+	Added a top thin row for resizing, now javascript not needed again.
+	This one was hard to overcome, took like 1 hour to find solution.
+	This is an example, where I was stuck due to "table" not properly supporing width stuff
+	for tables with colspan.
+
+
+

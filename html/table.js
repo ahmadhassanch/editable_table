@@ -71,14 +71,16 @@ class TableController
     mergeCells(){
         var node = getSelectedElement();
         var row = node.parentNode.rowIndex;
+        if(row==0)
+            return;
+
         var col = node.cellIndex;
         node.setAttribute("colspan", "2");
         var w1 = parseFloat(node.style.width);
         var w2 = parseFloat(node.nextSibling.style.width);
         node.style.width = w1+w2+'px';
         console.log(row, col); 
-        if (row == 0)
-            node.parentNode.deleteCell(col+1);
+        node.parentNode.deleteCell(col+1);
         // var table = findParentTable(node);
         // var trs = getSiblings(node.parentNode); 
 
@@ -123,11 +125,20 @@ class TableController
 
         for (var i=0;i<rows;i++){
             var row = table.insertRow(i);
+            if(i==0)
+                row.setAttribute("contenteditable", "false");
             for (var j=0; j<cols; j++){
                 var cell = row.insertCell(j);
-                cell.innerHTML = "cell: " + i + " " + j;
-                if (i == 0)
+                if (i == 0){
                     cell.style.width = "100px";
+                    cell.innerHTML = "<p></p>";
+
+                }
+                else
+                {
+                    cell.innerHTML = "cell: " + i + " " + j;
+                
+                }
             }
         }
     } 

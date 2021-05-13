@@ -20,31 +20,13 @@
 	<button onclick="tableController.loadTable()">Load Table</button>
 	<div style="height:5px;"></div>
 	<input type="text" id="rows" placeholder="rows" value="3">
-	<input type="text" id="cols" placeholder="cols" value="2">
+	<input type="text" id="cols" placeholder="cols" value="4">
 	<button class="inline" onclick="addTable()">Add Table</button>
 	<div style="height:5px;"></div>
 	
 	<div id="table_container" 
 		contenteditable="true" class="table_container" onresize="onresize()">
 	
-
-	<table>
-	  <tr contenteditable="false">    
-	  	<td><p style="padding:0px; margin:0px;"></p></td>  
-	  	<td><p style="padding:0px; margin:0px;"></p></td>  
-	  	<td><p style="padding:0px; margin:0px;"></p></td>  
-	  	<td><p style="padding:0px; margin:0px;"></p></td>  
-	  	<td><p style="padding:0px; margin:0px;"></p></td>   
-	  </tr>
-	  <tr>    
-	  	<td colspan="1" style="width1:100px;">11</td>  
-	  	<td colspan="2" style="width1:200px;">12</td>   
-	  	<td colspan="1" style="width1:100px;">12</td>  
-	  	<td colspan="1" style="width1:100px;">13</td>   </tr>
-	  <tr>    <td>21</td>  <td>22</td>  <td>23</td>  <td>22</td>  <td>23</td>   </tr>
-	  <tr>    <td>31</td>  <td>32</td>  <td>33</td>  <td>32</td>  <td>33</td>   </tr>
-	  <tr>    <td>41</td>  <td>42</td>  <td>43</td>  <td>42</td>  <td>43</td>   </tr>
-	</table>
 
 	</div>
 
@@ -57,6 +39,24 @@
 
 
 
+<!-- 	<table>
+	  <tr contenteditable="false">    
+	  	<td><p></p></td>  
+	  	<td><p></p></td>  
+	  	<td><p></p></td>  
+	  	<td><p></p></td>  
+	  	<td><p></p></td>   
+	  </tr>
+	  <tr>    
+	  	<td colspan="1" style="width1:100px;">11</td>  
+	  	<td colspan="2" style="width1:200px;">12</td>   
+	  	<td colspan="1" style="width1:100px;">12</td>  
+	  	<td colspan="1" style="width1:100px;">13</td>   </tr>
+	  <tr>    <td>21</td>  <td>22</td>  <td>23</td>  <td>22</td>  <td>23</td>   </tr>
+	  <tr>    <td>31</td>  <td>32</td>  <td>33</td>  <td>32</td>  <td>33</td>   </tr>
+	  <tr>    <td>41</td>  <td>42</td>  <td>43</td>  <td>42</td>  <td>43</td>   </tr>
+	</table>
+ -->
 
 
 
@@ -66,7 +66,7 @@
 
 
 <!-- 
-	Table with divs
+	Table
 	<div class="table">
 		<div class="tr">
 			<div class="td">
