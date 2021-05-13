@@ -3,20 +3,23 @@ class TableController
 {
     constructor(container_name){
         this.container = document.getElementById(container_name);
-
-        this.cont = this; //first time outputsize() will be called from this context
-                          //afterwards from observer context. 
-                          //so first time it won't give error
-        
+        this.cont = this; //first time call to sizeChanged doesn't give error
         this.observer = new ResizeObserver(this.sizeChanged)
         this.observer.observe(this.container);
         this.observer.cont = this;
         this.sizeChanged();
-       
+        this.savedTable = "";
     }
 
     showHTML(argument) {
         console.log(this.container.innerHTML);
+    }
+    saveTable(){
+        this.savedTable = this.container.innerHTML;
+        this.container.innerHTML = "";
+    }
+    loadTable(){
+        this.container.innerHTML = this.savedTable;
     }
 
     sizeChanged() {
