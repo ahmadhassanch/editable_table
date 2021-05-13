@@ -52,4 +52,9 @@ FOREGROUND/BACKGROUND COLORS
 	   - The distribution of cells below merged cells would divide equally
 
 	   - First start off by deleting the next cell
-	   
+
+	   - merging cells worked, but resizing is broken.
+	   - previously was using CSS resizing, now have to look into javascript resizing
+	     so that I have better control. But, I do suspect that might run into same
+	     problem. If I run into same problem, then will have to implement table myself probably
+	     
