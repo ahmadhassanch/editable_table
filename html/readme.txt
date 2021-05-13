@@ -1,2 +1,2 @@
 
-- set the width at creation of table
+- set the cell width at creation of cell

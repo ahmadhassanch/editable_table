@@ -42,27 +42,33 @@ class TableController
         this.width = width;
     }
     
+    // get the selected td and find the row_no which has the cursor. Find the 
+    // parent table, and insert another row in that table below current one
     insertRow(){
         var node = getSelectedElement();
-        var table = findParentTable(node);
         var row = node.parentNode.rowIndex;
+        var table = findParentTable(node);
         var new_row = table.insertRow(row+1);
         var siblings = getSiblings(node);
 
         for (var j=0; j<siblings.length; j++){
             var cell = new_row.insertCell(j);
+            if ( row+1 ==0)cell.style.width = "100px";
         }
     }
 
+    // get the col_no via cellIndex. Now get the parent TR and all of its siblings.
+    // Now insert another column in that table right to current one
     insertColumn(){
         var node = getSelectedElement();
         var col = node.cellIndex;
-        // var row = node.parentNode.rowIndex;
         var table = findParentTable(node);
-        var siblings = getSiblings(node.parentNode); 
+        var trs = getSiblings(node.parentNode); 
 
-        for (var j=0; j<siblings.length; j++){
-            var cell = siblings[j].insertCell(col+1);
+        for (var j=0; j<trs.length; j++){
+            var cell = trs[j].insertCell(col+1);
+            if (j==0)cell.style.width = "100px";
+
         }
     }
 
@@ -70,12 +76,10 @@ class TableController
         var node = getSelectedElement();
         node.style.backgroundColor = "gray"; 
         node.style.color = "red"; 
-
         var siblings = getSiblings(node);
         console.log(siblings.length);
     }
 }
-
 
 var tableController = new TableController("table_container");
 

@@ -24,7 +24,7 @@ function createTable(table_container){
             var cell = row.insertCell(j);
             cell.innerHTML = "cell: " + i + " " + j;
             if (i == 0)
-                cell.style.width = "200px";
+                cell.style.width = "100px";
 
         }
     }
