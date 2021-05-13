@@ -141,7 +141,7 @@ class TableController
         console.log("previousSpan", previousSpan);
         if (previousSpan == null)
             previousSpan = 1;
-        node.setAttribute("colspan", previousSpan+1);
+        node.setAttribute("colspan",  parseInt(previousSpan)+1);
         var w1 = parseFloat(node.style.width);
         var w2 = parseFloat(node.nextSibling.style.width);
         node.style.width = w1+w2+'px';
@@ -166,7 +166,7 @@ class TableController
             return;
 
         console.log(previousSpan);
-        node.setAttribute("colspan", previousSpan-1);
+        node.setAttribute("colspan", parseInt(previousSpan)-1);
         var cell = node.parentNode.insertCell(col+1);
     }
 
