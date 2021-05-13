@@ -112,21 +112,21 @@ class TableController
         }
     }
 
-    deleteColumn1(){
-        var node = getSelectedElement();
-        if ((node == undefined) || (node.nodeName != "TD")){
-            console.log("Wrong element selected or no selection");
-            return;
-        }
-        this.insertColsNo += 1;
-        var col = node.cellIndex;
-        var table = findParentTable(node);
-        var trs = getSiblings(node.parentNode); 
+    // deleteColumn1(){
+    //     var node = getSelectedElement();
+    //     if ((node == undefined) || (node.nodeName != "TD")){
+    //         console.log("Wrong element selected or no selection");
+    //         return;
+    //     }
+    //     this.insertColsNo += 1;
+    //     var col = node.cellIndex;
+    //     var table = findParentTable(node);
+    //     var trs = getSiblings(node.parentNode); 
 
-        for (var j=0; j<trs.length; j++){
-            var cell = trs[j].deleteCell(col);
-        }
-    }
+    //     for (var j=0; j<trs.length; j++){
+    //         var cell = trs[j].deleteCell(col);
+    //     }
+    // }
 
 
     deleteColumn(){
@@ -139,9 +139,6 @@ class TableController
         var col = node.cellIndex;
         var table = findParentTable(node);
         var trs = getSiblings(node.parentNode); 
-
-        // var row = table.getElementsByTagName("tr")[0];
-        // var cells = row.getElementsByTagName("td");
 
         for (var j=0; j<trs.length; j++){
             // var cell = trs[j].deleteCell(col);
@@ -181,9 +178,11 @@ class TableController
             previousSpan = 1;
         node.setAttribute("colspan",  parseInt(previousSpan)+1);
         var w1 = parseFloat(node.style.width);
-        var w2 = parseFloat(node.nextSibling.style.width);
-        node.style.width = w1+w2+'px';
         console.log(row, col); 
+        console.log("row, col", row, col)
+        console.log("nextSibling", node);
+        // var w2 = parseFloat(node.nextSibling.style.width);
+        // node.style.width = w1+w2+'px';
         node.parentNode.deleteCell(col+1);
     }
 
