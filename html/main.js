@@ -38,3 +38,19 @@ function rightClick(e) {
     }
 }
 
+document.onkeydown = function (e) {
+  var kc = e.keyCode,
+      key = e.key;
+  console.log("key code: " + kc + ", key: " + e.key);
+  e.preventDefault();
+
+}
+
+document.onkeyup = function (e) {
+  var kc = e.keyCode,
+      key = e.key;
+  console.log("key code: " + kc + ", key: " + e.key);
+  e.preventDefault();
+  
+}
+
