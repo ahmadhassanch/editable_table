@@ -74,6 +74,17 @@ class TableController
         }
     }
 
+    deleteRow(){
+        var node = getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
+        var table = findParentTable(node);
+        var row = node.parentNode.rowIndex;
+        table.deleteRow(row);
+
+    }
     // get the col_no via cellIndex. Now get the parent TR and all of its siblings.
     // Now insert another column in that table right to current one
     mergeCells(){
