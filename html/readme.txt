@@ -1,4 +1,4 @@
-
+- After fixing Bugs 1,2,3 I should shift to print PDF reports.
 - split cell
 - should have a reverse of every action, so should have a split cell for merge cell
 - fix bug 3 below.
