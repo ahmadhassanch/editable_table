@@ -22,7 +22,7 @@ function createTable(table_container){
         for (j=0; j<cols; j++){
             // Insert new cells (<td> elements) 
             var cell = row.insertCell(j);
-            // cell.innerHTML = "NEW CELL " + i + " " + j;
+            // cell.innerHTML = "cell:" + i + " " + j;
         }
     }
 
