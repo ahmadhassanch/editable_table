@@ -1,5 +1,5 @@
 
-- split cell / merge cell multiple
+- split cell / merge cell multiple 
 - After fixing Bugs 1,2,3 I should shift to print PDF reports.
 
 
