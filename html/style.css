@@ -8,8 +8,6 @@ tr:first-child td{
   overflow: auto;
 }
 
-
-
 td {
   border: 1px solid black;
   width : 50px;
@@ -25,5 +23,4 @@ td {
 	resize: both;
 	background-color: lightgray;
 	overflow: auto;
-
 }

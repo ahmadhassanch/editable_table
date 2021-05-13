@@ -1,6 +1,3 @@
-function addTable(){
-    createTable("table_container");
-}
 
 class TableController
 {
@@ -67,7 +64,6 @@ class TableController
         for (var j=0; j<trs.length; j++){
             var cell = trs[j].insertCell(col+1);
             if (j==0)cell.style.width = "100px";
-
         }
     }
 
