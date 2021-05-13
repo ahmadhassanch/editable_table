@@ -27,6 +27,9 @@
             <li>
             	<button onclick="tableController.deleteColumn()">Delete column</button>
            	</li>
+            <li>
+            	<button onclick="tableController.mergeCells()">Merge Cells</button>
+           	</li>
             <li><a href="#">Element-2</a></li>
             <li><a href="#">Element-3</a></li>
             <li><a href="#">Element-4</a></li>
@@ -35,26 +38,19 @@
             <li><a href="#">Element-7</a></li>
         </ul>
     </div>
+	<div style="height:5px;"></div>
+	<input style="width:30px;" type="text" id="rows" placeholder="rows" value="7">
+	<input style="width:30px;" type="text" id="cols" placeholder="cols" value="4">
+	<button class="inline" onclick="addTable()">Add Table</button>
 
-	<div>
-		Foreground and background
-	</div>
+	<!-- <button onclick="tableController.showHTML()">show html</button> -->
+	<button onclick="tableController.saveTable()">Save and Clear</button>
+	<button onclick="tableController.loadTable()">Load Table</button>
+	<br><br>
 
   	<input type="color" id="forecolor" name="forecolor" value="#FFFfff">
   	<input type="color" id="backcolor" name="backcolor" value="#333333">
-  	<br>
-
-	<button onclick="tableController.mergeCells()">Merge Cells</button>
-	<div style="height:5px;"></div>
 	<button onclick="setColor()">Set Color</button>
-	<div style="height:5px;"></div>
-	<button onclick="tableController.showHTML()">show html</button>
-	<button onclick="tableController.saveTable()">Save Table</button>
-	<button onclick="tableController.loadTable()">Load Table</button>
-	<div style="height:5px;"></div>
-	<input type="text" id="rows" placeholder="rows" value="7">
-	<input type="text" id="cols" placeholder="cols" value="4">
-	<button class="inline" onclick="addTable()">Add Table</button>
 	<div style="height:5px;"></div>
 	
 	<div id="table_container" 

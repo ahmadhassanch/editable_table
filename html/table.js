@@ -165,7 +165,7 @@ class TableController
 
         var p = document.createElement("p");
         div.appendChild(p);
-        p.innerHTML = "Adding new table"
+        p.innerHTML = "Text before Table"
 
         var table = document.createElement("TABLE");
         div.appendChild(table);
@@ -188,6 +188,10 @@ class TableController
                 }
             }
         }
+        var p = document.createElement("p");
+        div.appendChild(p);
+        p.innerHTML = "Text after Table"
+
     } 
 }
 

@@ -1,12 +1,9 @@
 
-- implement delete row/column
-
-
+- split cell
+- cursor key movement is not natural
 - should be able to justify left/right/center a column
 
-
 Issues related to merge:
-
 Bug 1: If cells have been merged, next addRow doesn't span full table
 Bug 2: If cells have been merged, next column doesn't appear vertically, zigzag
 Bug 3: merge more than once. I assume set colspan = 2, need to do colspan+=1
@@ -17,7 +14,8 @@ Will allow to add
 =================================================================================
 Two difficult things to overcome
 - resize columns based on zoom of browser and parent
-- column resizing for merged cells
+- column resizing for merged cells (finally fixed by a top row with max columns)
+- Merge related issues. Problems with insert/delete row/col
 
 Known issues:
 - insert column has problems if we have merged cells. Probably won't fix.
@@ -95,3 +93,9 @@ FOREGROUND/BACKGROUND COLORS
 
         Merging is a relatively complex thing to handle after merging
         	previous functionality has issues.
+
+11:15PM:
+	Have done signficiant implementation: 
+		Delete row/col, 
+		A context menu,
+		color filling
