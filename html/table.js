@@ -160,7 +160,6 @@ class TableController
         var col = node.cellIndex;
         node.setAttribute("colspan", "1");
         var cell = node.parentNode.insertCell(col+1);
-
     }
 
     setBackgoundColor(fore, back){
