@@ -1,3 +1,7 @@
+
+
+When column is being deleted, if colspan >1 then reduce column span.
+
 - should not be able to insert row above title row
 - multiple cell selection
 - decrease/increase font size in a cell

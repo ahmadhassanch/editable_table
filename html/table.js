@@ -112,7 +112,7 @@ class TableController
         }
     }
 
-    deleteColumn(){
+    deleteColumn1(){
         var node = getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
@@ -125,6 +125,37 @@ class TableController
 
         for (var j=0; j<trs.length; j++){
             var cell = trs[j].deleteCell(col);
+        }
+    }
+
+
+    deleteColumn(){
+        var node = getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
+        this.insertColsNo += 1;
+        var col = node.cellIndex;
+        var table = findParentTable(node);
+        var trs = getSiblings(node.parentNode); 
+
+        // var row = table.getElementsByTagName("tr")[0];
+        // var cells = row.getElementsByTagName("td");
+
+        for (var j=0; j<trs.length; j++){
+            // var cell = trs[j].deleteCell(col);
+            
+            var cells = trs[j].getElementsByTagName("td");
+            var previousSpan = cells[col].getAttribute("colspan");
+            console.log(j, previousSpan);
+            if ((previousSpan == null) ){
+                previousSpan = 1;
+                var cell = trs[j].deleteCell(col);
+            }
+            else{
+                cells[col].setAttribute("colspan", parseInt(previousSpan)-1);
+            }
         }
     }
 
