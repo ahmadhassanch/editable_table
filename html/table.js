@@ -6,12 +6,17 @@ function addTable(){
 class TableController
 {
     constructor(container_name){
-        this.table_cont = document.getElementById(container_name);
-        this.table_cont.cont = this;
-        this.observer = new ResizeObserver(this.outputsize)
-        this.observer.observe(this.table_cont);
+        this.container = document.getElementById(container_name);
+
+        this.cont = this; //first time outputsize() will be called from this context
+                          //afterwards from observer context. 
+                          //so first time it won't give error
         
-        this.observer.table_cont = this.table_cont;
+        this.observer = new ResizeObserver(this.outputsize)
+        this.observer.observe(this.container);
+        
+        // this.observer.container = this.container;
+        this.observer.cont = this;
 
         this.width = -1;
         this.outputsize();
@@ -19,44 +24,38 @@ class TableController
     }
 
     showHTML(argument) {
-        console.log(this.table_cont.innerHTML);
+        console.log(this.container.innerHTML);
     }
 
     _changeWidths(w){
-        console.log("change widths");
+        // console.log("change widths");
         var table = document.getElementById("dynamic_table");
         var d = table.getElementsByTagName("tr")[0];
         var r = d.getElementsByTagName("td");
-        
-
         var nw = w/r.length;
         
-        // console.log("width", this.width, nw);
-
         for(var i = 0; i < r.length; i++){
-            console.log(r[i]);
+            // console.log(r[i]);
             r[i].style.width = nw + "px";
         }
-        
     }
 
     outputsize() {
-        var width = this.table_cont.offsetWidth;
-        var height = this.table_cont.offsetHeight;
+        var width = this.cont.container.offsetWidth;
+        var height = this.cont.container.offsetHeight;
 
         if (this.width != -1) 
-            this.table_cont.cont._changeWidths(width);
+            this.cont._changeWidths(width);
 
-        // this.
         this.width = width;
-        console.log("out width", this.width);
+        // console.log("out width", this.width);
         // TODO: have to get array of all tables and elements in this div
         // so that all can be resized
         // since we may have created more than one table
         
         var table = document.getElementById("dynamic_table");
         table.style.fontSize = .025*width+"px";
-        this.table_cont.style.fontSize = .025*width+"px";
+        this.cont.container.style.fontSize = .025*width+"px";
     }
     
     insertRow(){
@@ -84,7 +83,6 @@ class TableController
         }
     }
 
-
     setBackgoundColor(){
         var node = getSelectedElement();
         node.style.backgroundColor = "gray"; 
@@ -93,9 +91,7 @@ class TableController
         var siblings = getSiblings(node);
         console.log(siblings.length);
     }
-
 }
-
 
 var tableController = new TableController("table_container");
 
