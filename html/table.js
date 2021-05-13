@@ -85,6 +85,25 @@ class TableController
         table.deleteRow(row);
 
     }
+    
+    deleteColumn(){
+        var node = getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
+        this.insertColsNo += 1;
+        var col = node.cellIndex;
+        var table = findParentTable(node);
+        var trs = getSiblings(node.parentNode); 
+
+        for (var j=0; j<trs.length; j++){
+            var cell = trs[j].deleteCell(col);
+
+        }
+
+    }
+
     // get the col_no via cellIndex. Now get the parent TR and all of its siblings.
     // Now insert another column in that table right to current one
     mergeCells(){
@@ -104,37 +123,6 @@ class TableController
         node.style.width = w1+w2+'px';
         console.log(row, col); 
         node.parentNode.deleteCell(col+1);
-        // var table = findParentTable(node);
-        // var trs = getSiblings(node.parentNode); 
-
-        // for (var j=0; j<trs.length; j++){
-        //     var cell = trs[j].insertCell(col+1);
-        //     if (j==0)cell.style.width = "100px";
-        // }
-    }
-
-    
-    insertColumn(beforeOrAfter){
-        var node = getSelectedElement();
-        if ((node == undefined) || (node.nodeName != "TD")){
-            console.log("Wrong element selected or no selection");
-            return;
-        }
-        this.insertColsNo += 1;
-        var col = node.cellIndex;
-        var table = findParentTable(node);
-        var trs = getSiblings(node.parentNode); 
-
-        for (var j=0; j<trs.length; j++){
-            var cell = trs[j].insertCell(col+beforeOrAfter);
-            if (j==0){
-                cell.style.width = "100px";
-            }
-            else{
-                cell.innerHTML = this.insertColsNo;
-            }
-        }
-
     }
 
     setBackgoundColor(){
