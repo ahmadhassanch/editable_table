@@ -11,7 +11,7 @@
 	
 	<div style="height:5px;"></div>
 	<input style="width:30px;" type="text" id="rows" placeholder="rows" value="7">
-	<input style="width:30px;" type="text" id="cols" placeholder="cols" value="4">
+	<input style="width:30px;" type="text" id="cols" placeholder="cols" value="3">
 	<button class="inline" onclick="addTable()">Add Table</button>
 
 	<button onclick="tableController.showHTML()">show html</button>
@@ -28,6 +28,37 @@
 		contenteditable="true" class="table_container" onresize="onresize()">
 	
 
+	<table>
+		<tbody>
+		<tr contenteditable="false">
+			<td style="width: 100px;"><p></p></td>
+			<td style="width: 100px;"><p></p></td>
+		</tr>
+		<tr>
+			<td colspan="1">cell: 1 0</td>
+			<td>cell: 1 2</td>
+		</tr>
+		<tr>
+			<td>cell: 2 1</td>
+			<td>cell: 2 2</td>
+		</tr>
+		<tr>
+			<td>cell: 3 1</td>
+			<td>cell: 3 2</td>
+		</tr>
+		<tr>
+			<td>cell: 4 1</td>
+			<td>cell: 4 2</td>
+		</tr>
+		<tr>
+			<td colspan="2">cell: 5 1</td>
+		</tr>
+		<tr>
+			<td>cell: 6 1</td>
+			<td>cell: 6 2</td>
+		</tr>
+		</tbody>
+	</table><p>Text after Table</p>
 	</div>
 
 
