@@ -1,15 +1,13 @@
+
+- split cell / merge cell multiple
 - After fixing Bugs 1,2,3 I should shift to print PDF reports.
-- split cell
-- should have a reverse of every action, so should have a split cell for merge cell
-- fix bug 3 below.
+
 
 Issues related to merge:
 Bug 1: If cells have been merged, next addRow doesn't span full table
 Bug 2: If cells have been merged, next column doesn't appear vertically, zigzag
 Bug 3: merge more than once. I assume set colspan = 2, need to do colspan+=1
 
-Allow merge only in 2nd row (i=1 row)
-Will allow to add 
 
 LOW PRIORITY
 - cursor key movement is not natural, made some conceptual example in arrow_tab_control
