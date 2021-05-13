@@ -4,10 +4,13 @@
 
 if element is not of type td, ignore commands.
 
+
+
+
 =================================================================================
 ADDING TABLE
 - Ability to add a table (rows x columns)
-  > distribute columns equally 
+  > distribute columns equally in 90% of parent
 
 ADDING COLUMNS/ROWS
 - Ability to add a column above/below
@@ -20,6 +23,11 @@ CELL MERGING
 
 SAVE LOAD FUNCTIONALITY
 - Should be independent of resolution/zooming
+- Should support save on one computer resolution and load on another
+- all resized columns / other layout should stay same
+
+RESIZING COLUMNS SUPPORT
+- A intuitive way of resizing columns should be present
 
 RESIZING CONTAINER / ZOOMING
 - resizing parent container should not disturb layout
@@ -28,3 +36,5 @@ RESIZING CONTAINER / ZOOMING
 FOREGROUND/BACKGROUND COLORS
 - Set foreground color of text in cell/selected cells
 - Set background color cell/selected cells
+
+=================================================================

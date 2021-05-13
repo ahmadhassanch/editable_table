@@ -4,10 +4,10 @@ class TableController
     constructor(container_name){
         this.container = document.getElementById(container_name);
         this.cont = this; //first time call to sizeChanged doesn't give error
-        this.observer = new ResizeObserver(this.sizeChanged)
+        this.observer = new ResizeObserver(this.parentSizeChanged)
         this.observer.observe(this.container);
         this.observer.cont = this;
-        this.sizeChanged();
+        this.parentSizeChanged();
         this.savedTable = "";
     }
 
@@ -22,7 +22,7 @@ class TableController
         this.container.innerHTML = this.savedTable;
     }
 
-    sizeChanged() {
+    parentSizeChanged() {
         var width = this.cont.container.offsetWidth;
         var tables = this.cont.container.getElementsByTagName("TABLE");
 
@@ -77,7 +77,27 @@ class TableController
         var siblings = getSiblings(node);
         console.log(siblings.length);
     }
+
+    createTable(rows, cols){ 
+        console.log("creating")
+        var div = this.container;
+
+        var p = document.createElement("p");
+        div.appendChild(p);
+        p.innerHTML = "Adding new table"
+
+        var table = document.createElement("TABLE");
+        div.appendChild(table);
+
+        for (var i=0;i<rows;i++){
+            var row = table.insertRow(i);
+            for (var j=0; j<cols; j++){
+                var cell = row.insertCell(j);
+                cell.innerHTML = "cell: " + i + " " + j;
+                if (i == 0)
+                    cell.style.width = "100px";
+            }
+        }
+    } 
 }
-
-
 

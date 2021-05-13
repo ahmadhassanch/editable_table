@@ -25,7 +25,6 @@ td {
 
 .table_container{
 	width: 500px;
-	/*min-width: 200px;*/
 	height:500px;
 	resize: both;
 	background-color: lightgray;
