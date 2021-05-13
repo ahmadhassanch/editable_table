@@ -5,8 +5,6 @@
 if element is not of type td, ignore commands.
 
 
-
-
 =================================================================================
 ADDING TABLE
 - Ability to add a table (rows x columns)
@@ -19,7 +17,7 @@ ADDING COLUMNS/ROWS
 - Ability to delete row
 
 CELL MERGING
-- Merge cells
+- The selected cells will be merged, allowed only in top row??
 
 SAVE LOAD FUNCTIONALITY
 - Should be independent of resolution/zooming
@@ -38,3 +36,4 @@ FOREGROUND/BACKGROUND COLORS
 - Set background color cell/selected cells
 
 =================================================================
+
