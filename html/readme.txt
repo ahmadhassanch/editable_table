@@ -1,9 +1,11 @@
 
+Current task
 - Merge cells
-- delete / save and recreate.
 
-if element is not of type td, ignore commands.
+Major issues:
 
+Minor issues:
+- if element is not of type td, ignore commands.
 
 =================================================================================
 ADDING TABLE
@@ -41,3 +43,8 @@ FOREGROUND/BACKGROUND COLORS
 
        Going to save the container width during save process
        And going to scale the table columns on load process
+
+4:15PM Going to start on Merge issue, 
+       first going to think about strategy/specs more closely.
+
+        
