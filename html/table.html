@@ -9,18 +9,21 @@
 		This is non editable
 	</div>
 
-	<button onclick="tableController.setBackgoundColor()">Set Color</button>
-	<button onclick="tableController.showHTML()">show html</button>
-	<button onclick="mergeCells()">Merge Cells</button>
 	<button onclick="tableController.insertRow()">Insert Row</button>
 	<button onclick="tableController.insertColumn()">Insert Column</button>
+	<button onclick="mergeCells()">Merge Cells</button>
+	<div style="height:5px;"></div>
+	<button onclick="tableController.setBackgoundColor()">Set Color</button>
+	<button onclick="tableController.showHTML()">show html</button>
+	<div style="height:5px;"></div>
 	<button onclick="tableController.saveTable()">Save Table</button>
-	<button onclick="tableController.loadTable()">Insert Column</button>
-	<div></div>
+	<button onclick="tableController.loadTable()">Load Table</button>
+	<div style="height:5px;"></div>
 	<input type="text" id="rows" placeholder="rows" value="3">
 	<input type="text" id="cols" placeholder="cols" value="2">
 	<button class="inline" onclick="addTable()">Add Table</button>
-
+	<div style="height:5px;"></div>
+	
 	<div id="table_container" 
 		contenteditable="true" class="table_container" onresize="onresize()">
 	</div>

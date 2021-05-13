@@ -1,4 +1,10 @@
 
+p{
+	padding: 0px;
+	margin: 0px;
+	background-color: red;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -10,10 +16,7 @@ tr:first-child td{
 
 td {
   border: 1px solid black;
-  width : 50px;
-  /*width : 17%;*/
-  /*min-width: 25%;*/
-  /*font-size:1vw;*/
+  width : 20px;
 }
 
 .inline{
@@ -21,8 +24,8 @@ td {
 }
 
 .table_container{
-	width: 50%;
-	min-width: 500px;
+	width: 500px;
+	/*min-width: 200px;*/
 	height:500px;
 	resize: both;
 	background-color: lightgray;
