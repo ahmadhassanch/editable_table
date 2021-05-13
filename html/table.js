@@ -72,9 +72,13 @@ class TableController
         var node = getSelectedElement();
         var row = node.parentNode.rowIndex;
         var col = node.cellIndex;
+        node.setAttribute("colspan", "2");
+        var w1 = parseFloat(node.style.width);
+        var w2 = parseFloat(node.nextSibling.style.width);
+        node.style.width = w1+w2+'px';
         console.log(row, col); 
         if (row == 0)
-            node.parentNode.deleteCell(col);
+            node.parentNode.deleteCell(col+1);
         // var table = findParentTable(node);
         // var trs = getSiblings(node.parentNode); 
 
