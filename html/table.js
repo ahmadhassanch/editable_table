@@ -27,16 +27,30 @@ class TableController
         console.log(this.container.innerHTML);
     }
 
-    _changeWidths(w){
-        // console.log("change widths");
+    _changeWidths(wnew, wold){
+        console.log("change widths===========", wnew, wold);
         var table = document.getElementById("dynamic_table");
         var d = table.getElementsByTagName("tr")[0];
         var r = d.getElementsByTagName("td");
-        var nw = w/r.length;
+        // var nw = w/r.length;
         
+        var sum = 0;
+
         for(var i = 0; i < r.length; i++){
-            // console.log(r[i]);
-            r[i].style.width = nw + "px";
+            // console.log("x", r[i].style.width);
+            var v = parseFloat(r[i].style.width);
+            sum += v;
+            // console.log("sum", v, sum);
+
+        }
+        //223, 109, 646
+        // console.log("sumxx", sum, sum/w);
+
+        for(var i = 0; i < r.length; i++){
+            var v = parseFloat(r[i].style.width);
+            // console.log("frac", i, v*1.0/sum);
+            
+            r[i].style.width = v*1.0*wnew/wold + "px";
         }
     }
 
@@ -45,10 +59,10 @@ class TableController
         var height = this.cont.container.offsetHeight;
 
         if (this.width != -1) 
-            this.cont._changeWidths(width);
+            this.cont._changeWidths(width, this.width);
 
         this.width = width;
-        // console.log("out width", this.width);
+        console.log("out width", this.width);
         // TODO: have to get array of all tables and elements in this div
         // so that all can be resized
         // since we may have created more than one table
@@ -73,8 +87,7 @@ class TableController
     insertColumn(){
         var node = getSelectedElement();
         var col = node.cellIndex;
-        var row = node.parentNode.rowIndex;
-        // console.log("row, col", row, col)
+        // var row = node.parentNode.rowIndex;
         var table = findParentTable(node);
         var siblings = getSiblings(node.parentNode); 
 
