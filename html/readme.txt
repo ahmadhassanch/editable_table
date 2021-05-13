@@ -38,3 +38,6 @@ FOREGROUND/BACKGROUND COLORS
 =================================================================
 
 3:50PM Going to fix load save issue for changed resolution
+
+       Going to save the container width during save process
+       And going to scale the table columns on load process
