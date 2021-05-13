@@ -19,7 +19,7 @@ ADDING COLUMNS/ROWS
 - Ability to delete row
 
 CELL MERGING
-- The selected cells will be merged, allowed only in top row??
+- The selected cells will be merged, allowed only in top row
 
 SAVE LOAD FUNCTIONALITY
 - Should be independent of resolution/zooming
@@ -40,11 +40,16 @@ FOREGROUND/BACKGROUND COLORS
 =================================================================
 
 3:50PM Going to fix load save issue for changed resolution
-
        Going to save the container width during save process
        And going to scale the table columns on load process
 
 4:15PM Going to start on Merge issue, 
        first going to think about strategy/specs more closely.
 
-        
+	   - Will allow for merge in top row only
+	   - will merge the next cell with current cell
+	   - May allow selected cells to be merged - Later
+	   - The distribution of cells below merged cells would divide equally
+
+	   - First start off by deleting the next cell
+	   
