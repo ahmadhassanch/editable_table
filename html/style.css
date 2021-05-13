@@ -16,6 +16,10 @@ td {
   /*font-size:1vw;*/
 }
 
+.inline{
+	display: inline;
+}
+
 .table_container{
 	width: 50%;
 	min-width: 500px;

@@ -4,38 +4,46 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<h2>HTML Table2</h2>
+	<div>
+		This is non editable
+	</div>
 
-<h2>HTML Table</h2>
+	<button onclick="tableController.setBackgoundColor()">Set Color</button>
+	<button onclick="tableController.showHTML()">show html</button>
+	<button onclick="mergeCells()">Merge Cells</button>
+	<button onclick="tableController.insertRow()">Insert Row</button>
+	<button onclick="tableController.insertColumn()">Insert Column</button>
+	<button onclick="tableController.saveTable()">Save Table</button>
+	<button onclick="tableController.loadTable()">Insert Column</button>
+	<div></div>
+	<input type="text" id="rows" placeholder="rows" value="3">
+	<input type="text" id="cols" placeholder="cols" value="2">
+	<button class="inline" onclick="addTable()">Add Table</button>
 
-<button style="display: inline;" onclick="tableController.setBackgoundColor()">Set Color</button>
-<button style="display: inline; "onclick="tableController.showHTML()">show html</button>
-<button style="display: inline; "onclick="mergeCells()">Merge Cells</button>
-<button style="display: inline; "onclick="tableController.insertRow()">Insert Row</button>
-<button style="display: inline; "onclick="tableController.insertColumn()">Insert Column</button>
-<button style="display: inline; "onclick="tableController._changeWidths()">Change Widths</button>
-
-<div>
-	This is non editable
-</div>
-<input type="text" id="rows" placeholder="rows" value="3">
-<input type="text" id="cols" placeholder="cols" value="2">
-<button style="display: inline;" onclick="addTable()">Add Table</button>
-<div>
-	This is non editable
-</div>
-
-<div id="table_container" 
-	contenteditable="true" class="table_container" onresize="onresize()">
-
-</div>
+	<div id="table_container" 
+		contenteditable="true" class="table_container" onresize="onresize()">
+	</div>
 
 </body>
 <script src="create_table.js"></script>
 <script src="util_funcs.js"></script>
 <script src="table.js"></script>
 <script src="main.js"></script>
-
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
