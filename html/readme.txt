@@ -106,3 +106,6 @@ FOREGROUND/BACKGROUND COLORS
 		Delete row/col, 
 		A context menu,
 		color filling
+
+May 15th.
+12:15AM.  Need to fix the bugs so that can shift to PDF.
