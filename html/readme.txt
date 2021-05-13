@@ -1,6 +1,7 @@
 
 - split cell
 - should have a reverse of every action, so should have a split cell for merge cell
+- fix bug 3 below.
 
 Issues related to merge:
 Bug 1: If cells have been merged, next addRow doesn't span full table
@@ -46,7 +47,7 @@ CELL MERGING
   This will not be allowed in the resizing row.
 
 CELL SPLIT
-- If cell is split
+- If cell is merged, we should be able to split it.
 
 SAVE LOAD FUNCTIONALITY
 - Should be independent of resolution/zooming

@@ -121,9 +121,7 @@ class TableController
 
         for (var j=0; j<trs.length; j++){
             var cell = trs[j].deleteCell(col);
-
         }
-
     }
 
     // get the col_no via cellIndex. Now get the parent TR and all of its siblings.
@@ -179,12 +177,10 @@ class TableController
                 if (i == 0){
                     cell.style.width = "100px";
                     cell.innerHTML = "<p></p>";
-
                 }
                 else
                 {
                     cell.innerHTML = "cell: " + i + " " + j;
-                
                 }
             }
         }
