@@ -1,7 +1,4 @@
-Merge cells in the first row giving error.
 
-
-- when colspan == 1, we should remove attribute.
 - multiple cell selection
 - decrease/increase font size in a cell
 
@@ -61,6 +58,9 @@ CELL FORMATTING
 - decrease/increase font size in a cell
 - Italic Bold, etc. 
 
+GOOD TO HAVE
+- Natural key movement (cursor and tabs)
+
 =================================================================
 
 3:50PM Going to fix load save issue for changed resolution
@@ -103,5 +103,7 @@ CELL FORMATTING
 		A context menu,
 		color filling
 
-May 15th.
+May 14th.
 12:15AM.  Need to fix the bugs so that can shift to PDF.
+
+3:20AM. Fixed the bug of merge cells.
