@@ -37,16 +37,18 @@
     </div>
 
 	<div>
-		This is non editable
+		Foreground and background
 	</div>
 
-	<button onclick="tableController.insertRow()">Insert Row</button>
-	<button onclick="tableController.insertColumn()">Insert Column</button>
+  	<input type="color" id="forecolor" name="forecolor" value="#FFFfff">
+  	<input type="color" id="backcolor" name="backcolor" value="#333333">
+  	<br>
+
 	<button onclick="tableController.mergeCells()">Merge Cells</button>
 	<div style="height:5px;"></div>
-	<button onclick="tableController.setBackgoundColor()">Set Color</button>
-	<button onclick="tableController.showHTML()">show html</button>
+	<button onclick="setColor()">Set Color</button>
 	<div style="height:5px;"></div>
+	<button onclick="tableController.showHTML()">show html</button>
 	<button onclick="tableController.saveTable()">Save Table</button>
 	<button onclick="tableController.loadTable()">Load Table</button>
 	<div style="height:5px;"></div>

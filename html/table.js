@@ -125,16 +125,16 @@ class TableController
         node.parentNode.deleteCell(col+1);
     }
 
-    setBackgoundColor(){
+    setBackgoundColor(fore, back){
         var node = getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
             return;
         }
-        node.style.backgroundColor = "gray"; 
-        node.style.color = "red"; 
+        node.style.backgroundColor = back; 
+        node.style.color = fore; 
         var siblings = getSiblings(node);
-        console.log(siblings.length);
+        // console.log(siblings.length);
     }
 
     createTable(rows, cols){ 

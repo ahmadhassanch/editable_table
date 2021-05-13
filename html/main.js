@@ -8,6 +8,13 @@ function addTable(){
     tableController.createTable(rows, cols);
 }
 
+function setColor(){
+    var fore = document.getElementById("forecolor").value;
+    var back = document.getElementById("backcolor").value;
+    tableController.setBackgoundColor(fore, back);
+
+}
+
 document.onclick = hideMenu;
 document.oncontextmenu = rightClick;
 
