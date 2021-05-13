@@ -1,6 +1,9 @@
 
 - split cell
-- cursor key movement is not natural
+
+- cursor key movement is not natural, made some conceptual example in arrow_tab_control
+  > will handle later -- low priority
+
 - should be able to justify left/right/center a column
 
 Issues related to merge:
