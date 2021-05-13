@@ -86,6 +86,28 @@ class TableController
 
     }
     
+    insertColumn(beforeOrAfter){
+        var node = getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
+        this.insertColsNo += 1;
+        var col = node.cellIndex;
+        var table = findParentTable(node);
+        var trs = getSiblings(node.parentNode); 
+
+        for (var j=0; j<trs.length; j++){
+            var cell = trs[j].insertCell(col+beforeOrAfter);
+            if (j==0){
+                cell.style.width = "100px";
+            }
+            else{
+                cell.innerHTML = this.insertColsNo;
+            }
+        }
+    }
+
     deleteColumn(){
         var node = getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
@@ -134,7 +156,7 @@ class TableController
         node.style.backgroundColor = back; 
         node.style.color = fore; 
         var siblings = getSiblings(node);
-        // console.log(siblings.length);
+        console.log(siblings.length);
     }
 
     createTable(rows, cols){ 
