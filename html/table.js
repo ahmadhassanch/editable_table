@@ -17,16 +17,18 @@ class TableController
     saveTable(){
         this.savedTable = this.container.innerHTML;
         this.container.innerHTML = "";
+        this.savedWidth = this.cont.container.offsetWidth;
+
     }
     loadTable(){
         this.container.innerHTML = this.savedTable;
+        this._sizeChanged(this.container.offsetWidth, this.savedWidth);
     }
 
-    parentSizeChanged() {
-        var width = this.cont.container.offsetWidth;
+    _sizeChanged(newWidth, oldWidth){
+        this.cont.container.style.fontSize = .025*newWidth+"px";
         var tables = this.cont.container.getElementsByTagName("TABLE");
 
-        this.cont.container.style.fontSize = .025*width+"px";
         for (var k=0; k<tables.length; k++){
            
             var table = tables[k];
@@ -35,9 +37,16 @@ class TableController
 
             for(var i = 0; i < cells.length; i++){
                 var v = parseFloat(cells[i].style.width);
-                cells[i].style.width = v*width/this.width + "px";
+                cells[i].style.width = v*newWidth/oldWidth + "px";
             }
         }
+    }
+
+    parentSizeChanged() {
+        var width = this.cont.container.offsetWidth;
+        var tables = this.cont.container.getElementsByTagName("TABLE");
+
+        this.cont._sizeChanged(width, this.width);
         this.width = width;
     }
     
