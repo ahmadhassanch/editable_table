@@ -15,8 +15,7 @@ class TableController
         this.observer.observe(this.container);
         this.observer.cont = this;
         this.sizeChanged();
-        createTable("table_container");
-        createTable("table_container");
+       
     }
 
     showHTML(argument) {
@@ -80,8 +79,6 @@ class TableController
         console.log(siblings.length);
     }
 }
-
-var tableController = new TableController("table_container");
 
 
 

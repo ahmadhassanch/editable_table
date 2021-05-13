@@ -1,2 +1,2 @@
 
-- set the cell width at creation of cell
+- Merge cells
