@@ -72,7 +72,7 @@ class TableController
         var node = getSelectedElement();
         var row = node.parentNode.rowIndex;
         var col = node.cellIndex;
-        console.log(row, col);
+        console.log(row, col); 
         if (row == 0)
             node.parentNode.deleteCell(col);
         // var table = findParentTable(node);
