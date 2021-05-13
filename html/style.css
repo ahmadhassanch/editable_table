@@ -26,11 +26,12 @@ tr:first-child td{
 td {
   border: 1px solid black;
   width : 20px;
+  text-align: center;
 }
 
 .table_container{
 	width: 800px;
-	height:500px;
+	height:400px;
 	resize: both;
 	background-color: lightgray;
 	overflow: auto;

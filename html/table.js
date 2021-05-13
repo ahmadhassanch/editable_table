@@ -65,12 +65,17 @@ class TableController
         var row = node.parentNode.rowIndex;
         var table = findParentTable(node);
         var new_row = table.insertRow(row+aboveOrBelow);
-        var siblings = getSiblings(node);
+        // var rowSiblings = getSiblings(node.parentNode);
 
-        for (var j=0; j<siblings.length; j++){
+
+        var row = table.getElementsByTagName("tr")[0];
+        var cells = row.getElementsByTagName("td");
+
+        for (var j=0; j<cells.length; j++){
             var cell = new_row.insertCell(j);
             cell.innerHTML = this.insertRowsNo;
-            if ( row+1 ==0)cell.style.width = "100px";
+            // if sizingRow then need to set width cell.style.width = "100px";
+            //should not occur
         }
     }
 

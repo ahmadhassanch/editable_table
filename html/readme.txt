@@ -1,15 +1,10 @@
-
-- issues in multiple merge testing.
-Bug 3 fixed of multiple merge, now going to fix multiple split
-
-- split cell / merge cell multiple 
-- After fixing Bugs 1,2,3 I should shift to print PDF reports.
-
+- should not be able to insert row above title row
+- multiple cell selection
+- decrease/increase font size in a cell
 
 Issues related to merge:
 Bug 1: If cells have been merged, next addRow doesn't span full table
 Bug 2: If cells have been merged, next column doesn't appear vertically, zigzag
-
 
 LOW PRIORITY
 - cursor key movement is not natural, made some conceptual example in arrow_tab_control
@@ -33,6 +28,13 @@ ADDING TABLE
 - Ability to add a table (rows x columns)
   > distribute columns equally in 90% of parent
 
+RESIZING COLUMNS SUPPORT
+- A intuitive way of resizing columns should be present
+
+RESIZING CONTAINER / ZOOMING
+- resizing parent container should not disturb layout
+- browser resizing should not disturb layout
+
 ADDING COLUMNS/ROWS
 - Ability to add a column above/below
 - Ability to add a row above/below
@@ -54,16 +56,11 @@ SAVE LOAD FUNCTIONALITY
 - Should support save on one computer resolution and load on another
 - all resized columns / other layout should stay same
 
-RESIZING COLUMNS SUPPORT
-- A intuitive way of resizing columns should be present
-
-RESIZING CONTAINER / ZOOMING
-- resizing parent container should not disturb layout
-- browser resizing should not disturb layout
-
-FOREGROUND/BACKGROUND COLORS
+CELL FORMATTING
 - Set foreground color of text in cell/selected cells
 - Set background color cell/selected cells
+- decrease/increase font size in a cell
+- Italic Bold, etc. 
 
 =================================================================
 
