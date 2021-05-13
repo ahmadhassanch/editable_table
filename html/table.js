@@ -8,21 +8,22 @@ class TableController
         this.observer.observe(this.container);
         this.observer.cont = this;
         this.parentSizeChanged();
-        this.savedTable = "";
+        this.saveDict = {data:"No data", containerWidth:"50px"};
     }
 
     showHTML(argument) {
         console.log(this.container.innerHTML);
     }
     saveTable(){
-        this.savedTable = this.container.innerHTML;
+        this.saveDict.data = this.container.innerHTML;
+        this.saveDict.containerWidth = this.cont.container.offsetWidth;
         this.container.innerHTML = "";
-        this.savedWidth = this.cont.container.offsetWidth;
-
     }
+
     loadTable(){
-        this.container.innerHTML = this.savedTable;
-        this._sizeChanged(this.container.offsetWidth, this.savedWidth);
+        this.container.innerHTML = this.saveDict["data"];
+        var savedWidth = this.saveDict["containerWidth"]
+        this._sizeChanged(this.container.offsetWidth, savedWidth);
     }
 
     _sizeChanged(newWidth, oldWidth){
