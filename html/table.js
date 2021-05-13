@@ -2,7 +2,6 @@ function addTable(){
     createTable("table_container");
 }
 
-
 class TableController
 {
     constructor(container_name){
@@ -14,11 +13,7 @@ class TableController
         
         this.observer = new ResizeObserver(this.outputsize)
         this.observer.observe(this.container);
-        
-        // this.observer.container = this.container;
         this.observer.cont = this;
-
-        this.width = -1;
         this.outputsize();
         createTable("table_container");
     }
@@ -28,38 +23,37 @@ class TableController
     }
 
     _changeWidths(wnew, wold){
-        console.log("change widths===========", wnew, wold);
-        var table = document.getElementById("dynamic_table");
-        var d = table.getElementsByTagName("tr")[0];
-        var r = d.getElementsByTagName("td");
-        // var nw = w/r.length;
         
-        var sum = 0;
 
-        for(var i = 0; i < r.length; i++){
-            // console.log("x", r[i].style.width);
-            var v = parseFloat(r[i].style.width);
-            sum += v;
-            // console.log("sum", v, sum);
+        var tables = this.container.getElementsByTagName("TABLE");
+        console.log("change widths===========", tables);
 
+        var width = wnew;
+        this.cont.container.style.fontSize = .025*width+"px";
+        for (var i=0; i<tables.length; i++){
+           
+            var table = tables[i];
+        
+            // table.style.fontSize = .025*width+"px";
+
+            var d = table.getElementsByTagName("tr")[0];
+            var r = d.getElementsByTagName("td");
+
+            for(var i = 0; i < r.length; i++){
+                var v = parseFloat(r[i].style.width);
+                r[i].style.width = v*1.0*wnew/wold + "px";
+            }
         }
-        //223, 109, 646
-        // console.log("sumxx", sum, sum/w);
 
-        for(var i = 0; i < r.length; i++){
-            var v = parseFloat(r[i].style.width);
-            // console.log("frac", i, v*1.0/sum);
-            
-            r[i].style.width = v*1.0*wnew/wold + "px";
-        }
+
     }
 
     outputsize() {
         var width = this.cont.container.offsetWidth;
         var height = this.cont.container.offsetHeight;
 
-        if (this.width != -1) 
-            this.cont._changeWidths(width, this.width);
+        // if (this.width != -1) 
+        this.cont._changeWidths(width, this.width);
 
         this.width = width;
         console.log("out width", this.width);
@@ -67,9 +61,9 @@ class TableController
         // so that all can be resized
         // since we may have created more than one table
         
-        var table = document.getElementById("dynamic_table");
-        table.style.fontSize = .025*width+"px";
-        this.cont.container.style.fontSize = .025*width+"px";
+        // var table = document.getElementById("dynamic_table");
+        // table.style.fontSize = .025*width+"px";
+        // this.cont.container.style.fontSize = .025*width+"px";
     }
     
     insertRow(){
