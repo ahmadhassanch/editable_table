@@ -6,3 +6,6 @@ May 14:
 	 - In file with multiple text and tables first separate them.
 
 11:55 PM - Styles and spans are extracted. But not working on my table code (base2.html)
+
+May 15:
+4:24 AM Almost everything working except colors
