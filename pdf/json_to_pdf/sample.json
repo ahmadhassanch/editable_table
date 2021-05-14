@@ -1,0 +1,24 @@
+[{
+    "header": [{
+        "text": "Heading 1",
+        "colSpan": 0
+    }, {
+        "text": "Heading 2",
+        "colSpan": 0
+    }, {
+        "text": "Heading 3",
+        "colSpan": 0
+    }],
+    "body": [{
+        "cells": [{
+            "text": "Cell 1",
+            "colSpan": 2
+        }, {
+            "text": "Cell 3",
+            "colSpan": 0
+        }, {
+            "text": "Cell 3",
+            "colSpan": 0
+        }]
+    }]
+}]

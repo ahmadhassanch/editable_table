@@ -1,0 +1,25 @@
+[{
+    "header": [{
+        "text": "Heading 1",
+        "colSpan": 0,
+        "width":"200 px"
+    }, {
+        "text": "Heading 2",
+        "colSpan": 0,
+        "width":"200 px"
+    }, {
+        "text": "Heading 3",
+        "colSpan": 0,
+        "width":"300 px"
+    }],
+    "body": [{
+        "cells": [{
+            "text": "Cell 1",
+            "colSpan": 2
+        }, {
+            "text": "Cell 5",
+            "colSpan": 0
+        }
+    ]
+    }]
+}]

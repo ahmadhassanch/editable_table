@@ -1,5 +1,8 @@
 import json
 
+from reportlab.platypus import Paragraph
+
+
 def findClasses(st):
 	classes = "classes"
 	posTag = st.find("class=")
@@ -110,7 +113,7 @@ def clean_tagsx(st, level):
 	
 	return remaining_string, content
 
-def cleanTDTH(tag, level, remaining_string, data_arr, span_arr, spans):
+def cleanTDTH(tag, level, remaining_string, data_arr, span_arr, spans, color_arr,colors):
 	# if(tag == "<thead>"):
 	# return remaining_string, True
 	# print(tag)
@@ -123,12 +126,12 @@ def cleanTDTH(tag, level, remaining_string, data_arr, span_arr, spans):
 		while(content != ""):
 			content, c = clean_tagsx(content, level)
 			writeToOutput(c)
-			data_arr[-1].append(c.strip())
+			data_arr[-1].append(Paragraph(c.strip()))
 			# print(spans)
 			# print("===========================================")
 			# if(len(spans)>0):
 			span_arr[-1].append(spans)
-			
+			color_arr[-1].append(colors.strip())
 
 		remaining_string = remaining_string[tag_end:]
 		return remaining_string
@@ -136,6 +139,7 @@ def cleanTDTH(tag, level, remaining_string, data_arr, span_arr, spans):
 		if tag == '<tr>':
 			data_arr.append([])
 			span_arr.append([])
+			color_arr.append([])
 		return remaining_string
 	
 
@@ -146,7 +150,7 @@ def clean_func(st, level, clean_table, data_arr, span_arr, color_arr):
 	tag_length = st[val_start:].find(">")
 	tag = st[val_start:val_start+tag_length+1]
 	tag, classes, styles, spans, colors = findClassAndStyles(tag)
-	
+
 	if(val_start != -1):
 		if(st[val_start+1]=="/"):
 			level -= 1
@@ -161,8 +165,8 @@ def clean_func(st, level, clean_table, data_arr, span_arr, color_arr):
 	if(val_start != -1):
 		if(st[val_start+1]!="/"):
 			if clean_table == True:
-				remaining_string = cleanTDTH(tag, level, remaining_string, data_arr, span_arr, spans)
-		
+				remaining_string = cleanTDTH(tag, level, remaining_string, data_arr, span_arr, spans, color_arr,colors)
+
 			level += 1
 	
 	return tag, remaining_string, level, classes, styles
@@ -191,5 +195,5 @@ def clean_html(nDst, level, st, cleanTDTHflag):
 		tag, st, level, classes, styles = clean_func(st, level, cleanTDTHflag, data_arr, span_arr, color_arr)
 		w_arr = getTHwidths(tag, w_arr, styles)
 
-	return  myStr, w_arr, data_arr, span_arr
+	return  myStr, w_arr, data_arr, span_arr, color_arr
 
