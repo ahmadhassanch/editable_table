@@ -43,26 +43,26 @@ files = [
 for file in files:
 	f = open(file, "r")
 	st = f.read()
-	# stx, styles_width1, data1, spans1 = clean_html([], 0, st, True)
+	stx, styles_width1, data1, spans1 = clean_html([], 0, st, True)
 	# print(styles_width1)
 	# print(data1)
 	# print(spans1)
 	# exit()
-	data1 = 	[
-		['Heading 1','Heading 2','Heading 3','Heading 455'],
-		['Cell 1', 'Cell 2', 'Cell 4'],
-		['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4'],
-		['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
-		['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
-	]
-	styles_width1 =[200, 500, 100, 150]
-	spans1 = [
-		[2, 2, 1, 1],          # 144          533          144
-		[1, 4, 1],       # 144      533/2 533/2 144  144
-		[1, 2, 1, 1],    # 144 
-		[1, 1, 1, 1, 1],
-		[1, 1, 1, 1, 1],
-		];
+	# data1 = 	[
+	# 	['Heading 1','Heading 2','Heading 3','Heading 455'],
+	# 	['Cell 1', 'Cell 2', 'Cell 4'],
+	# 	['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4'],
+	# 	['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+	# 	['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+	# ]
+	# styles_width1 =[200, 500, 100, 150]
+	# spans1 = [
+	# 	[2, 2, 1, 1],          # 144          533          144
+	# 	[1, 4, 1],       # 144      533/2 533/2 144  144
+	# 	[1, 2, 1, 1],    # 144 
+	# 	[1, 1, 1, 1, 1],
+	# 	[1, 1, 1, 1, 1],
+	# 	];
 
 	# print(spans1[0])
 	if len(spans1[0]) != len(styles_width1):

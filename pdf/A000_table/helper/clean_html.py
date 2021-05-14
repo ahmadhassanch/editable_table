@@ -145,7 +145,7 @@ def clean_func(st, level, clean_table, data_arr, span_arr):
 	content = st[:val_start]
 	tag_length = st[val_start:].find(">")
 	tag = st[val_start:val_start+tag_length+1]
-	tag, classes, styles, spans = findClassAndStyles(tag)
+	tag, classes, styles, spans, colors = findClassAndStyles(tag)
 	
 	if(val_start != -1):
 		if(st[val_start+1]=="/"):
