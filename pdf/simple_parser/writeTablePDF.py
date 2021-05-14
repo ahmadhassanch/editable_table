@@ -4,48 +4,52 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Paragraph,SimpleDocTemplate, Table, TableStyle, Frame, PageTemplate
 from reportlab.lib.styles import ParagraphStyle
 
-def make_story(elements, data, swarr, spans, color_arr):
-	ps = ParagraphStyle('title', fontSize=10, leading=10)
-	for i in range(len(data)):
-		warr = []
-		d = []
-		colorIndex = []
-		for j in range(len(spans[i])):
-			span = spans[i][j]
-			warr.append(span*swarr[i])
-			d.append(Paragraph(data[i][j], ps))
-			if span > 1:
-				colorIndex.append(j)
-		print(data[i], warr)
-		# exit()
-		t0 = Table([d], colWidths=warr)
-		t0.hAlign = "LEFT"
-		for x in colorIndex:
-			t0.setStyle(TableStyle([
-				('BACKGROUND', (x, 0), (x, 0), red),
-			]))
-		t0.setStyle(TableStyle([('GRID', (0, 0), (-1, -1), 1, black)]))
-		elements.append(t0)
+def make_story(elements, data, swarr, spanArr):
+	ps = ParagraphStyle('title')
+	
+	t0 = Table(data, colWidths=swarr)
+	t0.hAlign = "CENTER"
 
-def main2():
-	data1 = 	[
-		['Heading 1','Heading 2','Heading 3','Heading 4'],
-		['Cell 1', 'Cell 2', 'Cell 4'],
-		['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4'],
-		['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
-		['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
-	]
-	swarr =[50, 50, 50, 50, 50, 50]
-	spans = [
-		[2, 2, 1, 1],          # 144          533          144
-		[1, 4, 1],       # 144      533/2 533/2 144  144
-		[1, 2, 1, 1],    # 144
-		[1, 1, 1, 1, 1],
-		[1, 1, 1, 1, 1],
-		];
+	t0.setStyle(TableStyle([
+		('GRID', (0, 0), (-1, -1), 1, black),
+		('LEFTPADDING',(0,0),(-1,-1), 1),
+		('RIGHTPADDING',(0,0),(-1,-1), 1),
+		('TOPPADDING',(0,0),(-1,-1), -1),
+		('BOTTOMPADDING',(0,0),(-1,-1), 0),
+		('VALIGN',(0,0),(0,-1),'TOP'),
+	]))
+	# print(spans)
+	# for spans in spanArr:
+	# 	for span in spans:
+			
+
+	# t0.setStyle(TableStyle([
+	# 	('SPAN',(0,0),(1,0)),
+	# 	('SPAN',(2,0),(3,0)),
+	# 	('SPAN',(1,1),(4,1)),
+	# 	('BACKGROUND', (1, 1), (1, 1), red),
+	# 	('TEXTCOLOR',(1,1),(1,1),white),
+	# ]))
+	elements.append(t0)
+
+def main2(data1, widthArr, spans):
+	# data1 = 	[
+	# 	['Heading 1','','Heading 2','', 'Heading 3','Heading 4' ],
+	# 	['Cell 1', 'Cell 2 is the longest cell and it is strange','','','', 'Cell 4'],
+	# 	['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4'],
+	# 	['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+	# 	['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+	# ]
+	# widthArr =[50, 100, 50, 50, 50, 50]
+	# spans = [
+	# 	[2, 2, 1, 1],        
+	# 	[1, 4, 1],       
+	# 	[1, 2, 2, 1],    
+	# 	[1, 1, 1, 1, 1, 1],
+	# 	[1, 1, 1, 1, 1, 1],
+	# 	];
 
 	elements = []
-	colors = []
 
 	styles = getSampleStyleSheet()
 
@@ -54,9 +58,7 @@ def main2():
 	Page = PageTemplate(id='col1', frames=[frame])
 	doc.addPageTemplates([Page])
 
-	make_story(elements, data1, swarr, spans, colors)
+	make_story(elements, data1, widthArr, spans)
 
 	doc.build(elements)
-
-
-main2()
+# main2()
