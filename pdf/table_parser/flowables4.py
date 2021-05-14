@@ -50,6 +50,9 @@ for file in files:
 	st = f.read()
 	st_obt = extract_table(st)
 
+	print(st_obt)
+	exit()
+
 	# data1 = 	[
 	# 	['Heading 1','Heading 2','Heading 3','Heading 455'],
 	# 	['Cell 1', 'Cell 2', 'Cell 4'],
