@@ -51,41 +51,69 @@ def extractWidths(table):
 	return wArr
 	
 def extractData(table):
+	spanArr = []
 	dataArr = []
+	foreArr = []
+	backArr = []
 	for row in table['rows']:
 		rowData = []
+		spanData = []
+		foreData = []
+		backData = []
 		for col in row['cols']:
 			rowData.append(Paragraph(col['data']))
+			spanData.append(col['styles']['colspan'])
+			if 'color' in col['styles']:
+				foreData.append(col['styles']['background-color'])
+			else:
+				foreData.append(0)
+
+			if 'background-color' in col['styles']:
+				backData.append(col['styles']['color'])
+			else:
+				backData.append(0)
+			# spanData.append(col['styles']['colspan'])
 			# should have appended only once, but repeating
 			# to take advantage of reportlab table SPAN
 			spans = col['styles']['colspan']
 			for s in range(1,spans):
 				rowData.append("NULL")
-		dataArr.append(rowData)
-	return dataArr
+				spanData.append(0)
+				foreData.append(0)
+				backData.append(0)
 
-def extractSpans(table):
-	dataArr = []
-	for row in table['rows']:
-		rowData = []
-		for col in row['cols']:
-			rowData.append(col['styles']['colspan'])
-			spans = col['styles']['colspan']
-			for s in range(1,spans):
-				rowData.append(0)
 		dataArr.append(rowData)
-	return dataArr
+		spanArr.append(spanData)
+		foreArr.append(foreData)
+		backArr.append(backData)
+	return dataArr, spanArr, foreArr, backArr
+
+# def extractSpans(table):
+# 	spanArr = []
+# 	for row in table['rows']:
+# 		spanData = []
+# 		for col in row['cols']:
+# 			spanData.append(col['styles']['colspan'])
+# 			spans = col['styles']['colspan']
+# 			for s in range(1,spans):
+# 				spanData.append(0)
+# 		spanArr.append(spanData)
+# 	return spanArr
 
 def writeTablePDF(table):
 	w = extractWidths(table)
 	# print(w)
-	d = extractData(table)
-	s = extractSpans(table)
-	prettyPrint(s)
+	d,s,f,b = extractData(table)
+	# s = extractSpans(table)
+	# prettyPrint(s)
 	# exit()
 	d.pop(0)
 	s.pop(0)
-	main2(d, w, s)
+	f.pop(0)
+	b.pop(0)
+	prettyPrint(f)
+	exit()
+	main2(d, w, s, f, b)
 
 main()
 

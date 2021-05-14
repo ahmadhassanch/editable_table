@@ -4,7 +4,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Paragraph,SimpleDocTemplate, Table, TableStyle, Frame, PageTemplate
 from reportlab.lib.styles import ParagraphStyle
 
-def make_story(elements, data, swarr, spanArr):
+def make_story(elements, data, swarr, spanArr, f, b):
 	ps = ParagraphStyle('title')
 	
 	t0 = Table(data, colWidths=swarr)
@@ -29,18 +29,9 @@ def make_story(elements, data, swarr, spanArr):
 				tabStyles.append(('SPAN',(j,i),(j+span-1,i)))
 
 	t0.setStyle(TableStyle(tabStyles))
-
-
-	# t0.setStyle(TableStyle([
-	# 	('SPAN',(0,0),(1,0)),
-	# 	('SPAN',(2,0),(3,0)),
-	# 	('SPAN',(1,1),(4,1)),
-	# 	('BACKGROUND', (1, 1), (1, 1), red),
-	# 	('TEXTCOLOR',(1,1),(1,1),white),
-	# ]))
 	elements.append(t0)
 
-def main2(data1, widthArr, spans):
+def main2(data1, widthArr, spans, f, b):
 	# data1 = 	[
 	# 	['Heading 1','','Heading 2','', 'Heading 3','Heading 4' ],
 	# 	['Cell 1', 'Cell 2 is the longest cell and it is strange','','','', 'Cell 4'],
@@ -66,7 +57,8 @@ def main2(data1, widthArr, spans):
 	Page = PageTemplate(id='col1', frames=[frame])
 	doc.addPageTemplates([Page])
 
-	make_story(elements, data1, widthArr, spans)
+	make_story(elements, data1, widthArr, spans, f, b)
 
 	doc.build(elements)
-# main2()
+
+#main2(1,2,3)
