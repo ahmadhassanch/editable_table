@@ -1,6 +1,7 @@
 from extract_tables import extract_tables
 from extract_rows import extract_rows
 from extract_cols import extract_cols
+# from extract_styles import extract_rows
 
 def main():
 	f = open("base1.html", "r")
