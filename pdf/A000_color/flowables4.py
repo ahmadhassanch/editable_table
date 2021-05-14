@@ -76,10 +76,10 @@ for file in files:
 		st = st_obt[x].rstrip('\n')
 
 		stx, styles_width1, data1, spans1, colors = clean_html([], 0, st, True)
-		spans1 = [[1, 1, 2, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]
+		# spans1 = [[1, 1, 2, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]
 
-		print(styles_width1)
-		print(spans1)
+		# print(styles_width1)
+		# print(spans1)
 		# exit()
 
 		w = []
@@ -98,7 +98,7 @@ for file in files:
 				s = 0
 				v = spans1[i][j]
 				for k in range(v):
-					s += w[p] / 2.0
+					s += w[p] # / 2.0
 					p += 1
 				tsw.append(s)
 			swarr.append(tsw)
