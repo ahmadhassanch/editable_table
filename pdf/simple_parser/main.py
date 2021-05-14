@@ -9,6 +9,7 @@ def main():
 	#f = open("testcase.html", "r")
 	f = open("base1.html", "r")
 	st = f.read()
-	print(st)
+	# print(st)
+	extract_table(st)
 
 main()
