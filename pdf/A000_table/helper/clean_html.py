@@ -139,7 +139,7 @@ def cleanTDTH(tag, level, remaining_string, data_arr, span_arr, spans):
 		return remaining_string
 	
 
-def clean_func(st, level, clean_table, data_arr, span_arr):
+def clean_func(st, level, clean_table, data_arr, span_arr, color_arr):
 
 	val_start = st.find("<")
 	content = st[:val_start]
@@ -167,9 +167,9 @@ def clean_func(st, level, clean_table, data_arr, span_arr):
 	
 	return tag, remaining_string, level, classes, styles
 
+
 def getTHwidths(tag, w_arr, styles):
 	if(tag == "<th>"):
-		# print(styles)
 		for style in styles:
 			arr = style.split(":")
 			prop = arr[0].strip()
@@ -180,17 +180,16 @@ def getTHwidths(tag, w_arr, styles):
 				w_arr.append(val)
 	return w_arr
 
+
 def clean_html(nDst, level, st, cleanTDTHflag):
 	global myStr
 	w_arr = []
 	data_arr = []
 	span_arr = []
+	color_arr = []
 	while(st != ""):
-		tag, st, level, classes, styles = clean_func(st, level, cleanTDTHflag, data_arr, span_arr)
+		tag, st, level, classes, styles = clean_func(st, level, cleanTDTHflag, data_arr, span_arr, color_arr)
 		w_arr = getTHwidths(tag, w_arr, styles)
 
-	
-	
-	# print(myStr)
 	return  myStr, w_arr, data_arr, span_arr
 
