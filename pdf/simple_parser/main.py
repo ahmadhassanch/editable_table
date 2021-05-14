@@ -6,10 +6,10 @@ def main():
 	st = f.read()
 	objList = extract_tables(st)
 
-	print("TABLE", objList[1]["value"][:20], "...", objList[1]["value"][-20:])
+	print("TABLE", objList[1]["value"][:30], "...", objList[1]["value"][-30:])
 
 	table = objList[1]["value"]
-	#print(table)
+	print("++++++++++++++++++=")
 
 	extract_rows(table)
 
