@@ -35,7 +35,4 @@ def main():
 			print("TABLE", objs["value"][:20], "...", objs["value"][-20:])
 	
 
-	# print(objList)
-
-
 main()
