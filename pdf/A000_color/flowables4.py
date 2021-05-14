@@ -1,8 +1,3 @@
-
-# print(__name__, __package__)
-# exit()
-
-
 from reportlab.lib.colors import black, green, red, brown,blueviolet, pink, blue,white, violet
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import letter
@@ -17,7 +12,6 @@ frame = Frame(0, 10, 650, 780, id='col1', showBoundary=0)
 Page = PageTemplate(id='col1', frames=[frame])
 doc.addPageTemplates([Page])
 
-
 def make_story(data, swarr, color_arr):
 
 	for i in range(len(data)):
@@ -29,11 +23,12 @@ def make_story(data, swarr, color_arr):
 		t0.hAlign = "LEFT"
 		for x in range(len(color_arr[i])):
 
-			print(color_arr[i][x])
-			print(i,x)
+			# print(color_arr[i][x])
+			# print(i,x)
 
 			t0.setStyle(TableStyle([
 				('GRID', (0, 0), (-1, -1), 1, black),
+				('FOREGROUND', (x, 0), (x, 0), 'green'),
 				('BACKGROUND', (x, 0), (x, 0), color_arr[i][x]),
 		]))
 		elements.append(t0)
@@ -78,8 +73,11 @@ for file in files:
 		stx, styles_width1, data1, spans1, colors = clean_html([], 0, st, True)
 		# spans1 = [[1, 1, 2, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]
 
-		# print(styles_width1)
-		# print(spans1)
+		styles_width1 = [100,100,100,100,100,];
+		print(styles_width1)
+		print(spans1)
+		print(colors)
+		print(data1)
 		# exit()
 
 		w = []

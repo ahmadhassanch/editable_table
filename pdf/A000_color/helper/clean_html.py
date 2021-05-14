@@ -111,7 +111,7 @@ def clean_tagsx(st, level):
 def cleanTDTH(tagfull, level, remaining_string, data_arr, span_arr, spans, color_arr,colors):
 	# if(tag == "<thead>"):
 	# return remaining_string, True
-	print("====", tagfull)
+	# print("====", tagfull)
 	tag = tagfull[:3]
 	if tag == "<td" or tag == "<th>":
 		if tag == "<td": tend = "</td>"
@@ -123,7 +123,7 @@ def cleanTDTH(tagfull, level, remaining_string, data_arr, span_arr, spans, color
 			content, c = clean_tagsx(content, level)
 			writeToOutput(c)
 			v = c.strip()
-			data_arr[-1].append(Paragraph(v))
+			data_arr[-1].append(v)  #Paragraph(v) TODO
 			# print(spans)
 			# print("===========================================")
 			# if(len(spans)>0):
@@ -150,7 +150,7 @@ def clean_func(st, level, clean_table, data_arr, span_arr, color_arr):
 	content = st[:val_start]
 	tag_length = st[val_start:].find(">")
 	tag = st[val_start:val_start+tag_length+1]
-	print("tagx", tag)
+	# print("tagx", tag)
 	tag, classes, styles, spans, colors = findClassAndStyles(tag)
 
 	if(val_start != -1):
