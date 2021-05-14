@@ -196,10 +196,12 @@ def clean_html(nDst, level, st, cleanTDTHflag):
 	count = 0
 	while(st != ""):
 		tag, st, level, classes, styles = clean_func(st, level, cleanTDTHflag, data_arr, span_arr, color_arr)
+		print(data_arr)
+		
 		if tag == "<tr>":
 			count+=1
 		if count == 1:
 			w_arr = getwidthsFirstRow(tag, w_arr, styles)
-
+			exit()
 	return  myStr, w_arr, data_arr, span_arr, color_arr
 
