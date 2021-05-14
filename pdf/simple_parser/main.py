@@ -2,6 +2,7 @@
 def extract_table(st):
 	objectList = [];
 	val_start = st.find("<table")
+	print(val_start)
 
 
 main()
