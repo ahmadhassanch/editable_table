@@ -17,11 +17,19 @@ def make_story(elements, data, swarr, spanArr):
 		('TOPPADDING',(0,0),(-1,-1), -1),
 		('BOTTOMPADDING',(0,0),(-1,-1), 0),
 		('VALIGN',(0,0),(0,-1),'TOP'),
+		('ALIGN',(0,0),(-1,-1),'CENTER'),
 	]))
-	# print(spans)
-	# for spans in spanArr:
-	# 	for span in spans:
-			
+
+	tabStyles = []
+	for i in range(len(spanArr)):
+		for j in range(len(spanArr[i])):
+			# tabStyles.append(('SPAN',(j,i),(j+span-1,i)))
+			span = spanArr[i][j]
+			if span>1:
+				tabStyles.append(('SPAN',(j,i),(j+span-1,i)))
+
+	t0.setStyle(TableStyle(tabStyles))
+
 
 	# t0.setStyle(TableStyle([
 	# 	('SPAN',(0,0),(1,0)),

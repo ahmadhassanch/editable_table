@@ -3,6 +3,7 @@ from extract_rows import extract_rows
 from extract_cols import extract_cols
 import json
 from writeTablePDF import main2
+from reportlab.platypus import Paragraph
 
 def prettyPrint(data):
 	d = json.dumps(data, indent=4, sort_keys=True)
@@ -54,7 +55,7 @@ def extractData(table):
 	for row in table['rows']:
 		rowData = []
 		for col in row['cols']:
-			rowData.append(col['data'])
+			rowData.append(Paragraph(col['data']))
 			# should have appended only once, but repeating
 			# to take advantage of reportlab table SPAN
 			spans = col['styles']['colspan']
@@ -69,6 +70,9 @@ def extractSpans(table):
 		rowData = []
 		for col in row['cols']:
 			rowData.append(col['styles']['colspan'])
+			spans = col['styles']['colspan']
+			for s in range(1,spans):
+				rowData.append(0)
 		dataArr.append(rowData)
 	return dataArr
 
@@ -77,7 +81,7 @@ def writeTablePDF(table):
 	# print(w)
 	d = extractData(table)
 	s = extractSpans(table)
-	# prettyPrint(d)
+	prettyPrint(s)
 	# exit()
 	d.pop(0)
 	s.pop(0)
