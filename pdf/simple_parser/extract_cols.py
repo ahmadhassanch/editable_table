@@ -10,7 +10,7 @@ def extract_one_col(objectList, st):
 	st = st[val_tag_start:]
 	val_tag_end = st.find(">")
 	remaining_string = st[4:val_tag_end]
-	print("rem", remaining_string)
+	# print("rem", remaining_string)
 	# Search the end /td, It should be there
 	val_data_end = st.find("</td>")
 	if val_data_end == -1:
@@ -20,7 +20,7 @@ def extract_one_col(objectList, st):
 	data = st[val_tag_end+1: val_data_end].replace("\n", " ").strip()
 	styles = findStyles(remaining_string)
 	spans = findSpans(remaining_string)
-	styles['span']= spans
+	styles['colspan']= spans
 
 	objectList.append({"data": data, "styles":styles})
 
@@ -33,8 +33,8 @@ def extract_cols(st):
 		st = extract_one_col(objectList, st)
 	
 	# DON'T DELETE: FOR DEBUGGING
-	for objs in objectList:
-			print("col:", objs)
+	# for objs in objectList:
+	# 		print("col:", objs)
 
 	return objectList
 	

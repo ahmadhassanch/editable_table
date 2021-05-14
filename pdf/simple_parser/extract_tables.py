@@ -4,15 +4,14 @@ def extract_one_table(objectList, st):
 
 	# No table tag found, so the non-table text is remaining
 	if val_start == -1:      
-		if len(st.strip())>0:
-			objectList.append({"type" : "text", "value" : st.strip()})
-
+		text = st.strip()
+		if (text != ""):
+			objectList.append({"type" : "text", "data" : text})
 		return None
-
-	# Add text if there is some content
-	text = st[:val_start].strip()
-	if (text !=""):
-		objectList.append({"type" : "text", "value" : text})
+	else:
+		text = st[:val_start].strip()
+		if (text != ""):
+			objectList.append({"type" : "text", "data" : text})
 
 	# Search the end table tag, and append. It should be there
 	val_end = st.find("</table>")
@@ -20,8 +19,8 @@ def extract_one_table(objectList, st):
 		print(">>>>>>>>>>>>> Error <<<<<<<<<<<, should get </table>")
 		exit()
 
-	tableData = st[val_start: val_end+8].replace("\n", " ")
-	objectList.append({"type" : "table", "value" : tableData})
+	data = st[val_start: val_end+8].replace("\n", " ")
+	objectList.append({"type" : "table", "data" : data})
 
 	return st[val_end+8:]
 
@@ -34,9 +33,9 @@ def extract_tables(st):
 	# DON'T DELETE: for debugging/printing
 	# for objs in objectList:
 	# 	if objs["type"] == 'text':
-	# 		print("text", objs["value"])
+	# 		print("text", objs["data"])
 	# 	if objs["type"] == 'table':
-	# 		print("TABLE", objs["value"][:20], "...", objs["value"][-20:])
+	# 		print("TABLE", objs["data"][:20], "...", objs["data"][-20:])
 
 	return objectList
 	

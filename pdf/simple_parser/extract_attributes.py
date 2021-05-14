@@ -1,10 +1,10 @@
 
 def findStyles(st):
-	print("=====================================")
-	print("st--", st)
+	# print("=====================================")
+	# print("st--", st)
 	posTag = st.find("style=")
 	if(posTag == -1):
-		print("style not found")
+		# print("style not found")
 		return {}
 
 	remaining_string = st[posTag+7:]
@@ -12,26 +12,26 @@ def findStyles(st):
 	styles = st[posTag+7:posTag+7+posTag2]
 	styles = styles.split(";")
 	stx = {}
-	print("styles::", styles)
+	# print("styles::", styles)
 	for style in styles:
-
 		st1 = style.strip()
 		if st1 == "": continue
-		print(st1)
-		starr = st1.split(":");
+		# print(st1)
+		starr = st1.split(":")
+		if len(starr)<2:
+			print("Error found, should not happen")
+			exit()
 		v1 = starr[0].strip()
 		v2 = starr[1].strip()
-		print("v1, v2 = ", v1, v2)
+		# print("v1, v2 = ", v1, v2)
 		stx[v1] = v2 
-		# print(stx)
-		# exit()
 	return stx
 
 def findSpans(st):
 	# print("...........................")
 	posTag = st.find("colspan=")
 	if(posTag == -1):
-		return None
+		return 1
 
 	posTag2 = st[posTag+9:].find('"')
 	spans = st[posTag+9:posTag+9+posTag2]

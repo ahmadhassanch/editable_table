@@ -1,3 +1,4 @@
+- Handle the case if we have < or > in files
 
 May 14:
 9:14 PM - Decided to really do from scratch. Though the code almost worked, but was hard to read
