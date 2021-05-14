@@ -54,11 +54,12 @@ def extractData(table):
 	for row in table['rows']:
 		rowData = []
 		for col in row['cols']:
+			rowData.append(col['data'])
 			# should have appended only once, but repeating
 			# to take advantage of reportlab table SPAN
 			spans = col['styles']['colspan']
-			for s in range(spans):
-				rowData.append(col['data'])
+			for s in range(1,spans):
+				rowData.append("NULL")
 		dataArr.append(rowData)
 	return dataArr
 
