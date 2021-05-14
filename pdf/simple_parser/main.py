@@ -5,8 +5,10 @@ def extract_table(st):
 	print(val_start)
 
 
-main()
+def main():
 	#f = open("testcase.html", "r")
 	f = open("base1.html", "r")
 	st = f.read()
 	print(st)
+
+main()
