@@ -4,7 +4,7 @@ from extract_cols import extract_cols
 # from extract_styles import extract_rows
 
 def main():
-	f = open("base1.html", "r")
+	f = open("base2.html", "r")
 	st = f.read()
 	objList = extract_tables(st)
 
@@ -14,10 +14,11 @@ def main():
 	print("++++++++++++++++++=")
 
 	rows = extract_rows(table)
-
+	print(rows[0])
+	# exit()
 	for row in rows:
 		print("============================")
 		print("row:", row)
 		cols = extract_cols(row["data"])
-
+		exit()
 main()

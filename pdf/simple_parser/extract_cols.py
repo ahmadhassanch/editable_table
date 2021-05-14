@@ -1,4 +1,4 @@
-from extract_attributes import findClasses, findStyles, findSpans, findColors
+from extract_attributes import findStyles, findSpans
 
 def extract_one_col(objectList, st):
 	val_tag_start = st.find("<td")
@@ -9,8 +9,8 @@ def extract_one_col(objectList, st):
 
 	st = st[val_tag_start:]
 	val_tag_end = st.find(">")
-	remaining_string = st[val_tag_start+4:val_tag_end]
-	
+	remaining_string = st[4:val_tag_end]
+	print("rem", remaining_string)
 	# Search the end /td, It should be there
 	val_data_end = st.find("</td>")
 	if val_data_end == -1:
@@ -18,15 +18,9 @@ def extract_one_col(objectList, st):
 		exit()
 
 	data = st[val_tag_end+1: val_data_end].replace("\n", " ").strip()
-	classes = findClasses(remaining_string)
 	styles = findStyles(remaining_string)
 	spans = findSpans(remaining_string)
-	# print("spans",spans)
-	# exit()
 	styles['span']= spans
-	# colors = findColors(remaining_string, tag)
-	# return tag, classes, styles, spans, colors
-
 
 	objectList.append({"data": data, "styles":styles})
 
