@@ -11,6 +11,12 @@
 	<input style="width:30px;" type="text" id="rows" placeholder="rows" value="7">
 	<input style="width:30px;" type="text" id="cols" placeholder="cols" value="5">
 	<button class="inline" onclick="addTable()">Add Table</button>
+	<br><br>
+
+	<button onclick="tableController.changeFontSize(1.1)">Increase FontSize</button>
+	<button onclick="tableController.changeFontSize(0.9)">Decrease FontSize</button>
+	<br><br>
+
 
 	<button onclick="tableController.showHTML()">show html</button>
 	<button onclick="tableController.saveTable()">Save and Clear</button>
@@ -22,14 +28,14 @@
 	<button onclick="setColor()">Set Color</button>
 	<div style="height:5px;"></div>
 	
-	<div id="table_container" 
+	<div id="table_container" style="font-size: 18px;" 
 		contenteditable="true" class="table_container" onresize="onresize()">
-	
+		I am the container
 	</div>
 
 
 <div id="contextMenu" class="context-menu" 
-        style="display:none">
+        style1="display:none">
         <ul>
             <li>
             	<button onclick="tableController.insertRow(0)">Insert row above</button>

@@ -3,6 +3,7 @@ class TableController
 {
     constructor(container_name){
         this.container = document.getElementById(container_name);
+        console.log("container_name", container_name)
         this.cont = this; //first time call to sizeChanged doesn't give error
         this.observer = new ResizeObserver(this.parentSizeChanged)
         this.observer.observe(this.container);
@@ -11,6 +12,7 @@ class TableController
         this.saveDict = {data:"No data", containerWidth:"50px"};
         this.insertColsNo = 1;
         this.insertRowsNo = 1;
+        this.fontScale = 1.0;
     }
 
     showHTML(argument) {
@@ -28,8 +30,15 @@ class TableController
         this._sizeChanged(this.container.offsetWidth, savedWidth);
     }
 
+    changeFontSize(scale){
+        var previousFontSize = parseFloat(this.cont.container.style.fontSize);
+        this.cont.container.style.fontSize = scale*previousFontSize+"px";
+    }
+
     _sizeChanged(newWidth, oldWidth){
-        this.cont.container.style.fontSize = .025*newWidth+"px";
+
+        var previousFontSize = parseFloat(this.cont.container.style.fontSize);
+        this.cont.container.style.fontSize = previousFontSize*newWidth/oldWidth+"px";
         var tables = this.cont.container.getElementsByTagName("TABLE");
 
         for (var k=0; k<tables.length; k++){

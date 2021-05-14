@@ -1,6 +1,7 @@
 
-- multiple cell selection
-- decrease/increase font size in a cell
+- font size support
+- first time the addtable should fill width
+- multiple cell selection for coloring, fontsize
 
 LOW PRIORITY
 - cursor key movement is not natural, made some conceptual example in arrow_tab_control
@@ -8,7 +9,7 @@ LOW PRIORITY
 - should be able to justify left/right/center a column
 
 =================================================================================
-Two difficult things to overcome
+BIG CHALLENGES
 - resize columns based on zoom of browser and parent
 - column resizing for merged cells (finally fixed by a top row with max columns)
 - Merge related issues. Problems with insert/delete row/col
@@ -61,8 +62,13 @@ CELL FORMATTING
 GOOD TO HAVE
 - Natural key movement (cursor and tabs)
 
-=================================================================
+MULTIPLE SELECTION OF CELLS
+- for fontsize change
+- Justification
+- coloring
 
+=================================================================
+May 13th
 3:50PM Going to fix load save issue for changed resolution
        Going to save the container width during save process
        And going to scale the table columns on load process
@@ -107,3 +113,6 @@ May 14th.
 12:15AM.  Need to fix the bugs so that can shift to PDF.
 
 3:20AM. Fixed the bug of merge cells.
+
+4:07AM. Decrease, increase fontsize implemented.
+	
