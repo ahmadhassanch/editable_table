@@ -41,30 +41,15 @@ files = [
 	# "tables/case1_width_in_percent_new.html",
 	# "tables/target.html",
 	# "tables/farid3.html",
-	"tables/new1.html"
+	"tables/new2.html"
 ]
 
 for file in files:
 
 	f = open(file, "r")
-	st = f.read()
+	st = f.read().replace("\n", "")
 	st_obt = extract_table(st)
 
-	# data1 = 	[
-	# 	['Heading 1','Heading 2','Heading 3','Heading 455'],
-	# 	['Cell 1', 'Cell 2', 'Cell 4'],
-	# 	['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4'],
-	# 	['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
-	# 	['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
-	# ]
-	# styles_width1 =[200, 500, 100, 150]
-	# spans1 = [
-	# 	[2, 2, 1, 1],          # 144          533          144
-	# 	[1, 4, 1],       # 144      533/2 533/2 144  144
-	# 	[1, 2, 1, 1],    # 144
-	# 	[1, 1, 1, 1, 1],
-	# 	[1, 1, 1, 1, 1],
-	# 	];
 
 	for x in range(len(st_obt)):
 
@@ -72,8 +57,9 @@ for file in files:
 
 		stx, styles_width1, data1, spans1, colors = clean_html([], 0, st, True)
 		# spans1 = [[1, 1, 2, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]
+		spans1 = [[ 1, 1, 1, 1, 1], [1, 3, 1], [1, 1, 1, 1, 1], [1, 1, 3], [1, 1, 1, 1, 1], [2, 1, 1, 1], [1, 1, 1, 1, 1]]
 
-		styles_width1 = [100,100,100,100,100,];
+		# styles_width1 = [100,100,100,100,100,];
 		print(styles_width1)
 		print(spans1)
 		print(colors)

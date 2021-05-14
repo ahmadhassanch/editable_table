@@ -1,4 +1,6 @@
 
+- write the Json which can be used directly
+- if the next column has more than one colspan, there is error
 - font size support
 - first time the addtable should fill width
 - multiple cell selection for coloring, fontsize
