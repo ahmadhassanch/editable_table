@@ -9,10 +9,12 @@ def extract_table(objectList, st):
 
 		return None
 
+	# Add text if there is some content
 	text = st[:val_start].strip()
 	if (text !=""):
 		objectList.append({"type" : "text", "value" : text})
 
+	# Search the end table tag, and append. It should be there
 	val_end = st.find("</table>")
 	if val_start == -1:
 		print(">>>>>>>>>>>>> Error <<<<<<<<<<<, should get </table>")
@@ -23,19 +25,23 @@ def extract_table(objectList, st):
 
 	return st[val_end+8:]
 
-def main():
+def extract_tables(st):
 	objectList = [];
-	f = open("base1.html", "r")
-	st = f.read()
-
+	# Extract tables.
 	while st != None:
 		st = extract_table(objectList, st)
 		
-	for objs in objectList:
+	
+
+def main():
+	f = open("base1.html", "r")
+	st = f.read()
+	objList = extract_tables(st)
+
+	for objs in objList:
 		if objs["type"] == 'text':
 			print("text", objs["value"])
 		if objs["type"] == 'table':
 			print("TABLE", objs["value"][:20], "...", objs["value"][-20:])
-	
 
 main()
