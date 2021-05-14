@@ -174,8 +174,8 @@ def clean_func(st, level, clean_table, data_arr, span_arr, color_arr):
 	return tag, remaining_string, level, classes, styles
 
 
-def getwidthsFirstRow(tag, w_arr, styles):
-	if(tag == "<td>"):
+def getTHwidths(tag, w_arr, styles):
+	if(tag == "<th>"):
 		for style in styles:
 			arr = style.split(":")
 			prop = arr[0].strip()
@@ -193,20 +193,9 @@ def clean_html(nDst, level, st, cleanTDTHflag):
 	data_arr = []
 	span_arr = []
 	color_arr = []
-	count = 0
 	while(st != ""):
 		tag, st, level, classes, styles = clean_func(st, level, cleanTDTHflag, data_arr, span_arr, color_arr)
+		w_arr = getTHwidths(tag, w_arr, styles)
 
-		if tag == "<tr>":
-			count+=1
-		if count == 1:
-			w_arr = getwidthsFirstRow(tag, w_arr, styles)
-			
-
-		# if count == 2:
-		# 	print(w_arr)	
-		# 	print(data_arr)
-		# 	print(span_arr)
-		# 	# exit()
 	return  myStr, w_arr, data_arr, span_arr, color_arr
 
