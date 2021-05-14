@@ -1,5 +1,5 @@
 
-def extract_table(objectList, st):
+def extract_one_table(objectList, st):
 	val_start = st.find("<table")
 
 	# No table tag found, so the non-table text is remaining
@@ -29,8 +29,9 @@ def extract_tables(st):
 	objectList = [];
 	# Extract tables.
 	while st != None:
-		st = extract_table(objectList, st)
-		
+		st = extract_one_table(objectList, st)
+	
+	return objectList
 	
 
 def main():
