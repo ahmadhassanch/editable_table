@@ -1,9 +1,13 @@
+
+# print(__name__, __package__)
+# exit()
+
+
 from reportlab.lib.colors import black, green, red, brown,blueviolet, pink, blue,white, violet
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Frame, PageTemplate
 from helper.clean_html import clean_html
-# from helper.cleaner import clean_html
 from helper.extract_table import extract_table
 
 styles = getSampleStyleSheet()
@@ -41,8 +45,8 @@ files = [
 	# "tables/case1_width_in_percent2_ahsan.html",
 	# "tables/case1_width_in_percent_new.html",
 	# "tables/target.html",
-	"tables/farid3.html",
-	# "tables/sample.html"
+	# "tables/farid3.html",
+	"tables/new1.html"
 ]
 
 for file in files:
@@ -72,6 +76,11 @@ for file in files:
 		st = st_obt[x].rstrip('\n')
 
 		stx, styles_width1, data1, spans1, colors = clean_html([], 0, st, True)
+		spans1 = [[1, 1, 2, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]
+
+		print(styles_width1)
+		print(spans1)
+		# exit()
 
 		w = []
 		for i in range(len(spans1[0])):

@@ -1,7 +1,5 @@
 import json
-
 from reportlab.platypus import Paragraph
-
 
 def findClasses(st):
 	classes = "classes"
@@ -41,7 +39,6 @@ def findSpans(st):
 	spans = st[posTag+9:posTag+9+posTag2]
 	# spans = spans.split("")
 	stx = int(spans)
-	
 	return stx
 
 
@@ -58,8 +55,6 @@ def findColors(st, tag):
 		stx = colors[0]
 
 		return stx
-
-
 
 def findClassAndStyles(st):
 	posTag = st.find(" ")
@@ -140,7 +135,11 @@ def cleanTDTH(tag, level, remaining_string, data_arr, span_arr, spans, color_arr
 			data_arr.append([])
 			span_arr.append([])
 			color_arr.append([])
+		else:
+			print("unknown:", tag)
+
 		return remaining_string
+
 	
 
 def clean_func(st, level, clean_table, data_arr, span_arr, color_arr):
@@ -149,6 +148,7 @@ def clean_func(st, level, clean_table, data_arr, span_arr, color_arr):
 	content = st[:val_start]
 	tag_length = st[val_start:].find(">")
 	tag = st[val_start:val_start+tag_length+1]
+	print("tagx", tag)
 	tag, classes, styles, spans, colors = findClassAndStyles(tag)
 
 	if(val_start != -1):
