@@ -58,8 +58,10 @@ class TableController
         var width = this.cont.container.offsetWidth;
         var tables = this.cont.container.getElementsByTagName("TABLE");
 
-        this.cont._sizeChanged(width, this.width);
-        this.width = width;
+        this.cont._sizeChanged(width, this.cont.width);
+        // this.width = width;
+        this.cont.width = width;
+        console.log("size changed", width)
     }
     
     // get the selected td and find the row_no which has the cursor. Find the 
@@ -229,7 +231,6 @@ class TableController
     }
 
     createTable(rows, cols){ 
-        console.log("creating")
         var div = this.container;
 
         var p = document.createElement("p");
@@ -246,7 +247,7 @@ class TableController
             for (var j=0; j<cols; j++){
                 var cell = row.insertCell(j);
                 if (i == 0){
-                    cell.style.width = "100px";
+                    cell.style.width = this.width/cols+"px";
                     cell.innerHTML = "<p></p>";
                 }
                 else

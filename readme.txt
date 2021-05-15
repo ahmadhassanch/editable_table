@@ -1,9 +1,11 @@
 
 - if table is inserted after zooming, the scaling is different 
-- if the next column has more than one colspan, in merging
-- write the Json which can be used directly
-- font size support
 - first time the addtable should fill width
+
+- split should not be allowed if already one column span
+- if the next column has more than one colspan, then merging issue
+- write the Json which can be used directly to send data to backend
+- font size support per cell
 - multiple cell selection for coloring, fontsize
 
 LOW PRIORITY
@@ -49,7 +51,7 @@ CELL MERGING
 
 CELL SPLIT
 - If cell is merged, we should be able to split it
-- it will split
+- Should not split if already column span is 1
 
 SAVE LOAD FUNCTIONALITY
 - Should be independent of resolution/zooming
