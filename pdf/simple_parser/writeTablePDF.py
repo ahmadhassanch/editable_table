@@ -39,7 +39,7 @@ def make_story(elements, data, swarr, spanArr, b):
 	t0.setStyle(TableStyle(tabStyles))
 	elements.append(t0)
 
-def writePDFtoFile(data1, widthArr, spans, b):
+def writePDFtoFile(widthArr, data1, spans, backColors):
 	# data1 = 	[
 	# 	['Heading 1','','Heading 2','', 'Heading 3','Heading 4' ],
 	# 	['Cell 1', 'Cell 2 is the longest cell and it is strange','','','', 'Cell 4'],
@@ -65,7 +65,7 @@ def writePDFtoFile(data1, widthArr, spans, b):
 	Page = PageTemplate(id='col1', frames=[frame])
 	doc.addPageTemplates([Page])
 
-	make_story(elements, data1, widthArr, spans, b)
+	make_story(elements, data1, widthArr, spans, backColors)
 
 	doc.build(elements)
 
@@ -136,15 +136,15 @@ def extractData(table):
 # 	return spanArr
 
 def writeTablePDF(table):
-	w = extractWidths(table)
+	widths = extractWidths(table)
 	# print(w)
-	d,s,b = extractData(table)
+	data, spans, backColors = extractData(table)
 	# s = extractSpans(table)
 	# prettyPrint(s)
 	# exit()
-	d.pop(0)
-	s.pop(0)
-	b.pop(0)
+	data.pop(0)
+	spans.pop(0)
+	backColors.pop(0)
 	# prettyPrint(f)
 	# exit()
-	writePDFtoFile(d, w, s, b)
+	writePDFtoFile(widths, data, spans, backColors)
