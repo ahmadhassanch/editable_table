@@ -12,11 +12,11 @@ def make_story(elements, data, swarr, spanArr, f, b):
 
 	t0.setStyle(TableStyle([
 		('GRID', (0, 0), (-1, -1), 1, black),
-		('LEFTPADDING',(0,0),(-1,-1), 1),
-		('RIGHTPADDING',(0,0),(-1,-1), 1),
+		('LEFTPADDING',(0,0),(-1,-1), 2),
+		('RIGHTPADDING',(0,0),(-1,-1), 2),
 		('TOPPADDING',(0,0),(-1,-1), -1),
-		('BOTTOMPADDING',(0,0),(-1,-1), 0),
-		('VALIGN',(0,0),(-1,-1),'TOP'),
+		('BOTTOMPADDING',(0,0),(-1,-1), 2),
+		('VALIGN',(0,0),(-1,-1),'MIDDLE'),
 		('ALIGN',(0,0),(-1,-1),'CENTER'),
 		# ('BACKGROUND',(0,0),(-1,-1),red),
 	]))
@@ -29,17 +29,21 @@ def make_story(elements, data, swarr, spanArr, f, b):
 			if span>1:
 				tabStyles.append(('SPAN',(j,i),(j+span-1,i)))
 
-			fcolor = f[i][j]
-			if fcolor != 0:
-				c0 = fcolor[0]; c1 = fcolor[1]; c2 = fcolor[2];
-				tabStyles.append(('TEXTCOLOR',(j,i),(j+span-1,i), Color(c0, c1, c2)))
+			# foreground color does not work on "Paragraphs"
+			# fcolor = f[i][j]
+			# if fcolor != 0:
+			# 	c0 = fcolor[0]; c1 = fcolor[1]; c2 = fcolor[2];
+			# 	tabStyles.append(('TEXTCOLOR',(j,i),(j+span-1,i), white))
 
 			bcolor = b[i][j]
 			if bcolor != 0:
 				c0 = bcolor[0]; c1 = bcolor[1]; c2 = bcolor[2];
 				tabStyles.append(('BACKGROUND',(j,i),(j+span-1,i), Color(c0, c1, c2)))
 
-
+	# t0.setStyle(TableStyle([('BACKGROUND',(1,1),(-2,-2),green),
+ 	# 		('TEXTCOLOR',(0,0),(1,-1),red)]))
+	# tabStyles.append(('TEXTCOLOR',(0,0),(-1,-1), white))
+	# tabStyles.append(('BACKGROUND',(0,0),(-1,-1), ))
 	t0.setStyle(TableStyle(tabStyles))
 	elements.append(t0)
 

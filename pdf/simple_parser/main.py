@@ -4,6 +4,9 @@ from extract_cols import extract_cols
 import json
 from writeTablePDF import main2
 from reportlab.platypus import Paragraph
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.colors import Color
+from reportlab.lib.enums import TA_LEFT, TA_JUSTIFY, TA_CENTER, TA_RIGHT
 
 def prettyPrint(data):
 	d = json.dumps(data, indent=4, sort_keys=True)
@@ -61,19 +64,28 @@ def extractData(table):
 		foreData = []
 		backData = []
 		for col in row['cols']:
-			rowData.append(Paragraph(col['data']))
+			# rowData.append(Paragraph(col['data']))
+			# rowData.append(col['data'])
 			spanData.append(col['styles']['colspan'])
+			style = {'name': 'datax'}
 			if 'color' in col['styles']:
-				c = col['styles']['color']
-				print(c)
-				foreData.append(c)
-
+				fc = col['styles']['color']
+				foreData.append(fc)
+				style['textColor'] = Color(fc[0],fc[1],fc[2])
+				style['alignment'] = TA_CENTER
 			else:
 				foreData.append(0)
 
+				
+			style['fontSize'] = 10
+			style['leading'] = 10
+			pStyle = ParagraphStyle(**style)
+			p = Paragraph(col['data'], pStyle)
+			rowData.append(p)
+
 			if 'background-color' in col['styles']:
 				c = col['styles']['background-color']
-				print(c)
+				# print(bc)
 				backData.append(c)
 			else:
 				backData.append(0)
