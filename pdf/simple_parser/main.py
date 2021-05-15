@@ -56,12 +56,10 @@ def extractWidths(table):
 def extractData(table):
 	spanArr = []
 	dataArr = []
-	foreArr = []
 	backArr = []
 	for row in table['rows']:
 		rowData = []
 		spanData = []
-		foreData = []
 		backData = []
 		for col in row['cols']:
 			# rowData.append(Paragraph(col['data']))
@@ -70,12 +68,8 @@ def extractData(table):
 			style = {'name': 'datax'}
 			if 'color' in col['styles']:
 				fc = col['styles']['color']
-				foreData.append(fc)
 				style['textColor'] = Color(fc[0],fc[1],fc[2])
 				style['alignment'] = TA_CENTER
-			else:
-				foreData.append(0)
-
 				
 			style['fontSize'] = 10
 			style['leading'] = 10
