@@ -64,12 +64,17 @@ def extractData(table):
 			rowData.append(Paragraph(col['data']))
 			spanData.append(col['styles']['colspan'])
 			if 'color' in col['styles']:
-				foreData.append(col['styles']['background-color'])
+				c = col['styles']['color']
+				print(c)
+				foreData.append(c)
+
 			else:
 				foreData.append(0)
 
 			if 'background-color' in col['styles']:
-				backData.append(col['styles']['color'])
+				c = col['styles']['background-color']
+				print(c)
+				backData.append(c)
 			else:
 				backData.append(0)
 			# spanData.append(col['styles']['colspan'])
@@ -111,8 +116,8 @@ def writeTablePDF(table):
 	s.pop(0)
 	f.pop(0)
 	b.pop(0)
-	prettyPrint(f)
-	exit()
+	# prettyPrint(f)
+	# exit()
 	main2(d, w, s, f, b)
 
 main()

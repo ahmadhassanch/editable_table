@@ -1,4 +1,14 @@
 
+def splitColor(v):
+	pos1 = v.find("(")
+	pos2 = v.find(")")
+	vv = v[pos1+1:pos2]
+	colors = vv.split(",")
+	cArr = []
+	for color in colors:
+		cArr.append(float(color)/255.0)
+	return cArr
+
 def findStyles(st):
 	# print("=====================================")
 	# print("st--", st)
@@ -23,6 +33,9 @@ def findStyles(st):
 			exit()
 		v1 = starr[0].strip()
 		v2 = starr[1].strip()
+		# both foreground and background
+		if v1.find('color') != -1:
+			v2 = splitColor(v2)
 		# print("v1, v2 = ", v1, v2)
 		stx[v1] = v2 
 	return stx

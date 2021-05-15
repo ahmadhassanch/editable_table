@@ -1,9 +1,7 @@
 
-- I think code is too complex.
-  Going to re-write the code in more straight forward manner.
-
+- if table is inserted after zooming, the scaling is different 
+- if the next column has more than one colspan, in merging
 - write the Json which can be used directly
-- if the next column has more than one colspan, there is error
 - font size support
 - first time the addtable should fill width
 - multiple cell selection for coloring, fontsize
@@ -46,12 +44,12 @@ DELETING ROWS/COLUMNS
 - Ability to delete row
 
 CELL MERGING
-- The selected cells will be merged.
-  The cell next to current one will be merged with current
-  This will not be allowed in the resizing row.
+- The cell next to current one will be merged with current
+- If next cell has longer span, take that into consideration  
 
 CELL SPLIT
-- If cell is merged, we should be able to split it.
+- If cell is merged, we should be able to split it
+- it will split
 
 SAVE LOAD FUNCTIONALITY
 - Should be independent of resolution/zooming
@@ -59,6 +57,7 @@ SAVE LOAD FUNCTIONALITY
 - all resized columns / other layout should stay same
 
 CELL FORMATTING
+- fontsize scale of entire table
 - Set foreground color of text in cell/selected cells
 - Set background color cell/selected cells
 - decrease/increase font size in a cell
