@@ -1,6 +1,5 @@
 from reportlab.lib.colors import Color, black, green, red, brown,blueviolet, pink, blue,white, violet
 from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Paragraph,SimpleDocTemplate, Table, TableStyle, Frame, PageTemplate
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_LEFT, TA_JUSTIFY, TA_CENTER, TA_RIGHT
@@ -37,7 +36,7 @@ def make_story(elements, data, swarr, spanArr, b):
 	t0.setStyle(TableStyle(tabStyles))
 	elements.append(t0)
 
-def writePDFtoFile(widthArr, data1, spans, backColors):
+def writePDFtoFile(elements, widthArr, data1, spans, backColors):
 	# data1 = 	[
 	# 	['Heading 1','','Heading 2','', 'Heading 3','Heading 4' ],
 	# 	['Cell 1', 'Cell 2 is the longest cell and it is strange','','','', 'Cell 4'],
@@ -54,19 +53,14 @@ def writePDFtoFile(widthArr, data1, spans, backColors):
 	# 	[1, 1, 1, 1, 1, 1],
 	# 	];
 
-	elements = []
+	# elements = []
+
+	
+	make_story(elements, data1, widthArr, spans, backColors)
 
 	styles = getSampleStyleSheet()
 
-	doc = SimpleDocTemplate("simple_table_grid.pdf", pagesize=letter)
-	frame = Frame(15, 15, 580, 760, id='col1', showBoundary=1)#610x790
-	Page = PageTemplate(id='col1', frames=[frame])
-	doc.addPageTemplates([Page])
-
-	make_story(elements, data1, widthArr, spans, backColors)
-
-	doc.build(elements)
-
+	# return elements
 
 def extractWidths(table):
 	wArr = []
@@ -133,7 +127,7 @@ def extractData(table):
 # 		spanArr.append(spanData)
 # 	return spanArr
 
-def writeTablePDF(table):
+def writeTablePDF(elements, table):
 	widths = extractWidths(table)
 	# print(w)
 	data, spans, backColors = extractData(table)
@@ -145,4 +139,5 @@ def writeTablePDF(table):
 	backColors.pop(0)
 	# prettyPrint(f)
 	# exit()
-	writePDFtoFile(widths, data, spans, backColors)
+	writePDFtoFile(elements, widths, data, spans, backColors)
+	

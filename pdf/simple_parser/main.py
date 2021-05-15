@@ -3,6 +3,8 @@ from extract_rows import extract_rows
 from extract_cols import extract_cols
 import json
 from writeTablePDF import writeTablePDF
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Frame, PageTemplate
+from reportlab.lib.pagesizes import letter
 
 
 def prettyPrint(data):
@@ -29,15 +31,25 @@ def main():
 	dataStruct = extract_tables(st)
 	# print("TABLE", objList[1]["data"][:30], "...", objList[1]["data"][-30:])
 
+	elements = []
 	for item in dataStruct:
 		if item["type"] == 'table':
 			table = item["data"]
 			extractTableToDataStruct(item, table)
 			item["data"] = "PROCESSED"
-			writeTablePDF(item)
+			writeTablePDF(elements, item)
 
 		else:
+			elements.append(Paragraph(item["data"]))
 			pass
+
+	doc = SimpleDocTemplate("simple_table_grid.pdf", pagesize=letter)
+	frame = Frame(15, 15, 580, 760, id='col1', showBoundary=1)#610x790
+	Page = PageTemplate(id='col1', frames=[frame])
+	doc.addPageTemplates([Page])
+
+	doc.build(elements)
+
 			# print("text:", item["data"])
 	# print("++++++++++++++++++=")
 	# print(objList)

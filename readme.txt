@@ -1,5 +1,5 @@
 
-- fix the foreground color issue in PDF
+- handle <br> and <div> in table cells and in text
 - Proper width scaling in PDF
 - Load JSON file and make proper text/table sections
 
@@ -27,7 +27,7 @@ SPECIFICATIONS:
 =================================================================================
 ADDING TABLE
 - Ability to add a table (rows x columns)
-  > distribute columns equally in 98% of parent
+  > distribute columns equally in 100% of parent
   > zooming should not disturb it
   > reloading should not distrub it
 
@@ -59,20 +59,24 @@ SAVE LOAD FUNCTIONALITY
 - Should support save on one computer resolution and load on another
 - all resized columns / other layout should stay same
 
+TABLE LEVEL FORMATTING
+- alignment of all cells
+- horizontal alignment of table
+- fontsize of entire table
+
 CELL FORMATTING
-- fontsize scale of entire table
 - Set foreground color of text in cell/selected cells
 - Set background color cell/selected cells
 - decrease/increase font size in a cell
 - Italic Bold, etc. 
 
-GOOD TO HAVE
-- Natural key movement (cursor and tabs)
-
 MULTIPLE SELECTION OF CELLS
 - for fontsize change
 - Justification
 - coloring
+
+NATURAL CURSOR MOVEMENT (a little harder)
+- Natural cursor movement via arrow keys and tabs
 
 =================================================================
 May 13th
