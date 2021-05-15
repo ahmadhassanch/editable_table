@@ -1,12 +1,10 @@
 
-- if table is inserted after zooming, the scaling is different 
-- first time the addtable should fill width
-
 - split should not be allowed if already one column span
 - if the next column has more than one colspan, then merging issue
 - write the Json which can be used directly to send data to backend
 - font size support per cell
 - multiple cell selection for coloring, fontsize
+- justify support
 
 LOW PRIORITY
 - cursor key movement is not natural, made some conceptual example in arrow_tab_control
@@ -28,7 +26,9 @@ SPECIFICATIONS:
 =================================================================================
 ADDING TABLE
 - Ability to add a table (rows x columns)
-  > distribute columns equally in 90% of parent
+  > distribute columns equally in 98% of parent
+  > zooming should not disturb it
+  > reloading should not distrub it
 
 RESIZING COLUMNS SUPPORT
 - A intuitive way of resizing columns should be present
