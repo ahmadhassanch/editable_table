@@ -64,11 +64,11 @@ function getSiblings(e) {
     return siblings;
 };
 
-function downloadString(exportObj){
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+function downloadStringJson(exportObj){
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(exportObj);
     var downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href",     dataStr);
-    downloadAnchorNode.setAttribute("download",  "file.json");
+    downloadAnchorNode.setAttribute("download",  "000.json");
     document.body.appendChild(downloadAnchorNode); // required for firefox
     downloadAnchorNode.click();
     downloadAnchorNode.remove();

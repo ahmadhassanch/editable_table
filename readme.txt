@@ -1,8 +1,11 @@
 
-- write the Json which can be used directly to send data to backend
+- fix the foreground color issue in PDF
+- Proper width scaling in PDF
+- Load JSON file and make proper text/table sections
+
 - font size support per cell
-- multiple cell selection for coloring, fontsize
 - left, justify, center, justify support
+- multiple cell selection for coloring, fontsize
 
 LOW PRIORITY
 - cursor key movement is not natural, made some conceptual example in arrow_tab_control

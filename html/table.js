@@ -18,7 +18,9 @@ class TableController
     showHTML(argument) {
         var data = this.container.innerHTML;
         console.log(data);
-        downloadString({data: data, fontScale: this.fontScale, parentWidth: this.cont.width});
+        var exportObj = {data: data, fontScale: this.fontScale, containerWidth: this.cont.width};
+        var jsonData = JSON.stringify(exportObj)
+        downloadStringJson(jsonData);
     }
     saveTable(){
         this.saveDict.data = this.container.innerHTML;
