@@ -171,7 +171,11 @@ class TableController
             currentSpan = 1;
 
         var siblings = getSiblings(node);
-        var nextSpan = siblings[col+1].getAttribute("colspan")
+        var nextSibling = siblings[col+1];
+        // Last column can't merge
+        if (nextSibling == null)
+            return;
+        var nextSpan =  nextSibling.getAttribute("colspan")
         console.log("nextSpan", nextSpan)
         if (nextSpan == null) nextSpan = 1;
 
@@ -201,7 +205,7 @@ class TableController
 
         var col = node.cellIndex;
         var previousSpan = node.getAttribute("colspan");
-        if (previousSpan == null)
+        if ((previousSpan == null) || (previousSpan ==1))
             return;
 
         console.log(previousSpan);
