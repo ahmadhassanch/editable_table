@@ -4,7 +4,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Paragraph,SimpleDocTemplate, Table, TableStyle, Frame, PageTemplate
 from reportlab.lib.styles import ParagraphStyle
 
-def make_story(elements, data, swarr, spanArr, f, b):
+def make_story(elements, data, swarr, spanArr, b):
 	ps = ParagraphStyle('title')
 	
 	t0 = Table(data, colWidths=swarr)
@@ -24,30 +24,19 @@ def make_story(elements, data, swarr, spanArr, f, b):
 	tabStyles = []
 	for i in range(len(spanArr)):
 		for j in range(len(spanArr[i])):
-			# tabStyles.append(('SPAN',(j,i),(j+span-1,i)))
 			span = spanArr[i][j]
 			if span>1:
 				tabStyles.append(('SPAN',(j,i),(j+span-1,i)))
-
-			# foreground color does not work on "Paragraphs"
-			# fcolor = f[i][j]
-			# if fcolor != 0:
-			# 	c0 = fcolor[0]; c1 = fcolor[1]; c2 = fcolor[2];
-			# 	tabStyles.append(('TEXTCOLOR',(j,i),(j+span-1,i), white))
 
 			bcolor = b[i][j]
 			if bcolor != 0:
 				c0 = bcolor[0]; c1 = bcolor[1]; c2 = bcolor[2];
 				tabStyles.append(('BACKGROUND',(j,i),(j+span-1,i), Color(c0, c1, c2)))
 
-	# t0.setStyle(TableStyle([('BACKGROUND',(1,1),(-2,-2),green),
- 	# 		('TEXTCOLOR',(0,0),(1,-1),red)]))
-	# tabStyles.append(('TEXTCOLOR',(0,0),(-1,-1), white))
-	# tabStyles.append(('BACKGROUND',(0,0),(-1,-1), ))
 	t0.setStyle(TableStyle(tabStyles))
 	elements.append(t0)
 
-def main2(data1, widthArr, spans, f, b):
+def main2(data1, widthArr, spans, b):
 	# data1 = 	[
 	# 	['Heading 1','','Heading 2','', 'Heading 3','Heading 4' ],
 	# 	['Cell 1', 'Cell 2 is the longest cell and it is strange','','','', 'Cell 4'],
@@ -73,7 +62,7 @@ def main2(data1, widthArr, spans, f, b):
 	Page = PageTemplate(id='col1', frames=[frame])
 	doc.addPageTemplates([Page])
 
-	make_story(elements, data1, widthArr, spans, f, b)
+	make_story(elements, data1, widthArr, spans, b)
 
 	doc.build(elements)
 

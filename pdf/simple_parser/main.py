@@ -96,14 +96,12 @@ def extractData(table):
 			for s in range(1,spans):
 				rowData.append("NULL")
 				spanData.append(0)
-				foreData.append(0)
 				backData.append(0)
 
 		dataArr.append(rowData)
 		spanArr.append(spanData)
-		foreArr.append(foreData)
 		backArr.append(backData)
-	return dataArr, spanArr, foreArr, backArr
+	return dataArr, spanArr, backArr
 
 # def extractSpans(table):
 # 	spanArr = []
@@ -120,17 +118,16 @@ def extractData(table):
 def writeTablePDF(table):
 	w = extractWidths(table)
 	# print(w)
-	d,s,f,b = extractData(table)
+	d,s,b = extractData(table)
 	# s = extractSpans(table)
 	# prettyPrint(s)
 	# exit()
 	d.pop(0)
 	s.pop(0)
-	f.pop(0)
 	b.pop(0)
 	# prettyPrint(f)
 	# exit()
-	main2(d, w, s, f, b)
+	main2(d, w, s, b)
 
 main()
 
