@@ -1,6 +1,5 @@
 
-- split should not be allowed if already one column span
-- if the next column has more than one colspan, then merging issue
+- while testing, found an issue with split
 - write the Json which can be used directly to send data to backend
 - font size support per cell
 - multiple cell selection for coloring, fontsize
