@@ -3,7 +3,7 @@ class TableController
 {
     constructor(container_name){
         this.container = document.getElementById(container_name);
-        console.log("container_name", container_name)
+        // console.log("container_name", container_name)
         this.cont = this; //first time call to sizeChanged doesn't give error
         this.observer = new ResizeObserver(this.parentSizeChanged)
         this.observer.observe(this.container);
@@ -61,7 +61,7 @@ class TableController
         this.cont._sizeChanged(width, this.cont.width);
         // this.width = width;
         this.cont.width = width;
-        console.log("size changed", width)
+        // console.log("size changed", width)
     }
     
     // get the selected td and find the row_no which has the cursor. Find the 
@@ -179,7 +179,7 @@ class TableController
         console.log("nextSpan", nextSpan)
         if (nextSpan == null) nextSpan = 1;
 
-        node.setAttribute("colspan",  parseInt(currentSpan)+nextSpan);
+        node.setAttribute("colspan",  parseInt(currentSpan)+parseInt(nextSpan));
         var w1 = parseFloat(node.style.width);
         console.log(row, col); 
         console.log("row, col", row, col)
