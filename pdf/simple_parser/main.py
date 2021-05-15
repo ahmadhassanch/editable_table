@@ -3,7 +3,7 @@ from extract_rows import extract_rows
 from extract_cols import extract_cols
 import json
 from writeTablePDF import writeTablePDF
-from reportlab.platypus import Paragraph
+
 
 def prettyPrint(data):
 	d = json.dumps(data, indent=4, sort_keys=True)

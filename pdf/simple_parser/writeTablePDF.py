@@ -3,8 +3,6 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Paragraph,SimpleDocTemplate, Table, TableStyle, Frame, PageTemplate
 from reportlab.lib.styles import ParagraphStyle
-# from reportlab.lib.styles import ParagraphStyle
-# from reportlab.lib.colors import Color
 from reportlab.lib.enums import TA_LEFT, TA_JUSTIFY, TA_CENTER, TA_RIGHT
 
 def make_story(elements, data, swarr, spanArr, b):
