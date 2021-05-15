@@ -3,6 +3,9 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Paragraph,SimpleDocTemplate, Table, TableStyle, Frame, PageTemplate
 from reportlab.lib.styles import ParagraphStyle
+# from reportlab.lib.styles import ParagraphStyle
+# from reportlab.lib.colors import Color
+from reportlab.lib.enums import TA_LEFT, TA_JUSTIFY, TA_CENTER, TA_RIGHT
 
 def make_story(elements, data, swarr, spanArr, b):
 	ps = ParagraphStyle('title')
@@ -36,7 +39,7 @@ def make_story(elements, data, swarr, spanArr, b):
 	t0.setStyle(TableStyle(tabStyles))
 	elements.append(t0)
 
-def main2(data1, widthArr, spans, b):
+def writePDFtoFile(data1, widthArr, spans, b):
 	# data1 = 	[
 	# 	['Heading 1','','Heading 2','', 'Heading 3','Heading 4' ],
 	# 	['Cell 1', 'Cell 2 is the longest cell and it is strange','','','', 'Cell 4'],
@@ -66,4 +69,82 @@ def main2(data1, widthArr, spans, b):
 
 	doc.build(elements)
 
-#main2(1,2,3)
+
+def extractWidths(table):
+	wArr = []
+	row0 = table["rows"][0]['cols']
+	for col in row0:
+		w = float(col['styles']['width'][:-2])
+		wArr.append(w)
+	return wArr
+	
+def extractData(table):
+	spanArr = []
+	dataArr = []
+	backArr = []
+	for row in table['rows']:
+		rowData = []
+		spanData = []
+		backData = []
+		for col in row['cols']:
+			# rowData.append(Paragraph(col['data']))
+			# rowData.append(col['data'])
+			spanData.append(col['styles']['colspan'])
+			style = {'name': 'datax'}
+			if 'color' in col['styles']:
+				fc = col['styles']['color']
+				style['textColor'] = Color(fc[0],fc[1],fc[2])
+				style['alignment'] = TA_CENTER
+				
+			style['fontSize'] = 10
+			style['leading'] = 10
+			pStyle = ParagraphStyle(**style)
+			p = Paragraph(col['data'], pStyle)
+			rowData.append(p)
+			# rowData.append(col['data'])  # if we don't go for styles, etc
+
+			if 'background-color' in col['styles']:
+				c = col['styles']['background-color']
+				# print(bc)
+				backData.append(c)
+			else:
+				backData.append(0)
+			# spanData.append(col['styles']['colspan'])
+			# should have appended only once, but repeating
+			# to take advantage of reportlab table SPAN
+			spans = col['styles']['colspan']
+			for s in range(1,spans):
+				rowData.append("NULL")
+				spanData.append(0)
+				backData.append(0)
+
+		dataArr.append(rowData)
+		spanArr.append(spanData)
+		backArr.append(backData)
+	return dataArr, spanArr, backArr
+
+# def extractSpans(table):
+# 	spanArr = []
+# 	for row in table['rows']:
+# 		spanData = []
+# 		for col in row['cols']:
+# 			spanData.append(col['styles']['colspan'])
+# 			spans = col['styles']['colspan']
+# 			for s in range(1,spans):
+# 				spanData.append(0)
+# 		spanArr.append(spanData)
+# 	return spanArr
+
+def writeTablePDF(table):
+	w = extractWidths(table)
+	# print(w)
+	d,s,b = extractData(table)
+	# s = extractSpans(table)
+	# prettyPrint(s)
+	# exit()
+	d.pop(0)
+	s.pop(0)
+	b.pop(0)
+	# prettyPrint(f)
+	# exit()
+	writePDFtoFile(d, w, s, b)
