@@ -78,7 +78,6 @@ class TableController
         var new_row = table.insertRow(row+aboveOrBelow);
         // var rowSiblings = getSiblings(node.parentNode);
 
-
         var row = table.getElementsByTagName("tr")[0];
         var cells = row.getElementsByTagName("td");
 
@@ -123,23 +122,6 @@ class TableController
         }
     }
 
-    // deleteColumn1(){
-    //     var node = getSelectedElement();
-    //     if ((node == undefined) || (node.nodeName != "TD")){
-    //         console.log("Wrong element selected or no selection");
-    //         return;
-    //     }
-    //     this.insertColsNo += 1;
-    //     var col = node.cellIndex;
-    //     var table = findParentTable(node);
-    //     var trs = getSiblings(node.parentNode); 
-
-    //     for (var j=0; j<trs.length; j++){
-    //         var cell = trs[j].deleteCell(col);
-    //     }
-    // }
-
-
     deleteColumn(){
         var node = getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
@@ -183,15 +165,24 @@ class TableController
             return;
 
         var col = node.cellIndex;
-        var previousSpan = node.getAttribute("colspan");
-        console.log("previousSpan", previousSpan);
-        if (previousSpan == null)
-            previousSpan = 1;
-        node.setAttribute("colspan",  parseInt(previousSpan)+1);
+        var currentSpan = node.getAttribute("colspan");
+        console.log("previousSpan", currentSpan);
+        if (currentSpan == null)
+            currentSpan = 1;
+
+        var siblings = getSiblings(node);
+        var nextSpan = siblings[col+1].getAttribute("colspan")
+        console.log("nextSpan", nextSpan)
+        if (nextSpan == null) nextSpan = 1;
+
+        node.setAttribute("colspan",  parseInt(currentSpan)+nextSpan);
         var w1 = parseFloat(node.style.width);
         console.log(row, col); 
         console.log("row, col", row, col)
         console.log("nextSibling", node);
+
+        // var previousSpan = node.getAttribute("colspan");
+
         // var w2 = parseFloat(node.nextSibling.style.width);
         // node.style.width = w1+w2+'px';
         node.parentNode.deleteCell(col+1);
