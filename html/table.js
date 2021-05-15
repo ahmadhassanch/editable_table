@@ -16,7 +16,9 @@ class TableController
     }
 
     showHTML(argument) {
-        console.log(this.container.innerHTML);
+        var data = this.container.innerHTML;
+        console.log(data);
+        downloadString({data: data, fontScale: this.fontScale, parentWidth: this.cont.width});
     }
     saveTable(){
         this.saveDict.data = this.container.innerHTML;
@@ -256,4 +258,7 @@ class TableController
         p.innerHTML = "Text after Table"
     } 
 }
+
+
+// downloadString("This is a sting2", "text/csv", "myCSV.csv")
 

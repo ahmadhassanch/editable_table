@@ -1,9 +1,8 @@
 
-- while testing, found an issue with split
 - write the Json which can be used directly to send data to backend
 - font size support per cell
 - multiple cell selection for coloring, fontsize
-- justify support
+- left, justify, center, justify support
 
 LOW PRIORITY
 - cursor key movement is not natural, made some conceptual example in arrow_tab_control
