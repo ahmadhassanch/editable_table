@@ -57,7 +57,7 @@ class MasterController extends BaseController
         this.container.innerHTML = this.saveDict["data"];
         var savedWidth = this.saveDict["containerWidth"]
         this._sizeChanged(this.container.offsetWidth, savedWidth);
-        this.cont.container.style.fontSize = fontSize + "px";
+        var fontSize = this.cont.container.style.fontSize = fontSize + "px";
         this.attachMenu();
     }
 

@@ -27,7 +27,7 @@ class TableController extends BaseController
             return;
         }
         this.insertRowsNo += 1;
-        var table = findParentTable(node);
+        var table = this.findParentTable(node);
         var new_row = table.insertRow(row+aboveOrBelow);
         var row = table.getElementsByTagName("tr")[0];
         var cells = row.getElementsByTagName("td");
@@ -45,7 +45,7 @@ class TableController extends BaseController
             console.log("Wrong element selected or no selection");
             return;
         }
-        var table = findParentTable(node);
+        var table = this.findParentTable(node);
         var row = node.parentNode.rowIndex;
         table.deleteRow(row);
     }
@@ -58,7 +58,7 @@ class TableController extends BaseController
         }
         this.insertColsNo += 1;
         var col = node.cellIndex;
-        var table = findParentTable(node);
+        var table = this.findParentTable(node);
         var trs = getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
@@ -82,7 +82,7 @@ class TableController extends BaseController
         }
         this.insertColsNo += 1;
         var col = node.cellIndex;
-        var table = findParentTable(node);
+        var table = this.findParentTable(node);
         var trs = getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
