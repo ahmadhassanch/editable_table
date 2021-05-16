@@ -1,5 +1,5 @@
  
-- Going to work on CELL, TABLE, CONTAINER level functionalities
+- Going to work on CELL, SELECTION, TABLE, CONTAINER, Para level functionalities
   > Start with justification/alignment
   	LEFT, RIGHT, CENTER, INHERIT PARENT
   > Also font-size, color
@@ -8,16 +8,13 @@
 - Proper width scaling in PDF
 - Load JSON file and make proper text/table sections
 
-- font size support per cell
-- font size support per table
-- font size support per container
-- left, justify, center, justify support
+- font size support per cell / table / container levels
+- foreground/background support per cell / selection 
 - multiple cell selection for coloring, fontsize
 - Delete table
 
-
 LOW PRIORITY
-- cursor key movement is not natural, made some conceptual example in arrow_tab_control
+- cursor key movement natural, made some conceptual example in arrow_tab_control
   > will handle later -- low priority
 - should be able to justify left/right/center a column
 
@@ -30,26 +27,98 @@ BIG CHALLENGES
 - Not much expertise in javascript
 
 LESSONS TO BE LEARNT
+- SUPER programmers are 10x programmers
 - SUPER programmers should have the capability to think while development also
-  > Programming should be dont automatically, just like you drive a bicycle or speak.
+  > Programming should not require too much tension
+    If you are getting tired during programming, you don't know how to program
+    Or you don't have reasonable command over language
+  > Just like you drive a bicycle or speak.
+  > Thinking about specs should be major part, code writing secondary 80:20
+  > After all, you are just going to write 10 lines
 - It is ok for junior programmers to follow orders / specs as is.
 - Senior programmers should challenge specs and get specs modified if issues in specs
   > Programmer is in the trench, he needs to understand the usage why it is done
     and should suggest improvements
+
+10 RULES OF PROGRAMMING
 - If you can't get a task completed in 15 min, there is some issue --- think ???
+- Don't write code -- as little as possible
+  The more code you write, the more bugs you will introduce
+  If you are writing more than 10-15 lines to achieve a functionality -- think ???
+- If your code does not look like english -- think ???
+- No function more than screen height
+- Divide code into files/functions. Try having hierarchy in code structure.
+  > High level functionalities zooming to detail levels.
+- 
 
 javascript based resizer: http://jsfiddle.net/3jMQD/
 =================================================================================
 git log | grep "   " > out.txt
 tac out.txt 
 
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 SPECIFICATIONS:
 =================================================================================
+Problem Statement:
+Make a section which supports adding TEXT/PARA as well as TABLES. Standard editing features of TEXT / TABLES are expected.
+
+DETAILS:
+
+BROWSER RESIZING
+- browser resizing should not disturb layout
+- mixture of browser and container resizing should not disturb
+
+MULTIPLE RESOLUTION SUPPORT
+- Tables/Paras should stay same for multiple computer resolutions
+
+RESIZING CONTAINER
+- resizing parent container should not disturb layout
+
 ADDING TABLE
 - Ability to add a table (rows x columns)
   > distribute columns equally in 100% of parent
-  > zooming should not disturb it
-  > reloading should not distrub it
+  > All properties should be maintained on loading
 
 DELETING TABLE
 - Delete current table
@@ -61,10 +130,6 @@ ADD TEXT/PARA SECTION
 
 RESIZING COLUMNS SUPPORT
 - A intuitive way of resizing columns should be present
-
-RESIZING CONTAINER / ZOOMING
-- resizing parent container should not disturb layout
-- browser resizing should not disturb layout
 
 ADDING COLUMNS/ROWS
 - Ability to add a column above/below
@@ -82,7 +147,7 @@ CELL SPLIT
 - If cell is merged, we should be able to split it
 - Should not split if already column span is 1
 
-SAVE LOAD FUNCTIONALITY
+SAVE/LOAD FUNCTIONALITY
 - Should be independent of resolution/zooming
 - Should support save on one computer resolution and load on another
 - all resized columns / other layout should stay same
@@ -114,6 +179,15 @@ USER EXPERIENCE
 CONVERT DATA FROM ALL ABOVE FEATURES TO PROPER PDF
 - Rewrite html-table parsing code to support all of above
   Support all above features - most of above carry to backend
+
+FORMATTING SUPPORT AT APPROPRIATE LEVELS
+- Cell, Selection, Table, Container, para
+
+CONTEXT-SENSITIVE MENU
+- Para and Table level context menus
+
+UNDO REDO SUPPORT
+- ......
 
 ADD DOCUMENTATION FOR FRONT AND BACKEND
 
@@ -170,3 +244,4 @@ May 14th.
 	
 May 16th.
 8:05 Resume work.
+

@@ -23,8 +23,6 @@ def extractTableToDataStruct(table, tableStr):
 		row['cols'] = cols
 		row["data"] = "PROCESSED"
 
-	# exit()
-
 def main():
 	f = open("base2.html", "r")
 	st = f.read()
@@ -47,18 +45,8 @@ def main():
 	frame = Frame(15, 15, 580, 760, id='col1', showBoundary=1)#610x790
 	Page = PageTemplate(id='col1', frames=[frame])
 	doc.addPageTemplates([Page])
-
 	doc.build(elements)
-
-			# print("text:", item["data"])
-	# print("++++++++++++++++++=")
-	# print(objList)
-
-
 
 
 main()
 
-# v = "188px"
-
-# print(int(v))

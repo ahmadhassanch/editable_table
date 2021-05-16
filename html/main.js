@@ -15,8 +15,8 @@ function setColor(){
 
 }
 
-// tableController.container.onclick = hideMenu;
-// tableController.container.oncontextmenu = rightClick;
+tableController.container.onclick = hideMenu;
+tableController.container.oncontextmenu = rightClick;
 
 function hideMenu() {
     document.getElementById("contextMenu").style.display = "none"
