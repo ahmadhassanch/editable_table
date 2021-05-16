@@ -31,6 +31,7 @@ class TableController extends BaseController
         var new_row = table.insertRow(row+aboveOrBelow);
         var row = table.getElementsByTagName("tr")[0];
         var cells = row.getElementsByTagName("td");
+        console.log(row, cells);
 
         for (var j=0; j<cells.length; j++){
             var cell = new_row.insertCell(j);
@@ -58,18 +59,25 @@ class TableController extends BaseController
         }
         this.insertColsNo += 1;
         var col = node.cellIndex;
+        var row = node.parentNode.rowIndex;
+        console.log("r,c", row, col, beforeOrAfter);
         var table = this.findParentTable(node);
         var trs = getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
-            var cell = trs[j].insertCell(col+beforeOrAfter);
+            console.log(j);
+            var tds = trs[j].getElementsByTagName("td")
+            var tPosition = col+beforeOrAfter;
+            if (tPosition > tds.length) 
+                tPosition = tds.length
+            var cell = trs[j].insertCell(tPosition);
             if (j==0){
                 //TODO: Fix the new column insert size
                 cell.style.width = "100px";
             }
             else{
                 //TODO: remove this, currently for debugging
-                // cell.innerHTML = this.insertColsNo;
+                cell.innerHTML = this.insertColsNo;
             }
         }
     }
