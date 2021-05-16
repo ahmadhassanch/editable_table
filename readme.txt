@@ -1,4 +1,9 @@
  
+- Going to work on CELL, TABLE, CONTAINER level functionalities
+  > Start with justification/alignment
+  	LEFT, RIGHT, CENTER, INHERIT PARENT
+  > Also font-size, color
+
 - handle <br> and <div> in table cells and in text
 - Proper width scaling in PDF
 - Load JSON file and make proper text/table sections

@@ -67,11 +67,8 @@ class TableController
     parentSizeChanged() {
         var width = this.cont.container.offsetWidth;
         var tables = this.cont.container.getElementsByTagName("TABLE");
-
         this.cont._sizeChanged(width, this.cont.width);
-        // this.width = width;
         this.cont.width = width;
-        // console.log("size changed", width)
     }
     
     // get the selected td and find the row_no which has the cursor. Find the 
@@ -93,9 +90,8 @@ class TableController
 
         for (var j=0; j<cells.length; j++){
             var cell = new_row.insertCell(j);
-            cell.innerHTML = this.insertRowsNo;
-            // if sizingRow then need to set width cell.style.width = "100px";
-            //should not occur
+            //TODO: remove this, currently for debugging
+            cell.innerHTML = this.insertRowsNo; 
         }
     }
 
@@ -124,9 +120,11 @@ class TableController
         for (var j=0; j<trs.length; j++){
             var cell = trs[j].insertCell(col+beforeOrAfter);
             if (j==0){
+                //TODO: Fix the new column insert size
                 cell.style.width = "100px";
             }
             else{
+                //TODO: remove this, currently for debugging
                 cell.innerHTML = this.insertColsNo;
             }
         }
@@ -253,7 +251,3 @@ class TableController
         p.innerHTML = "Text after Table"
     } 
 }
-
-
-// downloadString("This is a sting2", "text/csv", "myCSV.csv")
-
