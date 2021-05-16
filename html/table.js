@@ -3,8 +3,11 @@ class TableController
 {
     constructor(container_name){
         this.container = document.getElementById(container_name);
-        // console.log("container_name", container_name)
-        this.cont = this; //first time call to sizeChanged doesn't give error
+        // parentsizeChanged is called from 'this' and 'resizer' contexts
+        // Need to access 'this' props in resizer context too
+        // resizer.cont = this, and this.cont = this -- overcomes the error
+        // and can access 'this' in both contexts.        
+        this.cont = this; 
         this.observer = new ResizeObserver(this.parentSizeChanged)
         this.observer.observe(this.container);
         this.observer.cont = this;
@@ -12,7 +15,6 @@ class TableController
         this.saveDict = {data:"No data", containerWidth:"50px"};
         this.insertColsNo = 1;
         this.insertRowsNo = 1;
-        this.fontScale = 1.0;
     }
 
     showHTML(argument) {
