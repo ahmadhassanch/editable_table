@@ -83,10 +83,6 @@ class MasterController extends BaseController
         this.tableController.createTable(div, this.cont.width, rows, cols);
     } 
 
-    deleteTable(){
-        this.tableController.deleteTable();
-    }
-
     showData(argument) {
         var data = this.container.innerHTML;
         console.log(data);
