@@ -7,10 +7,24 @@ class TableController extends BaseController
         this.insertRowsNo = 1;
     }
 
+    resizeTables(tables, newWidth, oldWidth){
+        for (var k=0; k<tables.length; k++){
+           
+            var table = tables[k];
+            var row = table.getElementsByTagName("tr")[0];
+            var cells = row.getElementsByTagName("td");
+
+            for(var i = 0; i < cells.length; i++){
+                var v = parseFloat(cells[i].style.width);
+                cells[i].style.width = v*newWidth/oldWidth + "px";
+            }
+        }
+
+    }
     // get the selected td and find the row_no which has the cursor. Find the 
     // parent table, and insert another row in that table below current one
     insertRow(aboveOrBelow){
-        var node = getSelectedElement();
+        var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
             return;
@@ -35,7 +49,7 @@ class TableController extends BaseController
     }
 
     deleteRow(){
-        var node = getSelectedElement();
+        var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
             return;
@@ -46,7 +60,7 @@ class TableController extends BaseController
     }
     
     insertColumn(beforeOrAfter){
-        var node = getSelectedElement();
+        var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
             return;
@@ -56,7 +70,7 @@ class TableController extends BaseController
         var row = node.parentNode.rowIndex;
         console.log("r,c", row, col, beforeOrAfter);
         var table = this.desiredNodeNameParent(node, "TABLE");
-        var trs = getSiblings(node.parentNode); 
+        var trs = this.getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
             console.log(j);
@@ -77,7 +91,7 @@ class TableController extends BaseController
     }
 
     deleteColumn(){
-        var node = getSelectedElement();
+        var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
             return;
@@ -85,14 +99,13 @@ class TableController extends BaseController
         this.insertColsNo += 1;
         var col = node.cellIndex;
         var table = this.desiredNodeNameParent(node, "TABLE");
-        var trs = getSiblings(node.parentNode); 
+        var trs = this.getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
 
             var cells = trs[j].getElementsByTagName("td");
             if (col > cells.length -1) continue;
             var previousSpan = cells[col].getAttribute("colspan");
-            console.log(j, previousSpan);
             if ((previousSpan == null) || (previousSpan == 1)){
                 previousSpan = 1;
                 var cell = trs[j].deleteCell(col);
@@ -107,7 +120,7 @@ class TableController extends BaseController
     // Now insert another column in that table right to current one
     mergeCells(){
         console.log("mergeCells Called");
-        var node = getSelectedElement();
+        var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
             return;
@@ -122,7 +135,7 @@ class TableController extends BaseController
         if (currentSpan == null)
             currentSpan = 1;
 
-        var siblings = getSiblings(node);
+        var siblings = this.getSiblings(node);
         var nextSibling = siblings[col+1];
         // Last column can't merge
         if (nextSibling == null)
@@ -136,7 +149,7 @@ class TableController extends BaseController
 
     splitCell(){
         console.log("splitCell Called");
-        var node = getSelectedElement();
+        var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
             return;
