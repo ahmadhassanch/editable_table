@@ -203,4 +203,14 @@ class TableController extends BaseController
         table.onclick = hideMenuTable;
         table.oncontextmenu = rightClickTable;
     } 
+
+    deleteTable(){
+        var node = this.getSelectedElement();
+        if ((node == undefined) || (node.nodeName != "TD")){
+            console.log("Wrong element selected or no selection");
+            return;
+        }
+        var table = this.desiredNodeNameParent(node, "TABLE");        
+        table.remove();
+    }
 }

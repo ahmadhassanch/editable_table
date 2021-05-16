@@ -19,6 +19,8 @@ class MasterController extends BaseController
         // resizer.cont = this, and this.cont = this -- overcomes the error
         // and can access 'this' in both contexts.        
         this.cont = this; 
+        this.width = parseFloat(this.container.offsetWidth);
+        this.scale = 1.0;
         this.observer = new ResizeObserver(this.parentSizeChanged)
         this.observer.observe(this.container);
         this.observer.cont = this;
@@ -26,13 +28,15 @@ class MasterController extends BaseController
         this.parentSizeChanged();
         this.saveDict = {data:"No data", containerWidth:"50px"};
         this.attachMenu();
-        this.scale = 1.0;
+        
     }
 
-    setWidth(){
+    setWidth1(){
+        this.container.style.width = "400px";
+    }
+    setWidth2(){
         this.container.style.width = "800px";
     }
-
     attachMenu(){
         var children = this.cont.container.children;
         console.log(children.length)
@@ -58,25 +62,18 @@ class MasterController extends BaseController
         console.log("Scale", previousFontSize, scale);
     }
 
+    // Scale font size of container, and widths of tables.
     _sizeChanged(newWidth, oldWidth){
-        // console.log();
         var scale = newWidth/oldWidth;
         this.scale *= scale;
-        console.log("this.scale", this.scale);        var previousFontSize = parseFloat(this.cont.container.style.fontSize);
-        print("previousFontSize", previousFontSize);
-
+        var previousFontSize = parseFloat(this.cont.container.style.fontSize);
         this.cont.container.style.fontSize = previousFontSize*newWidth/oldWidth+"px";
-        
-        print("NEWFontSize", this.cont.container.style.fontSize);
-        
-
         var tables = this.cont.container.getElementsByTagName("TABLE");
         this.tableController.resizeTables(tables, newWidth, oldWidth);
     }
 
     parentSizeChanged() {
         var width = this.cont.container.offsetWidth;
-        var tables = this.cont.container.getElementsByTagName("TABLE");
         this.cont._sizeChanged(width, this.cont.width);
         this.cont.width = width;
     }
@@ -85,6 +82,10 @@ class MasterController extends BaseController
         var div = this.container;
         this.tableController.createTable(div, this.cont.width, rows, cols);
     } 
+
+    deleteTable(){
+        this.tableController.deleteTable();
+    }
 
     showData(argument) {
         var data = this.container.innerHTML;
@@ -102,14 +103,19 @@ class MasterController extends BaseController
         this.container.innerHTML = "";
     }
 
+
     loadData(){
         this.container.innerHTML = this.saveDict["data"];
         var savedWidth = this.saveDict["containerWidth"]
+        //font size scaled as the container scaled, so it is at correct scale
+        // saving it to restore it after sizeChanged also scales font
+        var fontSize = parseFloat(this.cont.container.style.fontSize);
         this._sizeChanged(this.container.offsetWidth, savedWidth);
-        var fontSize = this.cont.container.style.fontSize = fontSize + "px";
+        this.cont.container.style.fontSize = fontSize + "px";
         this.attachMenu();
     }
 
+    //TODO: Both these functions can be combined into one.
     downloadStringJson(data){
         var element = document.createElement('a');
         element.style.display = 'none';
