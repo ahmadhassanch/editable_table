@@ -1,98 +1,23 @@
 
 class TableController extends BaseController
 {
-    constructor(container_name){
+    constructor(){
         super();
-        this.container = document.getElementById(container_name);
-        // parentsizeChanged is called from 'this' and 'resizer' contexts
-        // Need to access 'this' props in resizer context too
-        // resizer.cont = this, and this.cont = this -- overcomes the error
-        // and can access 'this' in both contexts.        
-        this.cont = this; 
-        this.observer = new ResizeObserver(this.parentSizeChanged)
-        this.observer.observe(this.container);
-        this.observer.cont = this;
-        this.parentSizeChanged();
-        this.saveDict = {data:"No data", containerWidth:"50px"};
         this.insertColsNo = 1;
         this.insertRowsNo = 1;
-        this.attachMenu();
     }
 
-    showHTML(argument) {
-        var data = this.container.innerHTML;
-        console.log(data);
-        var fontSize = parseFloat(this.cont.container.style.fontSize);
-        var exportObj = {data: data, fontSize: fontSize, containerWidth: this.cont.width};
-        var jsonData = JSON.stringify(exportObj)
-        downloadStringJson(jsonData);
-        downloadString(data);
-    }
-
-    saveTable(){
-        this.saveDict.data = this.container.innerHTML;
-        this.saveDict.containerWidth = this.cont.container.offsetWidth;
-        this.container.innerHTML = "";
-    }
-    attachMenu(){
-        var children = this.cont.container.children;
-        console.log(children.length)
-        for (var i = 0; i<children.length; i++){
-            var child = children[i]
-            console.log(child.nodeName);
-            switch(child.nodeName){
-                case "TABLE":
-                    child.onclick = hideMenuTable;
-                    child.oncontextmenu = rightClickTable;
-                    break;
-                case "P":
-                    child.onclick = hideMenuPara;
-                    child.oncontextmenu = rightClickPara;
-                    break;
+    findParentTable(child) {
+        let node = child.parentNode;
+        while (node) {
+            if (node.nodeName === "TABLE") {
+                return node;
             }
-        }        
-    }
-
-    loadTable(){
-        this.container.innerHTML = this.saveDict["data"];
-        var savedWidth = this.saveDict["containerWidth"]
-        this._sizeChanged(this.container.offsetWidth, savedWidth);
-        var fontSize = 
-        this.cont.container.style.fontSize = fontSize + "px";
-        this.attachMenu();
-    }
-
-    changeFontSize(scale){
-        var previousFontSize = parseFloat(this.cont.container.style.fontSize);
-        this.cont.container.style.fontSize = scale*previousFontSize+"px";
-    }
-
-    _sizeChanged(newWidth, oldWidth){
-
-        var previousFontSize = parseFloat(this.cont.container.style.fontSize);
-        this.cont.container.style.fontSize = previousFontSize*newWidth/oldWidth+"px";
-        var tables = this.cont.container.getElementsByTagName("TABLE");
-
-        for (var k=0; k<tables.length; k++){
-           
-            var table = tables[k];
-            var row = table.getElementsByTagName("tr")[0];
-            var cells = row.getElementsByTagName("td");
-
-            for(var i = 0; i < cells.length; i++){
-                var v = parseFloat(cells[i].style.width);
-                cells[i].style.width = v*newWidth/oldWidth + "px";
-            }
+            node = node.parentNode;
         }
+        return false;
     }
 
-    parentSizeChanged() {
-        var width = this.cont.container.offsetWidth;
-        var tables = this.cont.container.getElementsByTagName("TABLE");
-        this.cont._sizeChanged(width, this.cont.width);
-        this.cont.width = width;
-    }
-    
     // get the selected td and find the row_no which has the cursor. Find the 
     // parent table, and insert another row in that table below current one
     insertRow(aboveOrBelow){
@@ -102,11 +27,8 @@ class TableController extends BaseController
             return;
         }
         this.insertRowsNo += 1;
-        var row = node.parentNode.rowIndex;
         var table = findParentTable(node);
         var new_row = table.insertRow(row+aboveOrBelow);
-        // var rowSiblings = getSiblings(node.parentNode);
-
         var row = table.getElementsByTagName("tr")[0];
         var cells = row.getElementsByTagName("td");
 
@@ -147,7 +69,7 @@ class TableController extends BaseController
             }
             else{
                 //TODO: remove this, currently for debugging
-                cell.innerHTML = this.insertColsNo;
+                // cell.innerHTML = this.insertColsNo;
             }
         }
     }
@@ -232,25 +154,14 @@ class TableController extends BaseController
         var cell = node.parentNode.insertCell(col+1);
     }
 
-    setBackgoundColor(fore, back){
-        var node = getSelectedElement();
-        if ((node == undefined) || (node.nodeName != "TD")){
-            console.log("Wrong element selected or no selection");
-            return;
-        }
-        node.style.backgroundColor = back; 
-        node.style.color = fore; 
-    }
-
-    createTable(rows, cols){ 
-        var div = this.container;
-
+    createTable(parent, width, rows, cols){
+        this.width = width; 
         var p = document.createElement("p");
-        div.appendChild(p);
+        parent.appendChild(p);
         p.innerHTML = "Text before Table"
 
         var table = document.createElement("TABLE");
-        div.appendChild(table);
+        parent.appendChild(table);
 
         for (var i=0;i<rows;i++){
             var row = table.insertRow(i);
@@ -269,7 +180,7 @@ class TableController extends BaseController
             }
         }
         var p = document.createElement("p");
-        div.appendChild(p);
+        parent.appendChild(p);
         p.innerHTML = "Text after Table"
 
         p.onclick = hideMenuPara;
@@ -277,6 +188,5 @@ class TableController extends BaseController
 
         table.onclick = hideMenuTable;
         table.oncontextmenu = rightClickTable;
-
     } 
 }

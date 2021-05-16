@@ -14,11 +14,8 @@ class MasterController extends BaseController
         this.observer.cont = this;
         this.parentSizeChanged();
         this.saveDict = {data:"No data", containerWidth:"50px"};
-        this.insertColsNo = 1;
-        this.insertRowsNo = 1;
         this.attachMenu();
         this.tableController = new TableController("table_container");
-
     }
 
     showHTML(argument) {
@@ -36,6 +33,7 @@ class MasterController extends BaseController
         this.saveDict.containerWidth = this.cont.container.offsetWidth;
         this.container.innerHTML = "";
     }
+
     attachMenu(){
         var children = this.cont.container.children;
         console.log(children.length)
@@ -59,7 +57,6 @@ class MasterController extends BaseController
         this.container.innerHTML = this.saveDict["data"];
         var savedWidth = this.saveDict["containerWidth"]
         this._sizeChanged(this.container.offsetWidth, savedWidth);
-        var fontSize = 
         this.cont.container.style.fontSize = fontSize + "px";
         this.attachMenu();
     }
@@ -94,53 +91,9 @@ class MasterController extends BaseController
         this.cont._sizeChanged(width, this.cont.width);
         this.cont.width = width;
     }
-    
-
-    setBackgoundColor(fore, back){
-        var node = getSelectedElement();
-        if ((node == undefined) || (node.nodeName != "TD")){
-            console.log("Wrong element selected or no selection");
-            return;
-        }
-        node.style.backgroundColor = back; 
-        node.style.color = fore; 
-    }
 
     createTable(rows, cols){ 
         var div = this.container;
-
-        var p = document.createElement("p");
-        div.appendChild(p);
-        p.innerHTML = "Text before Table"
-
-        var table = document.createElement("TABLE");
-        div.appendChild(table);
-
-        for (var i=0;i<rows;i++){
-            var row = table.insertRow(i);
-            if(i==0)
-                row.setAttribute("contenteditable", "false");
-            for (var j=0; j<cols; j++){
-                var cell = row.insertCell(j);
-                if (i == 0){
-                    cell.style.width = this.width/cols+"px";
-                    cell.innerHTML = "<p></p>";
-                }
-                else
-                {
-                    cell.innerHTML = "cell: " + i + " " + j;
-                }
-            }
-        }
-        var p = document.createElement("p");
-        div.appendChild(p);
-        p.innerHTML = "Text after Table"
-
-        p.onclick = hideMenuPara;
-        p.oncontextmenu = rightClickPara;
-
-        table.onclick = hideMenuTable;
-        table.oncontextmenu = rightClickTable;
-
+        this.tableController.createTable(div, this.cont.width, rows, cols);
     } 
 }
