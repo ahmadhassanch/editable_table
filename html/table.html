@@ -13,20 +13,20 @@
 	<button class="inline" onclick="addTable()">Add Table</button>
 	<br>
 
-	<button onclick="tableController.changeFontSize(1.1)">Increase FontSize</button>
-	<button onclick="tableController.changeFontSize(0.9)">Decrease FontSize</button>
+	<button onclick="mCont.changeFontSize(1.1)">Increase FontSize</button>
+	<button onclick="mCont.changeFontSize(0.9)">Decrease FontSize</button>
 	<br>
-	<button onclick="tableController.undo()">Undo</button>
-	<button onclick="tableController.redo()">Redo</button>
+	<button onclick="mCont.undo()">Undo</button>
+	<button onclick="mCont.redo()">Redo</button>
 	<br>
 	<br>
 
 	<p>Load and Save functionalities</p>
-	<button onclick="tableController.showHTML()">show html</button>
-	<button onclick="tableController.saveTable()">Save and Clear</button>
-	<button onclick="tableController.loadTable()">Load Table</button>
-	<button onclick="tableController.table()">Undo</button>
-	<button onclick="tableController.redo()">Redo</button>
+	<button onclick="mCont.showHTML()">show html</button>
+	<button onclick="mCont.saveTable()">Save and Clear</button>
+	<button onclick="mCont.loadTable()">Load Table</button>
+	<button onclick="mCont.table()">Undo</button>
+	<button onclick="mCont.redo()">Redo</button>
 	<br><br>
 
   	<input type="color" id="forecolor" name="forecolor" value="#FFFfff">
@@ -45,28 +45,28 @@
         style="display:none">
         <ul>
             <li>
-            	<button onclick="tableController.insertRow(0)">Insert row above</button>
+            	<button onclick="mCont.tableController.insertRow(0)">Insert row above</button>
            	</li>
             <li>
-            	<button onclick="tableController.insertRow(1)">Insert row below</button>
+            	<button onclick="mCont.tableController.insertRow(1)">Insert row below</button>
            	</li>
             <li>
-            	<button onclick="tableController.insertColumn(0)">Insert column before</button>
+            	<button onclick="mCont.tableController.insertColumn(0)">Insert column before</button>
            	</li>
             <li>
-            	<button onclick="tableController.insertColumn(1)">Insert column after</button>
+            	<button onclick="mCont.tableController.insertColumn(1)">Insert column after</button>
            	</li>
             <li>
-            	<button onclick="tableController.deleteRow()">Delete row</button>
+            	<button onclick="mCont.tableController.deleteRow()">Delete row</button>
            	</li>
             <li>
-            	<button onclick="tableController.deleteColumn()">Delete column</button>
+            	<button onclick="mCont.tableController.deleteColumn()">Delete column</button>
            	</li>
             <li>
-            	<button onclick="tableController.mergeCells()">Merge Cells</button>
+            	<button onclick="mCont.tableController.mergeCells()">Merge Cells</button>
            	</li>
             <li>
-            	<button onclick="tableController.splitCell()">Split Cells</button>
+            	<button onclick="mCont.tableController.splitCell()">Split Cells</button>
            	</li>
         </ul>
     </div>
@@ -76,10 +76,10 @@
         style="display:none">
         <ul>
             <li>
-            	<button onclick="tableController.insertRow(0)">Insert row above</button>
+            	<button onclick="mCont.tableController.insertRow(0)">Insert row above</button>
            	</li>
             <li>
-            	<button onclick="tableController.insertRow(1)">Insert row below</button>
+            	<button onclick="mCont.tableController.insertRow(1)">Insert row below</button>
            	</li>
    
         </ul>
@@ -91,6 +91,7 @@
 <script src="js/util_funcs.js"></script>
 <script src="js/base_controller/base_controller.js"></script>
 <script src="js/table_controller/table_controller.js"></script>
+<script src="js/master_controller/master_controller.js"></script>
 <script src="js/main.js"></script>
 </html>
 
