@@ -1,4 +1,10 @@
  
+- Add row, delete row, 
+- delete column, add column, 
+- Merge / split
+
+- add/delete row/col with merge/split
+
 - Distribute code into multiple files.
   MasterCont, TableCont, BaseCont, ParaCont
 - undo - redo support

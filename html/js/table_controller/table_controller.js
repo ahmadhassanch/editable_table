@@ -28,10 +28,15 @@ class TableController extends BaseController
         }
         this.insertRowsNo += 1;
         var table = this.findParentTable(node);
-        var new_row = table.insertRow(row+aboveOrBelow);
+        var c = node.cellIndex;
+        var r = node.parentNode.rowIndex;
+        // console.log("r,c", r, c, aboveOrBelow);
+        // console.log("table", table);
+
+        var new_row = table.insertRow(r+aboveOrBelow);
         var row = table.getElementsByTagName("tr")[0];
         var cells = row.getElementsByTagName("td");
-        console.log(row, cells);
+        // console.log(row, cells, aboveOrBelow);
 
         for (var j=0; j<cells.length; j++){
             var cell = new_row.insertCell(j);
@@ -96,13 +101,14 @@ class TableController extends BaseController
         for (var j=0; j<trs.length; j++){
 
             var cells = trs[j].getElementsByTagName("td");
-            if (col > cells.length-1)
-                col = cells.length -1;
+            var c = col;
+            if (c > cells.length -1)
+                c = cells.length -1;
             var previousSpan = cells[col].getAttribute("colspan");
             console.log(j, previousSpan);
             if ((previousSpan == null) || (previousSpan == 1)){
                 previousSpan = 1;
-                var cell = trs[j].deleteCell(col);
+                var cell = trs[j].deleteCell(c);
             }
             else{
                 cells[col].setAttribute("colspan", parseInt(previousSpan)-1);
