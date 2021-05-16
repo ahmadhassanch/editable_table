@@ -22,6 +22,9 @@ BIG CHALLENGES
 
 javascript based resizer: http://jsfiddle.net/3jMQD/
 =================================================================================
+git log | grep "   " > out.txt
+tac out.txt 
+
 SPECIFICATIONS:
 =================================================================================
 ADDING TABLE

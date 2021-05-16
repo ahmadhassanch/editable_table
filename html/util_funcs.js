@@ -68,25 +68,38 @@ function downloadStringJson(exportObj){
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(exportObj);
     var downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href",     dataStr);
-    downloadAnchorNode.setAttribute("download",  "aaa/000.json");
+    downloadAnchorNode.setAttribute("download",  "000.json");
     document.body.appendChild(downloadAnchorNode); // required for firefox
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
 }
 
 function downloadString1(text) {
-  var fileName = "tableData.json";
-  var json = JSON.stringify(text)
-  console.log(json);
-  var blob = new Blob(json, {type:'text'});
+  var fileName = "aaa/000.html";
+  // var json = JSON.stringify(text)
+  // console.log(json);
+  var blob = new Blob(text);
 
   var a = document.createElement('a');
   a.download = fileName;
   a.href = URL.createObjectURL(blob);
-  a.dataset.downloadurl = ["json", a.download, a.href].join(':');
+  a.dataset.downloadurl = ["text", a.download, a.href].join(':');
   a.style.display = "none";
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
+}
+
+function downloadString(text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', "000.html");
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }

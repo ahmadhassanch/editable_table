@@ -21,6 +21,7 @@ class TableController
         var exportObj = {data: data, fontScale: this.fontScale, containerWidth: this.cont.width};
         var jsonData = JSON.stringify(exportObj)
         downloadStringJson(jsonData);
+        downloadString(data);
     }
     saveTable(){
         this.saveDict.data = this.container.innerHTML;
