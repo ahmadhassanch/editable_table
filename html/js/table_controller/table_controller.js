@@ -7,17 +7,6 @@ class TableController extends BaseController
         this.insertRowsNo = 1;
     }
 
-    findParentTable(child) {
-        let node = child.parentNode;
-        while (node) {
-            if (node.nodeName === "TABLE") {
-                return node;
-            }
-            node = node.parentNode;
-        }
-        return false;
-    }
-
     // get the selected td and find the row_no which has the cursor. Find the 
     // parent table, and insert another row in that table below current one
     insertRow(aboveOrBelow){
@@ -27,7 +16,7 @@ class TableController extends BaseController
             return;
         }
         this.insertRowsNo += 1;
-        var table = this.findParentTable(node);
+        var table = this.desiredNodeNameParent(node, "TABLE");
         var c = node.cellIndex;
         var r = node.parentNode.rowIndex;
         // console.log("r,c", r, c, aboveOrBelow);
@@ -51,7 +40,7 @@ class TableController extends BaseController
             console.log("Wrong element selected or no selection");
             return;
         }
-        var table = this.findParentTable(node);
+        var table = this.desiredNodeNameParent(node, "TABLE");
         var row = node.parentNode.rowIndex;
         table.deleteRow(row);
     }
@@ -66,7 +55,7 @@ class TableController extends BaseController
         var col = node.cellIndex;
         var row = node.parentNode.rowIndex;
         console.log("r,c", row, col, beforeOrAfter);
-        var table = this.findParentTable(node);
+        var table = this.desiredNodeNameParent(node, "TABLE");
         var trs = getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
@@ -74,7 +63,7 @@ class TableController extends BaseController
             var tds = trs[j].getElementsByTagName("td")
             var tPosition = col+beforeOrAfter;
             if (tPosition > tds.length) 
-                tPosition = tds.length
+                continue;
             var cell = trs[j].insertCell(tPosition);
             if (j==0){
                 //TODO: Fix the new column insert size
@@ -95,20 +84,18 @@ class TableController extends BaseController
         }
         this.insertColsNo += 1;
         var col = node.cellIndex;
-        var table = this.findParentTable(node);
+        var table = this.desiredNodeNameParent(node, "TABLE");
         var trs = getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
 
             var cells = trs[j].getElementsByTagName("td");
-            var c = col;
-            if (c > cells.length -1)
-                c = cells.length -1;
+            if (col > cells.length -1) continue;
             var previousSpan = cells[col].getAttribute("colspan");
             console.log(j, previousSpan);
             if ((previousSpan == null) || (previousSpan == 1)){
                 previousSpan = 1;
-                var cell = trs[j].deleteCell(c);
+                var cell = trs[j].deleteCell(col);
             }
             else{
                 cells[col].setAttribute("colspan", parseInt(previousSpan)-1);

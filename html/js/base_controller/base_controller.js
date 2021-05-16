@@ -11,6 +11,17 @@ class BaseController
         return false;
     }
 
+    desiredNodeNameParent(child, desiredNodeName) {
+        let node = child.parentNode;
+        while (node) {
+            if (node.nodeName === desiredNodeName) {
+                return node;
+            }
+            node = node.parentNode;
+        }
+        return false;
+    }
+
     setBackgoundColor(parent, fore, back){
         var node = getSelectedElement();
         var isAncestor = this.isAncestor(parent, node);
