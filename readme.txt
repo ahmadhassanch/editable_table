@@ -17,9 +17,8 @@ BIG CHALLENGES
 - resize columns based on zoom of browser and parent
 - column resizing for merged cells (finally fixed by a top row with max columns)
 - Merge related issues. Problems with insert/delete row/col
+- Not much expertise in javascript
 
-Known issues:
-- insert column has problems if we have merged cells. Probably won't fix.
 
 javascript based resizer: http://jsfiddle.net/3jMQD/
 =================================================================================
@@ -75,8 +74,16 @@ MULTIPLE SELECTION OF CELLS
 - Justification
 - coloring
 
-NATURAL CURSOR MOVEMENT (a little harder)
-- Natural cursor movement via arrow keys and tabs
+USER EXPERIENCE
+- Natural cursor movement via arrow keys and tabs - A Bit harder in contenteditable
+- Right click submenu for different commands
+
+CONVERT DATA FROM ALL ABOVE FEATURES TO PROPER PDF
+- Some of above a usability features at frontend only, but most of them go to backend
+
+ADD DOCUMENTATION FOR FRONT AND BACKEND
+
+LEARN JAVASCRIPT/CSS ALONG TO MANAGE REQUIREMENTS ABOVE
 
 =================================================================
 May 13th
@@ -127,3 +134,5 @@ May 14th.
 
 4:07AM. Decrease, increase fontsize implemented.
 	
+May 16th.
+8:05 Resume work.
