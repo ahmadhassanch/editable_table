@@ -73,7 +73,7 @@ class BaseController
     } 
 
     setBackgoundColor(parent, fore, back){
-        var node = getSelectedElement();
+        var node = this.getSelectedElement();
         var isAncestor = this.isAncestor(parent, node);
 
         if ((node == undefined) || (isAncestor == false)){

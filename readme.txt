@@ -97,18 +97,6 @@ tac out.txt
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 SPECIFICATIONS:
 =================================================================================
 Problem Statement:
@@ -203,6 +191,13 @@ UNDO REDO SUPPORT
 ADD DOCUMENTATION FOR FRONT AND BACKEND
 
 LEARN JAVASCRIPT/CSS ALONG TO MANAGE REQUIREMENTS ABOVE
+=================================================================
+ARCHITECTURAL SPECIFICATIONS
+
+- MasterController should control the main div which can have
+  multiple types of view types (table, para, graph, ...)
+- TableController should control all tables, and ...
+- BaseController should have common functionality
 
 =================================================================
 May 13th

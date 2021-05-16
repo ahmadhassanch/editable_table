@@ -1,4 +1,3 @@
-
 /*
     There should be just one Master Controller. Right now no plans
     of having multiple Master Controllers.
@@ -8,7 +7,6 @@
     via appropriate Table, Para, ... Controllers.
 
     MasterController will also observe resizing of 'container_name' and
-
 */
 
 class MasterController extends BaseController
@@ -55,7 +53,6 @@ class MasterController extends BaseController
     }
 
     _sizeChanged(newWidth, oldWidth){
-
         var previousFontSize = parseFloat(this.cont.container.style.fontSize);
         this.cont.container.style.fontSize = previousFontSize*newWidth/oldWidth+"px";
         var tables = this.cont.container.getElementsByTagName("TABLE");
@@ -98,23 +95,25 @@ class MasterController extends BaseController
         this.attachMenu();
     }
 
-    downloadStringJson(exportObj){
-        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(exportObj);
-        var downloadAnchorNode = document.createElement('a');
-        downloadAnchorNode.setAttribute("href",     dataStr);
-        downloadAnchorNode.setAttribute("download",  "000.json");
-        document.body.appendChild(downloadAnchorNode); // required for firefox
-        downloadAnchorNode.click();
-        downloadAnchorNode.remove();
+    downloadStringJson(data){
+        var element = document.createElement('a');
+        element.style.display = 'none';
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
+        element.setAttribute("href",     dataStr);
+        element.setAttribute("download",  "000.json");
+        document.body.appendChild(element);
+        element.click();
+        element.remove();
     }
 
-    downloadString(text) {
-          var element = document.createElement('a');
-          element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-          element.setAttribute('download', "000.html");
-          element.style.display = 'none';
-          document.body.appendChild(element);
-          element.click();
-          document.body.removeChild(element);
+    downloadString(data) {
+        var element = document.createElement('a');
+        element.style.display = 'none';
+        var dataStr = 'data:text/plain;charset=utf-8,' + encodeURIComponent(data);
+        element.setAttribute('href', dataStr);
+        element.setAttribute('download', "000.html");
+        document.body.appendChild(element);
+        element.click();
+        element.remove();
     }
 }
