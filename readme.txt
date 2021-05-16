@@ -1,11 +1,12 @@
- 
-- undo - redo support
+
 - Going to work on CELL, SELECTION, TABLE, CONTAINER, Para level functionalities
   > Start with justification/alignment
-  	LEFT, RIGHT, CENTER, INHERIT PARENT
+    LEFT, RIGHT, CENTER, INHERIT PARENT
   > Also font-size, color
 
-- Different context menus for table and para
+- Different context menus for table and para proper handling
+ 
+- undo - redo support
 - handle <br> and <div> in table cells and in text
 - Proper width scaling in PDF
 - Load JSON file and make proper text/table sections

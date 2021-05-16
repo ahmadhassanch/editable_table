@@ -26,6 +26,11 @@ class MasterController extends BaseController
         this.parentSizeChanged();
         this.saveDict = {data:"No data", containerWidth:"50px"};
         this.attachMenu();
+        this.scale = 1.0;
+    }
+
+    setWidth(){
+        this.container.style.width = "800px";
     }
 
     attachMenu(){
@@ -50,11 +55,21 @@ class MasterController extends BaseController
     changeFontSize(scale){
         var previousFontSize = parseFloat(this.cont.container.style.fontSize);
         this.cont.container.style.fontSize = scale*previousFontSize+"px";
+        console.log("Scale", previousFontSize, scale);
     }
 
     _sizeChanged(newWidth, oldWidth){
-        var previousFontSize = parseFloat(this.cont.container.style.fontSize);
+        // console.log();
+        var scale = newWidth/oldWidth;
+        this.scale *= scale;
+        console.log("this.scale", this.scale);        var previousFontSize = parseFloat(this.cont.container.style.fontSize);
+        print("previousFontSize", previousFontSize);
+
         this.cont.container.style.fontSize = previousFontSize*newWidth/oldWidth+"px";
+        
+        print("NEWFontSize", this.cont.container.style.fontSize);
+        
+
         var tables = this.cont.container.getElementsByTagName("TABLE");
         this.tableController.resizeTables(tables, newWidth, oldWidth);
     }
