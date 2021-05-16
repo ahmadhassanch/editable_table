@@ -1,0 +1,16 @@
+
+HTML
+- First row of table is just read-only, for resizing only
+  > resizing merged rows create lot of problems
+
+
+PDF
+- to reduce padding in table we have different padding options
+- foreground color does not work on "Paragraphs"
+- simple text in 
+We need paragraphs so that text remains in cells, 
+  otherwise it overflows out of cell
+
+- fontsize 
+
+
