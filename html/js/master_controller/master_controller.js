@@ -17,6 +17,8 @@ class MasterController extends BaseController
         this.insertColsNo = 1;
         this.insertRowsNo = 1;
         this.attachMenu();
+        this.tableController = new TableController("table_container");
+
     }
 
     showHTML(argument) {
@@ -180,36 +182,6 @@ class MasterController extends BaseController
         }
     }
 
-    // get the col_no via cellIndex. Now get the parent TR and all of its siblings.
-    // Now insert another column in that table right to current one
-    mergeCells(){
-        console.log("mergeCells Called");
-        var node = getSelectedElement();
-        if ((node == undefined) || (node.nodeName != "TD")){
-            console.log("Wrong element selected or no selection");
-            return;
-        }
-        var row = node.parentNode.rowIndex;
-        if(row == 0)  //first row is the resizing row, we don't want to delete cells
-            return;
-
-        var col = node.cellIndex;
-        var currentSpan = node.getAttribute("colspan");
-        console.log("previousSpan", currentSpan);
-        if (currentSpan == null)
-            currentSpan = 1;
-
-        var siblings = getSiblings(node);
-        var nextSibling = siblings[col+1];
-        // Last column can't merge
-        if (nextSibling == null)
-            return;
-        var nextSpan =  nextSibling.getAttribute("colspan")
-        if (nextSpan == null) nextSpan = 1;
-
-        node.setAttribute("colspan",  parseInt(currentSpan)+parseInt(nextSpan));
-        node.parentNode.deleteCell(col+1);
-    }
 
     splitCell(){
         console.log("splitCell Called");

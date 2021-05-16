@@ -1,6 +1,5 @@
 
 var mCont = new MasterController("table_container");
-mCont.tableController = new TableController("table_container");
 
 function addTable(){
     var rows = document.getElementById("rows").value;
