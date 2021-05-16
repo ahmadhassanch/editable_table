@@ -1,21 +1,18 @@
 
-
 var mCont = new MasterController("table_container");
 mCont.tableController = new TableController("table_container");
 
 function addTable(){
     var rows = document.getElementById("rows").value;
     var cols = document.getElementById("cols").value;
-    tableController.createTable(rows, cols);
+    mCont.tableController.createTable(rows, cols);
 }
 
 function setColor(){
     var fore = document.getElementById("forecolor").value;
     var back = document.getElementById("backcolor").value;
-    tableController.setBackgoundColor(fore, back);
-
+    mCont.tableController.setBackgoundColor(fore, back);
 }
-
 
 function hideMenuTable() {
     document.getElementById("contextMenuTable").style.display = "none"
