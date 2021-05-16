@@ -11,16 +11,22 @@
 	<input style="width:30px;" type="text" id="rows" placeholder="rows" value="7">
 	<input style="width:30px;" type="text" id="cols" placeholder="cols" value="5">
 	<button class="inline" onclick="addTable()">Add Table</button>
-	<br><br>
+	<br>
 
 	<button onclick="tableController.changeFontSize(1.1)">Increase FontSize</button>
 	<button onclick="tableController.changeFontSize(0.9)">Decrease FontSize</button>
-	<br><br>
+	<br>
+	<button onclick="tableController.undo()">Undo</button>
+	<button onclick="tableController.redo()">Redo</button>
+	<br>
+	<br>
 
-
+	<p>Load and Save functionalities</p>
 	<button onclick="tableController.showHTML()">show html</button>
 	<button onclick="tableController.saveTable()">Save and Clear</button>
 	<button onclick="tableController.loadTable()">Load Table</button>
+	<button onclick="tableController.table()">Undo</button>
+	<button onclick="tableController.redo()">Redo</button>
 	<br><br>
 
   	<input type="color" id="forecolor" name="forecolor" value="#FFFfff">
@@ -35,7 +41,7 @@
 	</div>
 
 
-<div id="contextMenu" class="context-menu" 
+	<div id="contextMenuTable" class="context-menu" 
         style="display:none">
         <ul>
             <li>
@@ -66,11 +72,25 @@
     </div>
 
 
+	<div id="contextMenuPara" class="context-menu" 
+        style="display:none">
+        <ul>
+            <li>
+            	<button onclick="tableController.insertRow(0)">Insert row above</button>
+           	</li>
+            <li>
+            	<button onclick="tableController.insertRow(1)">Insert row below</button>
+           	</li>
+   
+        </ul>
+    </div>
+
+
 
 </body>
-<script src="util_funcs.js"></script>
-<script src="table.js"></script>
-<script src="main.js"></script>
+<script src="js/util_funcs.js"></script>
+<script src="js/table/table.js"></script>
+<script src="js/main.js"></script>
 </html>
 
 

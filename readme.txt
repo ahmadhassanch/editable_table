@@ -1,9 +1,12 @@
  
+- Distribute code into multiple files.
+- undo - redo support
 - Going to work on CELL, SELECTION, TABLE, CONTAINER, Para level functionalities
   > Start with justification/alignment
   	LEFT, RIGHT, CENTER, INHERIT PARENT
   > Also font-size, color
 
+- Different context menus for table and para
 - handle <br> and <div> in table cells and in text
 - Proper width scaling in PDF
 - Load JSON file and make proper text/table sections
@@ -26,7 +29,31 @@ BIG CHALLENGES
 - Merge related issues. Problems with insert/delete row/col
 - Not much expertise in javascript
 
-LESSONS TO BE LEARNT
+
+10 RULES OF PROGRAMMING
+- Great code produces magical functionalites. It does the right thing 
+  Even if you did not think about it earlier.
+  Or suggests adding great functionalities
+- Code should always be working
+  previous functionalities retained as you develop new ones
+- If your code does not look like english -- think ???
+- If you can't get a task completed in 15 min, there is some issue --- think ???
+- Don't write code -- as little as possible
+  The more code you write, the more bugs you will introduce
+  If you are writing more than 10-15 lines to achieve a functionality -- think ???
+- No function more than screen height
+- Divide code into files/functions. Try having hierarchy in code structure.
+  > High level functionalities zooming to detail levels.
+- You are responsible for bugs in code not QA
+- Getting a bug in code should not be taken lightly by you
+  First nature is to give excuses -- Take responsibility, fix IMMEDIATELY
+  Don't assume, your code has to have bugs
+  If QA reports bugs, get it fixed ASAP
+  If you are spending time on fixing bug, you did not write code properly
+  Or have a better explanation
+  When you complete a functionality, test. Think where it can fail
+  You should be able to bet your neck on code you have written
+  Getting a bug in your code should be taken very seriously
 - SUPER programmers are 10x programmers
 - SUPER programmers should have the capability to think while development also
   > Programming should not require too much tension
@@ -39,16 +66,14 @@ LESSONS TO BE LEARNT
 - Senior programmers should challenge specs and get specs modified if issues in specs
   > Programmer is in the trench, he needs to understand the usage why it is done
     and should suggest improvements
+- Try to achieve something significant in a day
 
-10 RULES OF PROGRAMMING
-- If you can't get a task completed in 15 min, there is some issue --- think ???
-- Don't write code -- as little as possible
-  The more code you write, the more bugs you will introduce
-  If you are writing more than 10-15 lines to achieve a functionality -- think ???
-- If your code does not look like english -- think ???
-- No function more than screen height
-- Divide code into files/functions. Try having hierarchy in code structure.
-  > High level functionalities zooming to detail levels.
+Summary:
+- Write as little code as possible
+- Write code in English 
+- Small functions - Divide into files/directories
+- Progress every 15 min
+- Bug in code -- you didn't think deep enough. Did not test it
 - 
 
 javascript based resizer: http://jsfiddle.net/3jMQD/
@@ -58,19 +83,6 @@ tac out.txt
 
 
    
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
