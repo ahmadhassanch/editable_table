@@ -18,7 +18,7 @@ class MasterController extends BaseController
         this.tableController = new TableController("table_container");
     }
 
-    showHTML(argument) {
+    showData(argument) {
         var data = this.container.innerHTML;
         console.log(data);
         var fontSize = parseFloat(this.cont.container.style.fontSize);
@@ -28,10 +28,18 @@ class MasterController extends BaseController
         downloadString(data);
     }
 
-    saveTable(){
+    saveData(){
         this.saveDict.data = this.container.innerHTML;
         this.saveDict.containerWidth = this.cont.container.offsetWidth;
         this.container.innerHTML = "";
+    }
+
+    loadData(){
+        this.container.innerHTML = this.saveDict["data"];
+        var savedWidth = this.saveDict["containerWidth"]
+        this._sizeChanged(this.container.offsetWidth, savedWidth);
+        var fontSize = this.cont.container.style.fontSize = fontSize + "px";
+        this.attachMenu();
     }
 
     attachMenu(){
@@ -51,14 +59,6 @@ class MasterController extends BaseController
                     break;
             }
         }        
-    }
-
-    loadTable(){
-        this.container.innerHTML = this.saveDict["data"];
-        var savedWidth = this.saveDict["containerWidth"]
-        this._sizeChanged(this.container.offsetWidth, savedWidth);
-        var fontSize = this.cont.container.style.fontSize = fontSize + "px";
-        this.attachMenu();
     }
 
     changeFontSize(scale){
