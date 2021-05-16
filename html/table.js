@@ -18,7 +18,8 @@ class TableController
     showHTML(argument) {
         var data = this.container.innerHTML;
         console.log(data);
-        var exportObj = {data: data, fontScale: this.fontScale, containerWidth: this.cont.width};
+        var fontSize = parseFloat(this.cont.container.style.fontSize);
+        var exportObj = {data: data, fontSize: fontSize, containerWidth: this.cont.width};
         var jsonData = JSON.stringify(exportObj)
         downloadStringJson(jsonData);
         downloadString(data);
@@ -33,6 +34,8 @@ class TableController
         this.container.innerHTML = this.saveDict["data"];
         var savedWidth = this.saveDict["containerWidth"]
         this._sizeChanged(this.container.offsetWidth, savedWidth);
+        var fontSize = 
+        this.cont.container.style.fontSize = fontSize + "px";
     }
 
     changeFontSize(scale){
@@ -139,8 +142,7 @@ class TableController
         var trs = getSiblings(node.parentNode); 
 
         for (var j=0; j<trs.length; j++){
-            // var cell = trs[j].deleteCell(col);
-            
+
             var cells = trs[j].getElementsByTagName("td");
             if (col > cells.length-1)
                 col = cells.length -1;
@@ -181,19 +183,9 @@ class TableController
         if (nextSibling == null)
             return;
         var nextSpan =  nextSibling.getAttribute("colspan")
-        console.log("nextSpan", nextSpan)
         if (nextSpan == null) nextSpan = 1;
 
         node.setAttribute("colspan",  parseInt(currentSpan)+parseInt(nextSpan));
-        var w1 = parseFloat(node.style.width);
-        console.log(row, col); 
-        console.log("row, col", row, col)
-        console.log("nextSibling", node);
-
-        // var previousSpan = node.getAttribute("colspan");
-
-        // var w2 = parseFloat(node.nextSibling.style.width);
-        // node.style.width = w1+w2+'px';
         node.parentNode.deleteCell(col+1);
     }
 
@@ -205,7 +197,7 @@ class TableController
             return;
         }
         var row = node.parentNode.rowIndex;
-        if(row == 0)  //first row is the resizing row, we don't want to delete cells
+        if(row == 0)  //first row is the resizing row, don't touch it
             return;
 
         var col = node.cellIndex;
@@ -226,8 +218,6 @@ class TableController
         }
         node.style.backgroundColor = back; 
         node.style.color = fore; 
-        var siblings = getSiblings(node);
-        console.log(siblings.length);
     }
 
     createTable(rows, cols){ 

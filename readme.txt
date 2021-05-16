@@ -4,8 +4,12 @@
 - Load JSON file and make proper text/table sections
 
 - font size support per cell
+- font size support per table
+- font size support per container
 - left, justify, center, justify support
 - multiple cell selection for coloring, fontsize
+- Delete table
+
 
 LOW PRIORITY
 - cursor key movement is not natural, made some conceptual example in arrow_tab_control
@@ -16,9 +20,18 @@ LOW PRIORITY
 BIG CHALLENGES
 - resize columns based on zoom of browser and parent
 - column resizing for merged cells (finally fixed by a top row with max columns)
+  > was too hard to get fixed
 - Merge related issues. Problems with insert/delete row/col
 - Not much expertise in javascript
 
+LESSONS TO BE LEARNT
+- SUPER programmers should have the capability to think while development also
+  > Programming should be dont automatically, just like you drive a bicycle or speak.
+- It is ok for junior programmers to follow orders / specs as is.
+- Senior programmers should challenge specs and get specs modified if issues in specs
+  > Programmer is in the trench, he needs to understand the usage why it is done
+    and should suggest improvements
+- If you can't get a task completed in 15 min, there is some issue --- think ???
 
 javascript based resizer: http://jsfiddle.net/3jMQD/
 =================================================================================
@@ -32,6 +45,14 @@ ADDING TABLE
   > distribute columns equally in 100% of parent
   > zooming should not disturb it
   > reloading should not distrub it
+
+DELETING TABLE
+- Delete current table
+
+ADD TEXT/PARA SECTION
+- Add text/para section
+- Add text section before table
+- Add text section after table
 
 RESIZING COLUMNS SUPPORT
 - A intuitive way of resizing columns should be present
@@ -76,6 +97,10 @@ MULTIPLE SELECTION OF CELLS
 - for fontsize change
 - Justification
 - coloring
+
+ENTIRE CONTAINER FORMAT
+- Base font size increase/decrease support
+- Set basefontsize
 
 USER EXPERIENCE
 - Natural cursor movement via arrow keys and tabs - A Bit harder in contenteditable
