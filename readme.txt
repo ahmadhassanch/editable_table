@@ -1,4 +1,4 @@
-
+ 
 - handle <br> and <div> in table cells and in text
 - Proper width scaling in PDF
 - Load JSON file and make proper text/table sections
@@ -79,7 +79,8 @@ USER EXPERIENCE
 - Right click submenu for different commands
 
 CONVERT DATA FROM ALL ABOVE FEATURES TO PROPER PDF
-- Some of above a usability features at frontend only, but most of them go to backend
+- Rewrite html-table parsing code to support all of above
+  Support all above features - most of above carry to backend
 
 ADD DOCUMENTATION FOR FRONT AND BACKEND
 
