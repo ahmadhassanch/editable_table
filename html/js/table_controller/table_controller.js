@@ -202,6 +202,7 @@ class TableController extends BaseController
 
         table.onclick = hideMenuTable;
         table.oncontextmenu = rightClickTable;
+        this.attachCursorFunction(table);
     } 
 
     deleteTable(){
@@ -213,4 +214,7 @@ class TableController extends BaseController
         var table = this.desiredNodeNameParent(node, "TABLE");        
         table.remove();
     }
+
+
+
 }
