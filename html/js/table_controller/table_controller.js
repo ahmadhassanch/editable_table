@@ -177,7 +177,7 @@ class TableController extends BaseController
         var table = document.createElement("TABLE");
         parent.appendChild(table);
 
-        for (var i=0;i<rows;i++){
+        for (var i=0; i<rows; i++){
             var row = table.insertRow(i);
             if(i==0)
                 row.setAttribute("contenteditable", "false");

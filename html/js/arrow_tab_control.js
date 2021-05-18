@@ -9,15 +9,25 @@ function handleArrowKey(e, offset){
         return;
     }
 
-    // if (shiftStatus == true){
-    //     var s = node.previousSibling;
-    //     if (s==null)
-    //         s = node.parentNode.previousSibling.lastChild;
-    // }
+    var colIndex = node.cellIndex;
+    var rowIndex = node.parentNode.rowIndex;
+    
+    var s = mCont.getSiblings(node.parentNode)[rowIndex+offset];
+    if (s==undefined) return;
+    var sibs = mCont.getSiblings(s.firstChild);
 
-    var col = node.cellIndex;
-    var row = node.parentNode.rowIndex;
-    console.log("Arrow", offset, row, col);
+    if (colIndex > sibs.length)
+        colIndex = sibs.length -1;
+    s = sibs[colIndex];
+
+    // Get the previous selected range, and select the same range in new cell
+    var selection = window.getSelection();  
+    var range1 = selection.getRangeAt(0);
+    let range = new Range();
+    range.setStart(s.firstChild, Math.min(range1.endOffset, s.firstChild.length));
+    range.setEnd(s.firstChild, Math.min(range1.endOffset, s.firstChild.length));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
 }
 
 function handleTabKey(e){
@@ -48,7 +58,6 @@ function handleTabKey(e){
 document.onkeydown = function (e) {
     var kc = e.keyCode,
     key = e.key;
-    console.log("dn key code: " + kc + ", key: " + e.key);
 
     switch(e.key){
         case "Shift": 
