@@ -99,7 +99,6 @@ class MasterController extends BaseController
         this.container.innerHTML = "";
     }
 
-
     loadData(){
         this.container.innerHTML = this.saveDict["data"];
         var savedWidth = this.saveDict["containerWidth"]

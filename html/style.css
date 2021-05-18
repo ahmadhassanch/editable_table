@@ -37,6 +37,7 @@ td {
 	resize: both;
 	background-color: lightgray;
 	overflow: auto;
+	padding: 10px;
 	
 }
 

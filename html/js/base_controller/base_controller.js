@@ -45,10 +45,10 @@ class BaseController
         var selection = window.getSelection();  
         var container = selection.anchorNode; 
      
-        if (container == undefined) return;
+        if (container == undefined) return undefined;
         if( container.nodeType !== 3 ){
             console.log("Not sure what it is"); 
-            return container; 
+            return undefined; 
         } 
         else{ 
             // return parent if text node

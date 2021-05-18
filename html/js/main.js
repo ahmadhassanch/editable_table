@@ -34,7 +34,6 @@ function rightClickTable(e) {
     }
 }
 
-
 function hideMenuPara() {
     document.getElementById("contextMenuPara").style.display = "none"
 }

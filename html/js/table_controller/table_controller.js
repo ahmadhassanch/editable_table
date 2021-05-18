@@ -202,7 +202,6 @@ class TableController extends BaseController
 
         table.onclick = hideMenuTable;
         table.oncontextmenu = rightClickTable;
-        this.attachCursorFunction(table);
     } 
 
     deleteTable(){

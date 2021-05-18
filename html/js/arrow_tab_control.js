@@ -8,16 +8,19 @@ function handleArrowKey(e, offset){
         console.log("Wrong element selected or no selection");
         return;
     }
-
+     
     var colIndex = node.cellIndex;
     var rowIndex = node.parentNode.rowIndex;
     
     var s = mCont.getSiblings(node.parentNode)[rowIndex+offset];
-    if (s==undefined) return;
+    if (s==undefined) {
+        console.log("return 2");
+        return;
+    }
     var sibs = mCont.getSiblings(s.firstChild);
 
     if (colIndex > sibs.length)
-        colIndex = sibs.length -1;
+        colIndex = sibs.length - 1;
     s = sibs[colIndex];
 
     // Get the previous selected range, and select the same range in new cell
@@ -28,6 +31,7 @@ function handleArrowKey(e, offset){
     range.setEnd(s.firstChild, Math.min(range1.endOffset, s.firstChild.length));
     window.getSelection().removeAllRanges();
     window.getSelection().addRange(range);
+    e.preventDefault(); 
 }
 
 function handleTabKey(e){
@@ -36,7 +40,7 @@ function handleTabKey(e){
         console.log("Wrong element selected or no selection");
         return;
     }
-
+    
     if (shiftStatus == true){
         var s = node.previousSibling;
         if (s==null)
@@ -53,12 +57,13 @@ function handleTabKey(e){
     range.setEnd(s.firstChild, s.firstChild.length);
     window.getSelection().removeAllRanges();
     window.getSelection().addRange(range);
+    e.preventDefault();  
 }
 
 document.onkeydown = function (e) {
     var kc = e.keyCode,
     key = e.key;
-
+    // return;
     switch(e.key){
         case "Shift": 
             shiftStatus = true; 
@@ -66,17 +71,14 @@ document.onkeydown = function (e) {
 
         case "Tab": 
             handleTabKey(e);
-            e.preventDefault();   
             return; 
 
         case "ArrowDown": 
-            handleArrowKey(e, 1);
-            e.preventDefault();   
+            handleArrowKey(e, 1);  
             return;
 
         case "ArrowUp": 
             handleArrowKey(e, -1);
-            e.preventDefault();   
             return;
     }
 }

@@ -14,7 +14,7 @@
 - font size support per cell / table / container levels
 - foreground/background support per cell / selection 
 - multiple cell selection for coloring, fontsize
-- Delete table
+
 
 LOW PRIORITY
 - cursor key movement natural, made some conceptual example in arrow_tab_control
