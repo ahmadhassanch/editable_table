@@ -16,11 +16,9 @@ function handleArrowKey(e, offset){
     if ((rowIndex == 1) &&  (offset == -1)) return;    
 
     // TODO: handle the last row case
-    // var rowSiblings = mCont.getSiblings(node.parentNode);
-    // var rl = rowSiblings.length;
-    // if ((rowIndex == rl) &&  (offset == 1)) return;    
-
-    var s = rowSiblings[rowIndex+offset];
+    // Move to the next editable even if we are in the first column
+ 
+    var s = mCont.getSiblings(node.parentNode)[rowIndex+offset];
     if (s==undefined) {
         console.log("return 2");
         return;
