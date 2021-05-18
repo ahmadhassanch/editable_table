@@ -12,8 +12,9 @@
 class MasterController extends BaseController
 {
     constructor(container_name){
-        super();
+        super(container_name);
         this.container = document.getElementById(container_name);
+
         // parentsizeChanged is called from 'this' and 'resizer' contexts
         // Need to access 'this' props in resizer context too
         // resizer.cont = this, and this.cont = this -- overcomes the error

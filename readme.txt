@@ -17,14 +17,15 @@
 
 
 LOW PRIORITY
-- Cursor key reach top edge of table, top row is not contenteditable, so need to skip it and go to previous content editable. Similarly in last row switch to next contenteditable.
+- When cursor reaches last row, we need to next contenteditable.
 
 =================================================================================
 BIG CHALLENGES
 - resize columns based on zoom of browser and parent
 - column resizing for merged cells (finally fixed by a top row with max columns)
   > was too hard to get fixed
-- Merge related issues. Problems with insert/delete row/col
+- Cell Merge related issues. Problems with insert/delete row/col
+- Natural Cursor movement 
 - Not much expertise in javascript
 
 

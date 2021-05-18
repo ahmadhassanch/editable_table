@@ -1,6 +1,10 @@
 
 class BaseController 
 {
+    constructor(container_name){
+        this.parentContainer = document.getElementById(container_name);
+    }
+
     isAncestor(parent, node) {
         while (node) {
             if (node.parentNode === parent) {
@@ -20,6 +24,15 @@ class BaseController
             node = node.parentNode;
         }
         return false;
+    }
+
+    setBackgoundColor(fore, back){
+        var els = this.getSelectedElements();
+        for (var i=0; i< els.length; i++) {
+            var el = els[i];
+            el.style.backgroundColor = back; 
+            el.style.color = fore; 
+        }
     }
 
     getSiblings(e) {
@@ -44,43 +57,46 @@ class BaseController
     getSelectedElement(){ 
         var selection = window.getSelection();  
         var container = selection.anchorNode; 
-     
+
         if (container == undefined) return undefined;
+
         if( container.nodeType !== 3 ){
             console.log("Not sure what it is"); 
             return undefined; 
         } 
         else{ 
-            // return parent if text node
-            // console.log(selection)
-
-            // console.log(container)
-            // console.log(container.parentNode);
-            // var col = container.parentNode.cellIndex;
-            // var row = container.parentNode.parentNode.rowIndex;
-            // console.log("row, col", row, col)
-
-            // container.parentNode.style.backgroundColor = "gray"; 
-            // container.parentNode.style.color = "red"; 
-
-            // var range = selection.getRangeAt(0);
-            // var ulTag = range.commonAncestorContainer;
-            // console.log("common ", ulTag);
-            // if (ulTag)
-            //     ulTag.style.backgroundColor = "gray"; 
             return container.parentNode 
         } 
     } 
 
-    setBackgoundColor(parent, fore, back){
+    getSelectedElements(){
         var node = this.getSelectedElement();
-        var isAncestor = this.isAncestor(parent, node);
+        var isAncestor = this.isAncestor(this.parentContainer, node);
 
         if ((node == undefined) || (isAncestor == false)){
             console.log("Wrong element selected or no selection");
             return;
         }
-        node.style.backgroundColor = back; 
-        node.style.color = fore; 
+
+        var selection = window.getSelection();
+        var range = selection.getRangeAt(0);
+        // only one element selected
+        if (range.startOffset == range.endOffset){
+            return [node];
+        }
+
+        // Multiple elements selected
+        var ancestor = range.commonAncestorContainer;
+        var allWithinRangeParent = ancestor.getElementsByTagName("*");
+        var allSelected = [];
+        for (var i=0; i< allWithinRangeParent.length; i++) {
+          var el = allWithinRangeParent[i];
+          // The second parameter says to include the element 
+          // even if it's not fully selected
+          if (selection.containsNode(el, true) ) {
+            allSelected.push(el);
+          }
+        }
+        return allSelected;
     }
 }

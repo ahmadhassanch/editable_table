@@ -1,4 +1,8 @@
 
+- Commands work on elements which are children of parent container.
+  baseController remembers the "parentContainer"
+  
+
 HTML
 - First row of table is just read-only, for resizing only
   > resizing merged rows create lot of problems

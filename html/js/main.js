@@ -10,7 +10,7 @@ function addTable(){
 function setColor(){
     var fore = document.getElementById("forecolor").value;
     var back = document.getElementById("backcolor").value;
-    mCont.setBackgoundColor(mCont.container, fore, back);
+    mCont.setBackgoundColor(fore, back);
 }
 
 function hideMenuTable() {
