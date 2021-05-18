@@ -11,8 +11,16 @@ function handleArrowKey(e, offset){
      
     var colIndex = node.cellIndex;
     var rowIndex = node.parentNode.rowIndex;
-    
-    var s = mCont.getSiblings(node.parentNode)[rowIndex+offset];
+    // handle the case when we are in the top row and w
+    // want to switch to previous contenteditable.
+    if ((rowIndex == 1) &&  (offset == -1)) return;    
+
+    // TODO: handle the last row case
+    // var rowSiblings = mCont.getSiblings(node.parentNode);
+    // var rl = rowSiblings.length;
+    // if ((rowIndex == rl) &&  (offset == 1)) return;    
+
+    var s = rowSiblings[rowIndex+offset];
     if (s==undefined) {
         console.log("return 2");
         return;
@@ -63,6 +71,10 @@ function handleTabKey(e){
 document.onkeydown = function (e) {
     var kc = e.keyCode,
     key = e.key;
+    // var qq = document.querySelectorAll('[contenteditable]=true');
+    // console.log(qq);
+    // document.getElementById("table_container").focus();
+    // e.preventDefault();
     // return;
     switch(e.key){
         case "Shift": 

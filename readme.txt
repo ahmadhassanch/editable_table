@@ -17,9 +17,7 @@
 
 
 LOW PRIORITY
-- cursor key movement natural, made some conceptual example in arrow_tab_control
-  > will handle later -- low priority
-- should be able to justify left/right/center a column
+- Cursor key reach top edge of table, top row is not contenteditable, so need to skip it and go to previous content editable. Similarly in last row switch to next contenteditable.
 
 =================================================================================
 BIG CHALLENGES
