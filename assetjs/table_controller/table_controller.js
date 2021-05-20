@@ -8,6 +8,7 @@ class TableController extends BaseController
     }
 
     resizeTables(tables, newWidth, oldWidth){
+        this.hideMenus();
         for (var k=0; k<tables.length; k++){
            
             var table = tables[k];
@@ -24,6 +25,8 @@ class TableController extends BaseController
     // get the selected td and find the row_no which has the cursor. Find the 
     // parent table, and insert another row in that table below current one
     insertRow(aboveOrBelow){
+        this.hideMenus();
+
         var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
@@ -49,6 +52,8 @@ class TableController extends BaseController
     }
 
     deleteRow(){
+        this.hideMenus();
+
         var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
@@ -60,6 +65,8 @@ class TableController extends BaseController
     }
     
     insertColumn(beforeOrAfter){
+        this.hideMenus();
+
         var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
@@ -91,6 +98,8 @@ class TableController extends BaseController
     }
 
     deleteColumn(){
+        this.hideMenus();
+
         var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
@@ -119,9 +128,10 @@ class TableController extends BaseController
     // get the col_no via cellIndex. Now get the parent TR and all of its siblings.
     // Now insert another column in that table right to current one
     mergeCells(){
-        
+        this.hideMenus();
+
+        console.log("mergeCells Called");
         var node = this.getSelectedElement();
-        console.log("mergeCells Called", node);
         if ((node == undefined) || (node.nodeName != "TD")){
             console.log("Wrong element selected or no selection");
             return;
@@ -149,6 +159,8 @@ class TableController extends BaseController
     }
 
     splitCell(){
+        this.hideMenus();
+
         console.log("splitCell Called");
         var node = this.getSelectedElement();
         if ((node == undefined) || (node.nodeName != "TD")){
@@ -176,6 +188,7 @@ class TableController extends BaseController
         p.innerHTML = "Text before Table"
 
         var table = document.createElement("TABLE");
+        table.classList.add('editable-table');
         parent.appendChild(table);
 
         for (var i=0; i<rows; i++){
@@ -215,6 +228,28 @@ class TableController extends BaseController
         table.remove();
     }
 
+    hideMenuTable() {
 
+        const elem = document.getElementById("contextMenuTable");
+        if (elem)
+        {
+            elem.style.display = "none";
+        }
+        document.removeEventListener('click', hideMenus);
+    }
 
+    hideMenuPara() {
+        const elem = document.getElementById("contextMenuPara");
+        if (elem)
+        {
+            elem.style.display = "none";
+        }
+        document.removeEventListener('click', hideMenus);
+    
+    }
+
+    hideMenus(){
+        hideMenuPara();
+        hideMenuTable();
+    }
 }

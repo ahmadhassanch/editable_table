@@ -1,6 +1,3 @@
-
-var mCont = new MasterController("table_container");
-
 function addTable(){
     var rows = document.getElementById("rows").value;
     var cols = document.getElementById("cols").value;
@@ -31,7 +28,7 @@ function rightClickTable(e) {
     else {
         var menu = document
             .getElementById("contextMenuTable")
-              
+        
         menu.style.display = 'block';
         menu.style.left = e.pageX + "px";
         menu.style.top = e.pageY + "px";
@@ -53,11 +50,11 @@ function rightClickPara(e) {
     if (document.getElementById("contextMenuPara").style.display == "block")
         hideMenu();
     else {
-        var menu = document.getElementById("contextMenuPara")
-              
-        menu.style.display = 'block';
-        menu.style.left = e.pageX + "px";
-        menu.style.top = e.pageY + "px";
+    var menu = document.getElementById("contextMenuPara")
+            
+    menu.style.display = 'block';
+    menu.style.left = e.pageX + "px";
+    menu.style.top = e.pageY + "px";
     }
 }
 

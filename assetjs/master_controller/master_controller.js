@@ -11,10 +11,16 @@
 
 class MasterController extends BaseController
 {
-    constructor(container_name){
-        super(container_name);
-        this.container = document.getElementById(container_name);
-
+    constructor(container){
+        super(container);
+        this.container = container;
+        this.container.style.fontSize ="20px";
+        this.container.style.position = "relative";
+        // this.container.style.resize ="both";
+        // this.container.style.backgroundColor ="yellow";
+        // this.container.style.overflow ="auto";
+ 
+        
         // parentsizeChanged is called from 'this' and 'resizer' contexts
         // Need to access 'this' props in resizer context too
         // resizer.cont = this, and this.cont = this -- overcomes the error
@@ -25,7 +31,7 @@ class MasterController extends BaseController
         this.observer = new ResizeObserver(this.parentSizeChanged)
         this.observer.observe(this.container);
         this.observer.cont = this;
-        this.tableController = new TableController("table_container");//TODO:
+        this.tableController = new TableController("table_container");
         this.parentSizeChanged();
         this.saveDict = {data:"No data", containerWidth:"50px"};
         this.attachMenu();
@@ -46,7 +52,7 @@ class MasterController extends BaseController
             console.log(child.nodeName);
             switch(child.nodeName){
                 case "TABLE":
-                    child.onclick = hideMenuTable;
+                    child.onclick = hideMenuTable();
                     child.oncontextmenu = rightClickTable;
                     break;
                 case "P":
@@ -68,7 +74,8 @@ class MasterController extends BaseController
         var scale = newWidth/oldWidth;
         this.scale *= scale;
         var previousFontSize = parseFloat(this.cont.container.style.fontSize);
-        this.cont.container.style.fontSize = previousFontSize*scale+"px";
+        this.cont.container.style.fontSize = previousFontSize*newWidth/oldWidth+"px";
+
         var tables = this.cont.container.getElementsByTagName("TABLE");
         this.tableController.resizeTables(tables, newWidth, oldWidth);
     }
@@ -90,8 +97,8 @@ class MasterController extends BaseController
         var fontSize = parseFloat(this.cont.container.style.fontSize);
         var exportObj = {data: data, fontSize: fontSize, containerWidth: this.cont.width};
         var jsonData = JSON.stringify(exportObj)
-        this.downloadStringJson(jsonData);
-        this.downloadString(data);
+        downloadStringJson(jsonData);
+        downloadString(data);
     }
 
     saveData(){

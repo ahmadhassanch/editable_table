@@ -17,15 +17,16 @@
 
 
 LOW PRIORITY
-- When cursor reaches last row, we need to next contenteditable.
+- cursor key movement natural, made some conceptual example in arrow_tab_control
+  > will handle later -- low priority
+- should be able to justify left/right/center a column
 
 =================================================================================
 BIG CHALLENGES
 - resize columns based on zoom of browser and parent
 - column resizing for merged cells (finally fixed by a top row with max columns)
   > was too hard to get fixed
-- Cell Merge related issues. Problems with insert/delete row/col
-- Natural Cursor movement 
+- Merge related issues. Problems with insert/delete row/col
 - Not much expertise in javascript
 
 
