@@ -17,10 +17,16 @@ tr:nth-child(even) {
 #context-menu{
 	width : 200px;
 	border: 1px solid #dddddd;
+	position: absolute;
+	top : 0px;
+	left : 20px;
+	background-color: yellow;
 }
 
 #context-menu div{
 	padding: 5px;
+	z-index: 1000;
+
 }
 
 #context-menu div:hover{
