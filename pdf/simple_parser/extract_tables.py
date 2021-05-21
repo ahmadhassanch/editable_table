@@ -1,6 +1,37 @@
 
-def extract_one_table(objectList, st):
-	val_start = st.find("<table")
+# handle edge case, we don't find any tag
+def findNextTag(st):
+
+	print("=============================ddddddddddddddddddddddddddddddddddd")
+	
+	tagStart = st.find("<")	
+	tagEnd = st.find(">")		
+	fullTag = st[tagStart:tagEnd+1]
+	endTag = len(fullTag)-1
+
+	tempOffset = fullTag.find(" ")
+	if tempOffset == -1: tempOffset = 1000000
+	endTag = min(endTag, tempOffset)
+
+	tempOffset = fullTag.find("\n")
+	if tempOffset == -1: tempOffset = 1000000
+	endTag = min(endTag, tempOffset)
+
+	tempOffset = fullTag.find("\t")
+	if tempOffset == -1: tempOffset = 1000000
+	endTag = min(endTag, tempOffset)
+
+	endTag = min(endTag, tempOffset)
+	tag =fullTag[1:endTag]
+	# print("++++"+tag+"++++")
+	# print("==",tag ,tagStart, tagEnd, fullTag," ==== " ,"-"+tag+"-")
+	return tag
+
+
+def extract_root_tag(objectList, st):
+	tag = findNextTag(st);
+
+	val_start = st.find("<"+tag)
 
 	# No table tag found, so the non-table text is remaining
 	if val_start == -1:      
@@ -14,117 +45,41 @@ def extract_one_table(objectList, st):
 			objectList.append({"type" : "text", "data" : text})
 
 	# Search the end table tag, and append. It should be there
-	val_end = st.find("</table>")
+	val_end = st.find("</"+tag+">")
 	if val_end == -1:
 		print(">>>>>>>>>>>>> Error <<<<<<<<<<<, should get </table>")
 		exit()
 
 	data = st[val_start: val_end+8].replace("\n", " ")
-	objectList.append({"type" : "table", "data" : data})
+	objectList.append({"type" : tag, "data" : data})
 
 	return st[val_end+8:]
 
-
-def removeHtmlStyles(st):
-	st = st.replace("<br>", "")
-	st = st.replace("</br>", "")
-	st = st.replace("<div>", "")
-	st = st.replace("</div>", "")
+def cleanTags(st):
 	return st
-	if '<div' in st:
-		startPos = st.find("<div")
-		tagEnd = ">"
-		endPos = st[startPos:-1].find(tagEnd) + startPos
-		leftString = st[:startPos]
-		uTag = st[startPos:endPos + 1]
-		rightString = st[endPos + 1:]
-		# outString = leftString + '<br/>' + uTag + rightString
-		outString = leftString + uTag + rightString
-		st = outString
 
-	styles = [
-		{"tag": "<br ", "replaceWith": "<br>"},
-		{"tag": "<span ", "replaceWith": "<span>"},
-		{"tag": "<u ", "replaceWith": "<u>"},
-		{"tag": "<i ", "replaceWith": "<i>"},
-		{"tag": "<b ", "replaceWith": "<b>"},
-		{"tag": "<para ", "replaceWith": "<para>"},
-		{"tag": "<p ", "replaceWith": "<p>"},
-		{"tag": "<div ", "replaceWith": "<div>"},
-		{"tag": "<font ", "replaceWith": ""},
-	]
-
-	for style in styles:
-		if style["tag"] in st:
-			startPos = 0
-			while 1:
-				startPos = st.find(style["tag"])
-				if startPos == -1: break
-				tagEnd = ">"
-				endPos = st[startPos:-1].find(tagEnd) + startPos
-				leftString = st[:startPos]
-				uTag = st[startPos:endPos + 1]
-				rightString = st[endPos + 1:]
-				outString = leftString + style["replaceWith"] + rightString
-				st = outString
-		else:
-			continue
-
-	st = st.replace("<br>", "<br/>")
-	# st = st.replace("</span>", "")
-
-	while '</div></div>' in st:
-		st = st.replace('</div></div>', '</div>')
-
-	st = st.replace("<div><br/></div>", "<div></div>")
-
-	st = st.replace("<div><b><br/></b></div>", "<div></div>")
-	st = st.replace("<div><b><br/></b>", "<div></div>")
-
-	st = st.replace("<div><i><br/></i></div>", "<div></div>")
-	st = st.replace("<div><i><br/></i>", "<div></div>")
-
-	st = st.replace("<div><u><br/></u></div>", "<div></div>")
-	st = st.replace("<div><u><br/></u>", "<div></div>")
-
-	st = st.replace("<div><b><i><br/></i></b></div>", "<div></div>")
-	st = st.replace("<div><b><i><br/></i></b>", "<div></div>")
-
-	st = st.replace("<div><b><u><br/></u></b></div>", "<div></div>")
-	st = st.replace("<div><b><u><br/></u></b>", "<div></div>")
-
-	st = st.replace("<div><i><u><br/></u></i></div>", "<div></div>")
-	st = st.replace("<div><i><u><br/></u></i>", "<div></div>")
-
-	st = st.replace("<div><b><i><u><br/></u></i></b></div>", "<div></div>")
-	st = st.replace("<div><b><i><u><br/></u></i></b>", "<div></div>")
-
-	st = st.replace("</div>", "</div><br/>")
-
-	st = st.replace("<font>", "")
-	st = st.replace("</font>", "")
-
-	st = st.replace("<p><br/></p>", "<p></p>")
-	st = st.replace("</p>", "</p><br/>")
-	st = st.replace("</p><br/></div><br/>", "<br/>")
-	# st = st.replace('↵↵', "<br/>")
-
-	return st
 
 
 def extract_tables(st):
 	objectList = [];
 	# Extract tables.
 	while st != None:
-		st = extract_one_table(objectList, st)
-	#
+		st = extract_root_tag(objectList, st)
+	# exit()
 	# DON'T DELETE: for debugging/printing
 	for objs in objectList:
-			if objs["type"] == "text":
-				objs["data"] = removeHtmlStyles(objs["data"])
-			print(objs["type"], objs["data"][:20], "...", objs["data"][-20:])
+			print("=====================================", objs["type"])
+			print(objs["data"][:20], "...", objs["data"][-20:])
 
-	# exit()
+			if objs["type"] == "table":
+				pass
+			else:
+				objs["data"] = cleanTags(objs["data"])
+			
+			
+
+	
+	exit()
 	return objectList
 
 
