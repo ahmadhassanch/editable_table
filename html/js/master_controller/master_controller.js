@@ -11,9 +11,9 @@
 
 class MasterController extends BaseController
 {
-    constructor(container_name){
-        super(container_name);
-        this.container = document.getElementById(container_name);
+    constructor(container){
+        super(container);
+        this.container = container;
 
         // parentsizeChanged is called from 'this' and 'resizer' contexts
         // Need to access 'this' props in resizer context too
@@ -25,7 +25,7 @@ class MasterController extends BaseController
         this.observer = new ResizeObserver(this.parentSizeChanged)
         this.observer.observe(this.container);
         this.observer.cont = this;
-        this.tableController = new TableController("table_container");//TODO:
+        this.tableController = new TableController(this.container);
         this.parentSizeChanged();
         this.saveDict = {data:"No data", containerWidth:"50px"};
         this.attachMenu();
@@ -46,12 +46,12 @@ class MasterController extends BaseController
             console.log(child.nodeName);
             switch(child.nodeName){
                 case "TABLE":
-                    child.onclick = hideMenuTable;
-                    child.oncontextmenu = rightClickTable;
+                    child.onclick = (e) => this.hideMenuTable(e);
+                    child.oncontextmenu = (e) => this.rightClickTable(e);
                     break;
                 case "P":
-                    child.onclick = hideMenuPara;
-                    child.oncontextmenu = rightClickPara;
+                    child.onclick = (e) => this.hideMenuPara(e);
+                    child.oncontextmenu = (e) => this.rightClickPara(e);
                     break;
             }
         }        
@@ -68,7 +68,7 @@ class MasterController extends BaseController
         var scale = newWidth/oldWidth;
         this.scale *= scale;
         var previousFontSize = parseFloat(this.cont.container.style.fontSize);
-        this.cont.container.style.fontSize = previousFontSize*scale+"px";
+        this.cont.container.style.fontSize = previousFontSize*newWidth/oldWidth+"px";
         var tables = this.cont.container.getElementsByTagName("TABLE");
         this.tableController.resizeTables(tables, newWidth, oldWidth);
     }
@@ -90,18 +90,24 @@ class MasterController extends BaseController
         var fontSize = parseFloat(this.cont.container.style.fontSize);
         var exportObj = {data: data, fontSize: fontSize, containerWidth: this.cont.width};
         var jsonData = JSON.stringify(exportObj)
-        this.downloadStringJson(jsonData);
-        this.downloadString(data);
+        downloadStringJson(jsonData);
+        downloadString(data);
     }
 
     saveData(){
+        this.container.querySelectorAll('.context-menu').forEach(el => {
+            console.log('el =', el);
+            el.remove();
+        });
+
         this.saveDict.data = this.container.innerHTML;
         this.saveDict.containerWidth = this.cont.container.offsetWidth;
         this.container.innerHTML = "";
     }
 
     loadData(){
-        this.container.innerHTML = this.saveDict["data"];
+        this.tableController = new TableController(this.container);
+        this.container.innerHTML += this.saveDict["data"];
         var savedWidth = this.saveDict["containerWidth"]
         //font size scaled as the container scaled, so it is at correct scale
         // saving it to restore it after sizeChanged also scales font

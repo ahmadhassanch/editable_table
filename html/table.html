@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="context_menu.css">
 </head>
+
 <body>
 
 	<button onclick="mCont.setWidth1()">Decrease width</button>
@@ -39,16 +41,11 @@
 	<button onclick="setColor()">Set Color</button>
 	<div style="height:5px;"></div>
 	
-	<div id="table_container" style="font-size: 18px;" 
-		contenteditable="true" class="table_container" onresize="onresize()">
+	<div id="table_container" style="font-size: 18px;" contenteditable="true" class="table_container"
+		onresize="onresize()">
 				I am the container
-	<p>Text before Table</p><table><tbody><tr contenteditable="false"><td style="width: 160px;"><p></p></td><td style="width: 160px;"><p></p></td><td style="width: 160px;"><p></p></td><td style="width: 160px;"><p></p></td><td style="width: 160px;"><p></p></td></tr><tr><td colspan="5">cell: 1 0</td></tr><tr><td>cell: 2 0</td><td>cell: 2 1</td><td>cell: 2 2</td><td>cell: 2 3</td><td>cell: 2 4</td></tr><tr><td>cell: 3 0</td><td>cell: 3 1</td><td>cell: 3 2</td><td>cell: 3 3</td><td>cell: 3 4</td></tr><tr><td>cell: 4 0</td><td>cell: 4 1</td><td>cell: 4 2</td><td>cell: 4 3</td><td>cell: 4 4</td></tr><tr><td>cell: 5 0</td><td>cell: 5 1</td><td>cell: 5 2</td><td>cell: 5 3</td><td>cell: 5 4</td></tr><tr><td>cell: 6 0</td><td>cell: 6 1</td><td>cell: 6 2</td><td>cell: 6 3</td><td>cell: 6 4</td></tr></tbody></table><p>Text after Table</p>
 
-</div>
-
-
-	<div id="contextMenuTable" class="context-menu" 
-        style="display:none">
+		<!-- <div id="contextMenuTable" class="context-menu" style="display:none">
         <ul>
             <li>
             	<button onclick="mCont.tableController.insertRow(0)">Insert row above</button>
@@ -77,9 +74,7 @@
         </ul>
     </div>
 
-
-	<div id="contextMenuPara" class="context-menu" 
-        style="display:none">
+		<div id="contextMenuPara" class="context-menu" style="display:none">
         <ul>
             <li>
             	<button onclick="mCont.tableController.insertRow(0)">Insert row above</button>
@@ -89,91 +84,16 @@
            	</li>
    
         </ul>
+		</div> -->
     </div>
 
-
-
 </body>
+<script src="js/util_funcs.js"></script>
 <script src="js/base_controller/base_controller.js"></script>
 <script src="js/table_controller/table_controller.js"></script>
 <script src="js/master_controller/master_controller.js"></script>
 <script src="js/main.js"></script>
 
 <script src="js/arrow_tab_control.js"></script>
+
 </html>
-
-
-
-
-<!-- 	<table>
-	  <tr contenteditable="false">    
-	  	<td><p></p></td>  
-	  	<td><p></p></td>  
-	  	<td><p></p></td>  
-	  	<td><p></p></td>  
-	  	<td><p></p></td>   
-	  </tr>
-	  <tr>    
-	  	<td colspan="1" style="width1:100px;">11</td>  
-	  	<td colspan="2" style="width1:200px;">12</td>   
-	  	<td colspan="1" style="width1:100px;">12</td>  
-	  	<td colspan="1" style="width1:100px;">13</td>   </tr>
-	  <tr>    <td>21</td>  <td>22</td>  <td>23</td>  <td>22</td>  <td>23</td>   </tr>
-	  <tr>    <td>31</td>  <td>32</td>  <td>33</td>  <td>32</td>  <td>33</td>   </tr>
-	  <tr>    <td>41</td>  <td>42</td>  <td>43</td>  <td>42</td>  <td>43</td>   </tr>
-	</table>
- -->
-
-
-
-
-
-
-
-
-<!-- 
-	Table
-	<div class="table">
-		<div class="tr">
-			<div class="td">
-				11
-			</div>
-			<div class="td">
-				12
-			</div>
-			<div class="td">
-				13
-			</div>
-		</div>
-
-		<div class="tr">
-			<div class="td">
-				11
-			</div>
-			<div class="td">
-				12
-			</div>
-			<div class="td">
-				13
-			</div>
-		</div>
-	</div> -->
-
-
-
-
-
-	<!-- <table>
-	  <tr>  <td>11</td>  <td>12</td>   </tr>
-	  <tr>  <td>21</td>  <td>22</td>   </tr>
-	  <tr>  <td>31</td>  <td>32</td>   </tr>
-	  <tr>  <td>41</td>  <td>42</td>   </tr>
-	</table>
-	 -->
-<!-- <table id="dynamic_table" class="dynamic_table">
-	  <tr>    <td>11</td>  <td>12</td>  <td>13</td>  <td>12</td>  <td>13</td>   </tr>
-	  <tr>    <td>21</td>  <td>22</td>  <td>23</td>  <td>22</td>  <td>23</td>   </tr>
-	  <tr>    <td>31</td>  <td>32</td>  <td>33</td>  <td>32</td>  <td>33</td>   </tr>
-	  <tr>    <td>41</td>  <td>42</td>  <td>43</td>  <td>42</td>  <td>43</td>   </tr>
-	</table>
-	 -->

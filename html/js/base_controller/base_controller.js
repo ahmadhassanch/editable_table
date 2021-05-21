@@ -1,8 +1,8 @@
 
 class BaseController 
 {
-    constructor(container_name){
-        this.parentContainer = document.getElementById(container_name);
+    constructor(container){
+        this.parentContainer = container;
     }
 
     isAncestor(parent, node) {
@@ -57,10 +57,10 @@ class BaseController
     getSelectedElement(){ 
         var selection = window.getSelection();  
         var container = selection.anchorNode; 
-
+        console.log("container", container);
         if (container == undefined) return undefined;
 
-        if( container.nodeType !== 3 ){
+        if( container.nodeName !== "#text" ){
             console.log("Not sure what it is"); 
             return undefined; 
         } 
@@ -71,6 +71,7 @@ class BaseController
 
     getSelectedElements(){
         var node = this.getSelectedElement();
+        console.log("node", node);
         var isAncestor = this.isAncestor(this.parentContainer, node);
 
         if ((node == undefined) || (isAncestor == false)){
@@ -98,5 +99,50 @@ class BaseController
           }
         }
         return allSelected;
+    }
+
+    hideMenuTable() {
+
+        const elem = document.getElementById("contextMenuTable");
+        if (elem)
+        {
+            elem.style.display = "none";
+        }
+        document.removeEventListener('click', this.hideMenus);
+    }
+    
+    hideMenuPara() {
+        const elem = document.getElementById("contextMenuPara");
+        if (elem)
+        {
+            elem.style.display = "none";
+        }
+        document.removeEventListener('click', this.hideMenus);
+    
+    }
+    
+    hideMenus(){
+        this.hideMenuPara();
+        this.hideMenuTable();
+    }
+
+    rightClickPara(e) {
+        this.hideMenus();
+        e.preventDefault();
+    
+        var menu = document.getElementById("contextMenuPara");        
+        menu.style.display = 'block';
+        menu.style.left = e.pageX + "px";
+        menu.style.top = e.pageY + "px"; 
+    }
+
+    rightClickTable(e) {
+        this.hideMenus();
+        e.preventDefault();
+    
+        var menu = document.getElementById("contextMenuTable")    
+        menu.style.display = 'block';
+        menu.style.left = e.pageX + "px";
+        menu.style.top = e.pageY + "px"; 
     }
 }
